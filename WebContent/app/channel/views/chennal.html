@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Channel</title>
+</head>
+<body>
+
+
+<h1 class="main-heading">Channel Form</h1>
+
+<div class="oaerror warning" ng-hide="isdisabled">Note :<span class="required">*</span>Marked Is Mandatory!</div>
+
+
+<form name="channelForm">
+<div class="col-md-12 child-info infoo">
+    <div class="row">
+        <div class="">
+            <div class="form-group">
+                <h1 class="main-heading">Channel Details</h1>
+                <!-- <label class="control-label" for="inputLarge">Child Full Name <span class="required">*</span></label> -->
+                <div >
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="inputLarge">Channel Name <span class="required">*</span></label>
+                            <input class="form-control" name="channelname" id="inputLarge" type="text" placeholder="Channel name" ng-model="chennalObj.chennalname" ng-maxlength="50" limit-to="50"  ng-disabled="isdisabled" required>
+                        </div>
+                        <p class="errorMessage" ng-show="(channelForm.channelname.$invalid &&isshowmsg)||(channelForm.channelname.$error.maxlength||channelForm.channelname.$invalid&&channelForm.channelname.$touched)||channelForm.channelname.$error.pattern">
+                            Please enter valid Channel Name.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group"><label class="control-label" for="inputLarge">Program Name  <span class="required">*</span></label>
+                            <input class="form-control "  type="text" placeholder="Program name" ng-model="chennalObj.programname" name="programname" ng-maxlength="50" limit-to="50" ng-pattern="regExName" ng-disabled="isdisabled">
+                        </div>
+                        <p class="errorMessage" style="white-space:nowrap"ng-show="(channelForm.programname.$invalid &&isshowmsg)||(channelForm.programname.$error.maxlength||channelForm.programname.$invalid&&channelForm.programname.$touched)||channelForm.programname.$error.pattern">
+                            Please enter valid Program Name.
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label class="control-label" for="inputLarge">Category <span class="required">*</span></label>
+                            <input class="form-control" name="category" ng-pattern="regExName" ng-model="chennalObj.category"  type="text" placeholder="Category" ng-maxlength="50" limit-to="50" ng-disabled="isdisabled">
+                        </div>
+                        <p class="errorMessage" ng-show="(channelForm.category.$invalid &&isshowmsg)||(channelForm.category.$error.maxlength||channelForm.category.$invalid&&channelForm.category.$touched)||channelForm.category.$error.pattern">
+                            Please enter valid Category.
+                        </p>
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label" for="inputLarge">Language<span class="required"> *</span></label>
+               <input type="text" class="form-control" ng-model="channelObj.lenguage" ng-pattern="regExName" name="language" placeholder="Language" ng-maxlength="50" limit-to="50" required="true">
+            </div>
+            <p class="errorMessage" ng-show="(channelForm.language.$invalid &&isshowmsg)||(channelForm.language.$error.maxlength||channelForm.language.$invalid&&channelForm.language.$touched)||channelForm.language.$error.pattern">
+                Please enter valid Language.
+            </p>
+
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label" for="inputLarge">Channel Category <span class="required">*</span></label>
+                <select class="form-control" name="channelcategory"  ng-model="chennalObj.channelcategory" ng-options="cat as cat.name for cat in channelcategory " required>
+                <option selected value="">Please Select Channel Category</option>
+                </select>
+            </div>
+            <p class="errorMessage" ng-show="(channelForm.channelcategory.$invalid &&isshowmsg)||(channelForm.channelcategory.$error.maxlength||channelForm.channelcategory.$invalid&&channelForm.channelcategory.$touched)||channelForm.channelcategory.$error.pattern">
+                Please enter valid Channel Category.
+            </p>
+        </div>
+    </div>
+</div>
+
+<button class="btn btn-raised btn-primary" ng-click="savedata(channelForm.$valid,regObj);isshowmsg=true" ng-show="!isdisabled" >Submit</button>
+
+<button class="btn btn-raised btn-danger" ui-sref="onlineformprocess.printformdetails" ng-show="isdisabled" >Close</button>
+
+</form>
+</div>
+
+</body>
+</html>
