@@ -24,7 +24,8 @@
 <link rel="stylesheet" href="css/eduQfix.css" />
 
 <link rel='stylesheet' type='text/css' href="vendor/progressbar/loading-bar.css">
-<script src="vendor/angular/angular.js"></script>
+    <link rel='stylesheet' type='text/css' href="../bower_components/angular-datatables/dist/css/angular-datatables.min.css">
+
 </head>
 <body  ng-clock ng-init="ishowbaner=true">
 	
@@ -65,7 +66,7 @@
 
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	<script src="vendor/jquery/jquery-1.11.2.min.js"></script>
+	<script src="vendor/jquery/jquery-1.11.3.js"></script>
 	
 	<script src="vendor/jquery/jquery.blockUI.js"></script>
 	<script src="vendor/angular/angular.js"></script>
@@ -79,6 +80,8 @@
 	<script src="vendor/angular-dashboard/Chart.min.js"></script>
 	<script src="vendor/angular-dashboard/angular-chart.min.js"></script>
 	<script src="vendor/angular-re-captcha/angular-re-captcha.js"></script>
+        <script src="../bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="../bower_components/angular-datatables/dist/angular-datatables.min.js"></script>
 
 	<!-- TimeTable Calendar Files Started  -->
 	<script src="vendor/ui-calendar/calendar.js"></script>
@@ -121,11 +124,13 @@
     <script src="app/channel/controllers/channelctrl.js"></script>
     <script src="app/channel/controllers/listofchannelctrl.js"></script>
     <script src="app/channel/models/channelmodel.js"></script>
+    <script src="app/channel/services/chennalservice.js"></script>
     <!--Product Files-->
     <script src="app/product/config/productconfig.js"></script>
     <script src="app/product/models/productmodel.js"></script>
     <script src="app/product/controllers/productctrl.js"></script>
     <script src="app/product/controllers/listofproductctrl.js"></script>
+    <script src="app/product/services/productservice.js"></script>
     <!--Registration Files-->
      <script src="app/registration/config/registrationconfig.js"></script>
      <script src="app/registration/controllers/registrationctrl.js"></script>

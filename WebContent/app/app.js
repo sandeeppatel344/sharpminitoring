@@ -1,7 +1,7 @@
 var app = angular.module('sharpmonitoring', [ 'ui.router',
-   'ui.bootstrap','ngCookies','angular-loading-bar']);
+   'ui.bootstrap','ngCookies','angular-loading-bar','datatables']);
 
-
+var userserviceapiurl = "http://localhost/travel2stay-api/public/";
 app.run(function($rootScope,$timeout, $state, $state, $stateParams) {
 	// this solves page refresh and getting back to state
 	//editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
@@ -42,6 +42,7 @@ app.run(function($rootScope,$timeout, $state, $state, $stateParams) {
 //angular.module('pathfinder').value('pathfinderuserserviceapiurl', 'http://192.168.0.230:8080/user-service/');
 //angular.module('pathfinder').value('imageurl', 'http://192.168.0.230:8080');
 //angular.module('pathfinder').value('expireTimeInMinuites', 300);
+
 
 
 app.factory('InitializationService',

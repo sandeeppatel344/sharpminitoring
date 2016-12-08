@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+<div >
+    <table datatable="" dt-options="dtOptions" dt-column-defs="dtColumnDefs" class="row-border hover">
+        <thead>
+        <tr>
+            <th>Movie Name</th>
+            <th>Songs</th>
+            <th>Music Company</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="product in productList">{{productList[0]}}
+            <td>{{ product.movie_name }}</td>
+            <td>{{ product.songs }}</td>
+            <td>{{ product.music_company }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

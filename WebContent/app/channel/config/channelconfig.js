@@ -19,8 +19,8 @@ app.config([ '$stateProvider','$urlRouterProvider', function($stateProvider,$url
             url : '/listofchannel',
             views : {
                 '@' : {
-                    templateUrl : 'app/channel/views/chennal.html',
-                    controller:'channelCtrl'
+                    templateUrl : 'app/channel/views/listofchennal.html',
+                    controller:'listOfChannel'
                 }
             }
 

@@ -7,17 +7,17 @@ app.factory('channelModel',function() {
             var self = this;
             self.channelData = function(){
                 var _this = this;
-                this.channelname = "";
-                this.programname = "";
+                this.channelName = "";
+                this.programName = "";
                 this.category = "";
                 this.language = "";
                 this.channelcategory ="";
                 this.editData = function(data){
-                    this.channelname = data.channelname;
-                    this.programname = data.programname;
+                    this.channelName = data.channelName;
+                    this.programName = data.programName;
                     this.category = data.category;
                     this.language = data.language;
-                    this.channelname = data.channelcategory;
+                    this.channelcategory = data.channelcategory;
                 }
 
             }

@@ -1,9 +1,9 @@
 /**
  * Created by sandeep on 12/6/2016.
  */
-app.controller("channelCtrl",function($scope,channelModel){
+app.controller("channelCtrl",function($scope,channelModel,channelService){
     this.modelObj = channelModel
-    $scope.chennalObj = new this.modelObj.channelData();
+    $scope.channelObj = new this.modelObj.channelData();
     $scope.regExName = /^[A-Z a-z]{2,50}$/;
     $scope.regExAlphaNumeric = /^[ A-Za-z0-9_@.\/()#&+-]*$/;
     $scope.regAddress = /^[ A-Za-z0-9_@.\/(),#&+-]*$/
@@ -17,4 +17,12 @@ app.controller("channelCtrl",function($scope,channelModel){
     $scope.regExDecimal = /^(?:\d*\.\d{1,2}|\d+)$/;
     $scope.regnumer = /^[0-9]+$/;
     $scope.channelcategory = [{"id":"1","name":"Entertainment"},{"id":"2","name":"Commedy"},{"id":"3","name":"Music"}];
+    $scope.saveChannel = function(){
+        $scope.channelObj.channel_category_id = $scope.channelObj.channelcategory.id;
+        channelService.saveChannel($scope.channelObj).then(function(res){
+            console.log(res);
+        },function(error){
+            console.error(error);
+        })
+    }
 })

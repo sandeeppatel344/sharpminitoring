@@ -25,7 +25,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="control-label" for="inputLarge">Channel Name <span class="required">*</span></label>
-                            <input class="form-control" name="channelname" id="inputLarge" type="text" placeholder="Channel name" ng-model="chennalObj.chennalname" ng-maxlength="50" limit-to="50"  ng-disabled="isdisabled" required>
+                            <input class="form-control" name="channelname" id="inputLarge" type="text" placeholder="Channel name" ng-model="channelObj.channelName" ng-maxlength="50" limit-to="50"  ng-disabled="isdisabled" required>
                         </div>
                         <p class="errorMessage" ng-show="(channelForm.channelname.$invalid &&isshowmsg)||(channelForm.channelname.$error.maxlength||channelForm.channelname.$invalid&&channelForm.channelname.$touched)||channelForm.channelname.$error.pattern">
                             Please enter valid Channel Name.
@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group"><label class="control-label" for="inputLarge">Program Name  <span class="required">*</span></label>
-                            <input class="form-control "  type="text" placeholder="Program name" ng-model="chennalObj.programname" name="programname" ng-maxlength="50" limit-to="50" ng-pattern="regExName" ng-disabled="isdisabled">
+                            <input class="form-control "  type="text" placeholder="Program name" ng-model="channelObj.programName" name="programname" ng-maxlength="50" limit-to="50" ng-pattern="regExName" ng-disabled="isdisabled">
                         </div>
                         <p class="errorMessage" style="white-space:nowrap"ng-show="(channelForm.programname.$invalid &&isshowmsg)||(channelForm.programname.$error.maxlength||channelForm.programname.$invalid&&channelForm.programname.$touched)||channelForm.programname.$error.pattern">
                             Please enter valid Program Name.
@@ -42,7 +42,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="control-label" for="inputLarge">Category <span class="required">*</span></label>
-                            <input class="form-control" name="category" ng-pattern="regExName" ng-model="chennalObj.category"  type="text" placeholder="Category" ng-maxlength="50" limit-to="50" ng-disabled="isdisabled">
+                            <input class="form-control" name="category" ng-pattern="regExName" ng-model="channelObj.category"  type="text" placeholder="Category" ng-maxlength="50" limit-to="50" ng-disabled="isdisabled">
                         </div>
                         <p class="errorMessage" ng-show="(channelForm.category.$invalid &&isshowmsg)||(channelForm.category.$error.maxlength||channelForm.category.$invalid&&channelForm.category.$touched)||channelForm.category.$error.pattern">
                             Please enter valid Category.
@@ -73,7 +73,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label class="control-label" for="inputLarge">Channel Category <span class="required">*</span></label>
-                <select class="form-control" name="channelcategory"  ng-model="chennalObj.channelcategory" ng-options="cat as cat.name for cat in channelcategory " required>
+                <select class="form-control" name="channelcategory"  ng-model="channelObj.channelcategory" ng-options="cat as cat.name for cat in channelcategory " required>
                 <option selected value="">Please Select Channel Category</option>
                 </select>
             </div>
@@ -84,7 +84,7 @@
     </div>
 </div>
 
-<button class="btn btn-raised btn-primary" ng-click="savedata(channelForm.$valid,regObj);isshowmsg=true" ng-show="!isdisabled" >Submit</button>
+<button class="btn btn-raised btn-primary" ng-click="saveChannel(channelForm.$valid,channelObj);isshowmsg=true"  >Submit</button><!--ng-show="!isdisabled"-->
 
 <button class="btn btn-raised btn-danger" ui-sref="onlineformprocess.printformdetails" ng-show="isdisabled" >Close</button>
 
