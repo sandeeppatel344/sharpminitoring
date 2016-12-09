@@ -1,7 +1,7 @@
 var app = angular.module('sharpmonitoring', [ 'ui.router',
    'ui.bootstrap','ngCookies','angular-loading-bar','datatables']);
 
-var userserviceapiurl = "http://192.168.0.141/travel2stay-api/public/";
+var userserviceapiurl = "http://Darshan/travel2stay-api/public/";
 app.run(function($rootScope,$timeout, $state, $state, $stateParams) {
 	// this solves page refresh and getting back to state
 	//editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'

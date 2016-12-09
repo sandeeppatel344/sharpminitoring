@@ -62,9 +62,9 @@
 
     </div>
 
-    <button class="btn btn-raised btn-primary" ng-click="savedata(productForm.$valid,regObj);isshowmsg=true" ng-show="!isdisabled" >Submit</button>
+    <button class="btn btn-raised btn-primary" ng-click="saveProduct(productForm.$valid,productObj);isshowmsg=true" >Submit</button>
 
-    <button class="btn btn-raised btn-danger" ui-sref="onlineformprocess.printformdetails" ng-show="isdisabled" >Close</button>
+    <button class="btn btn-raised btn-danger" ui-sref="onlineformprocess.printformdetails" ng-show="isdisabled" >Update</button>
 
 </form>
 </div>

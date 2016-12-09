@@ -70,9 +70,12 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label class="control-label" for="inputLarge">Date of birth <span class="required">*</span></label>
-                    <input class="form-control" name="dob"  ng-model="regObj.dob"  type="text" placeholder="Date of birth"  required>
+              <!--       <input class="form-control" name="dob"  ng-model="regObj.dob"  type="text" placeholder="Date of birth"  required> -->
+                    <input type="text" class=" form-control" name = "dob" valid-date 
+                        uib-datepicker-popup="dd/MM/yyyy" max-date="maxDate"    
+                        ng-model="regObj.dob" is-open = "isOpen" close-text="Close" ng-click="isOpen=true" on-focus="isOpen=true" required ng-disabled="isdisabled" placeholder="Date of birth"/>
                 </div>
-                <p class="errorMessage" ng-show="(registrationForm.dob.$invalid &&isshowmsg)||(registrationForm.dob.$error.maxlength||registrationForm.dob.$invalid&&registrationForm.dob.$touched)||registrationForm.dob.$error.pattern">
+                <p class="errorMessage" ng-show="(registrationForm.dob.$invalid &&isshowmsg)||(registrationForm.dob.$error.maxlength||registrationForm.dob.$invalid&&registrationForm.dob.$touched)||registrationForm.dob.$error.pattern||(regObj.dob>currentdate)">
                     Please enter valid Date of birth.
                 </p>
 
