@@ -1,7 +1,7 @@
 /**
  * Created by sandeep on 12/7/2016.
  */
-app.controller("productCtrl",function($scope,productModel){
+app.controller("productCtrl",function($scope,productModel,productService){
 
     $scope.regExName = /^[A-Z a-z]{2,50}$/;
     $scope.regExAlphaNumeric = /^[ A-Za-z0-9_@.\/()#&+-]*$/;
@@ -17,4 +17,11 @@ app.controller("productCtrl",function($scope,productModel){
     $scope.regnumer = /^[0-9]+$/;
 this.modelObj = productModel;
     $scope.productObj = new this.modelObj.productData();
+    $scope.saveProduct = function(){
+        productService.saveProduct().then(function(res){
+            console.log(res)
+        },function(error){
+            console.error(error);
+        })
+    }
 })
