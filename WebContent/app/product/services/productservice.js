@@ -6,10 +6,20 @@ app.factory("productService",function($http){
     obj.saveProduct = function(productdata){
         return $http.post(userserviceapiurl+"product/add",productdata);
     }
-
-
     obj.getProductList = function(){
         return $http.get(userserviceapiurl+"product/all");
+    }
+
+    obj.editProduct = function(id){
+        return $http.get(userserviceapiurl+"product/edit?productid="+id);
+    }
+
+    obj.deleteProduct = function(id){
+        return $http.get(userserviceapiurl+"product/delete?productid="+id);
+    }
+
+    obj.updateProduct = function(data){
+        return $http.post(userserviceapiurl+"product/update",data);
     }
     return obj;
 })

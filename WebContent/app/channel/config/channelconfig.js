@@ -8,6 +8,8 @@ app.config([ '$stateProvider','$urlRouterProvider', function($stateProvider,$url
             abstract :true
         }).state('sharpmonitoring.channel', {
             url : '/channel',
+            params:{isnew:null,id:null},
+            cache:false,
             views : {
                 '@' : {
                     templateUrl : 'app/channel/views/chennal.html',
@@ -17,6 +19,7 @@ app.config([ '$stateProvider','$urlRouterProvider', function($stateProvider,$url
 
         }).state('sharpmonitoring.listofchannel', {
             url : '/listofchannel',
+            cache:false,
             views : {
                 '@' : {
                     templateUrl : 'app/channel/views/listofchennal.html',
