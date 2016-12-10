@@ -85,7 +85,7 @@
     </div>
 </div>
 
-<button class="btn btn-raised btn-primary" ng-click="saveChannel(channelForm.$valid,channelObj);isshowmsg=true"  >Submit</button><!--ng-show="!isdisabled"-->
+<button class="btn btn-raised btn-primary" ng-click="saveChannel(channelForm.$valid,channelObj);isshowmsg=true"  ng-if="isshowUpdate">Submit</button><!--ng-show="!isdisabled"-->
  <button class="btn btn-raised btn-primary" ng-click="updateChannel(channelForm.$valid,channelObj);isshowmsg=true" ng-if="!isshowUpdate">Update</button>
 
 
