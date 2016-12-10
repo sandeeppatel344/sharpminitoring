@@ -42,7 +42,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label" for="inputLarge">Music Company <span class="required">*</span></label>
-                                <input class="form-control" name="musiccompany"  ng-model="productObj.category"  type="text" placeholder="Music Company" ng-maxlength="50" limit-to="50" required>
+                                <input class="form-control" name="musiccompany"  ng-model="productObj.music_company"  type="text" placeholder="Music Company" ng-maxlength="50" limit-to="50" required>
                             </div>
                             <p class="errorMessage" ng-show="(productForm.musiccompany.$invalid &&isshowmsg)||(productForm.musiccompany.$error.maxlength||productForm.musiccompany.$invalid&&productForm.musiccompany.$touched)||productForm.musiccompany.$error.pattern">
                                 Please enter valid Music Company.
@@ -62,9 +62,11 @@
 
     </div>
 
-    <button class="btn btn-raised btn-primary" ng-click="saveProduct(productForm.$valid,productObj);isshowmsg=true" >Submit</button>
+    <button class="btn btn-raised btn-primary" ng-click="saveProduct(productForm.$valid,productObj);isshowmsg=true" ng-if="isshowUpdate">Submit</button>
+    <button class="btn btn-raised btn-primary" ng-click="updateProduct(productForm.$valid,productObj);isshowmsg=true" ng-if="!isshowUpdate">Update</button>
 
-    <button class="btn btn-raised btn-danger" ui-sref="onlineformprocess.printformdetails" ng-show="isdisabled" >Update</button>
+
+    <button class="btn btn-raised btn-danger" ui-sref="sharpmonitoring.listofproduct"  >Cancel</button>
 
 </form>
 </div>

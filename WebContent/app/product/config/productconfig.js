@@ -5,6 +5,8 @@ app.config([ '$stateProvider','$urlRouterProvider', function($stateProvider,$url
 
     $stateProvider.state('sharpmonitoring.product', {
         url : '/product',
+        params:{isnew:null,id:null},
+        cache:false,
         views : {
             '@' : {
                 templateUrl : 'app/product/views/product.html',
@@ -14,6 +16,7 @@ app.config([ '$stateProvider','$urlRouterProvider', function($stateProvider,$url
 
     }).state('sharpmonitoring.listofproduct', {
         url : '/listofproduct',
+        cache:false,
         views : {
             '@' : {
                 templateUrl : 'app/product/views/listofproduct.html',
