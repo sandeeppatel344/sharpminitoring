@@ -17,12 +17,14 @@ app.controller("productCtrl",function($scope,$stateParams,productModel,productSe
     $scope.regnumer = /^[0-9]+$/;
 this.modelObj = productModel;
     $scope.productObj = new this.modelObj.productData();
-    $scope.saveProduct = function(){
+    $scope.saveProduct = function(valid){
+        if(valid){
         productService.saveProduct($scope.productObj).then(function(res){
             console.log(res)
         },function(error){
             console.error(error);
         })
+    }
     }
 
     $scope.editData = function(id){
