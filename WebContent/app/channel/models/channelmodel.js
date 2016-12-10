@@ -19,7 +19,7 @@ app.factory('channelModel',function() {
                     this.program_name = data.program_name;
                     this.category = data.category;
                     this.language = data.language;
-                    this.channel_category = {"id":data.channel_category_id,"name":data.category_name};
+                    this.channel_category = {"id":data.channel_category_id,"category_name":data.category_name};
                 }
 
             }
