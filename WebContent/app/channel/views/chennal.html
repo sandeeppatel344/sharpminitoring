@@ -76,7 +76,7 @@
                 <select class="form-control" name="channelcategory"  ng-model="channelObj.channel_category" ng-options="cat as cat.name for cat in channel_category " required>
                 <option selected value="">Please Select Channel Category</option>
                 </select>
-                {{channelObj.channel_category}}
+                
             </div>
             <p class="errorMessage" ng-show="(channelForm.channelcategory.$invalid &&isshowmsg)||(channelForm.channelcategory.$error.maxlength||channelForm.channelcategory.$invalid&&channelForm.channelcategory.$touched)||channelForm.channelcategory.$error.pattern">
                 Please enter valid Channel Category.
