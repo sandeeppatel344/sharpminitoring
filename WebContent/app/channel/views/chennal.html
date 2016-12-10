@@ -9,7 +9,7 @@
 <body>
 
 
-<h1 class="main-heading">Channel Form</h1>
+<h1 class="main-heading"><span ng-if="!isshowUpdate">Edit</span> <span ng-if="isshowUpdate">New</span>Channel Form</h1>
 
 <div class="oaerror warning" ng-hide="isdisabled">Note :<span class="required">*</span>Marked Is Mandatory!</div>
 
@@ -89,7 +89,7 @@
  <button class="btn btn-raised btn-primary" ng-click="updateChannel(channelForm.$valid,channelObj);isshowmsg=true" ng-if="!isshowUpdate">Update</button>
 
 
-    <button class="btn btn-raised btn-danger" ui-sref="sharpmonitoring.listofproduct"  >Cancel</button>
+    <button class="btn btn-raised btn-danger" ui-sref="sharpmonitoring.listofchannel"  >Cancel</button>
 
 
 

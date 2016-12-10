@@ -18,11 +18,13 @@ app.controller("registrationCtrl",function($scope,registrationModel,registerServ
     $scope.currentdate = new Date();
     this.modelObj = registrationModel;
     $scope.regObj = new this.modelObj.registrationData();
-    $scope.registration =function(){
-        registerService.saveUser().then(function(res){
+    $scope.registration =function(valid){
+        if(valid){
+        registerService.saveUser($scope.regObj).then(function(res){
             console.log(res);
         },function(error){
             console.error(error)
         })
+    }
     }
 })

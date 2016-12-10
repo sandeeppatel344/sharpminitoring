@@ -12,6 +12,15 @@ app.config([ '$stateProvider','$urlRouterProvider', function($stateProvider,$url
             }
         }
 
+    }).state('sharpmonitoring.listofregistration', {
+        url : '/listofregistration',
+        views : {
+            '@' : {
+                templateUrl : 'app/registration/views/listofregistration.html',
+                controller:'listOfRegistrationCtrl'
+            }
+        }
+
     })
 }]);
 

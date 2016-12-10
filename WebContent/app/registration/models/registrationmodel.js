@@ -12,8 +12,10 @@ app.factory("registrationModel",function(){
             this.password = "";
             this.contact_no = "";
             this.dob = "";
+            this.id = "";
 
             this.editData = function(data){
+                this.id = data.id;
                 this.first_name = data.first_name;
                 this.last_name = data.last_name;
                 this.email_id = data.email_id;
