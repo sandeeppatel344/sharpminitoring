@@ -1,0 +1,82 @@
+
+	<div class="col-md-12">
+		<div class="row">
+
+			<div class="col-md-offset-4 col-md-4 marginT30">
+				<div ng-if="errorClass" class="alert alert-dismissible {{errorClass}}">
+				  <button type="button" class="close" data-dismiss="alert">&#10005;</button>
+				  <strong>{{message}}</strong>
+			</div>
+			
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title pull-left">Login</h3>
+					<!-- 	<p class="pull-right">
+							Need an account? <a href="#" data-ui-sref="registration.view">Register
+								Now</a>
+						</p>
+						<p class="pull-right">
+							 <a href="#" data-ui-sref="login.invitationcode">Enter Invitation Code</a>
+						</p>  -->
+						<div class="clearfix"></div>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-12">
+								<form name="loginDetail" class="container-fluid" ng-submit="doLogin(loginDetail.$valid,login)">
+									<!-- <p>
+										<font color='RED'>
+											<h5>{{$root.loginErrorMessage}} {{message}}</h5>
+										</font>
+									</p> -->
+									<div class="form-group">
+										<label for="idUsername" class="control-label">Registration Id</label>
+										<input type="text" id="idUsername" class="form-control"
+											name="username" ng-model="login.applicant_Id" value=""
+											ng-required='true'>
+									</div>
+									<div class="form-group">
+										<label for="idPassword" class="control-label">Password</label>
+										<input type="password" id="idPassword" class="form-control"
+											name="password" ng-model="login.password" value=""
+											ng-required='true'>
+									</div>
+
+									<div class="form-group">
+				<input type="submit"
+											class="btn btn-raised btn-warning"
+											 ng-disabled="loginDetail.$invalid"
+											value="Login">
+										
+									</div>
+
+								</form>
+								<span style="color:red">{{message}}</span>
+							</div>
+							<!-- div class="col-md-6 social-login">
+								<a class="btn-sm fb-bg rectangle waves-effect waves-light" 
+									ng-click = "socialLogin('facebook')">
+									<i class="fa fa-facebook"> </i> 
+									<span>Sign in with Facebook</span>
+								</a>
+								<a class="btn-sm gplus-bg rectangle waves-effect waves-light" 
+									ng-click = "socialLogin('google')">
+									<i class="fa fa-google-plus"> </i> 
+									<span>Sign in with Google+</span>
+								</a>
+							</div  -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- div class="row">
+			<div class="col-md-offset-3 col-md-8 text-center">
+				<p>
+					Forgot your password? <a href="#"
+						data-ui-sref="login.forgotPassword">Click here</a>
+				</p>
+
+			</div>
+		</div  -->
+	</div>

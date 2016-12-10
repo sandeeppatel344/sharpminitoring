@@ -1,9 +1,9 @@
 app.controller("loginCtrl",function($scope,loginService){
-	$scope.userObj = {};
+	$scope.login = {};
 	$scope.doLogin = function(valid){
 		if(valid){
-		loginService.dologin(userObj).then(function(res){
-
+		loginService.dologin($scope.login).then(function(res){
+			console.log(res)
 		},function(error){
 			console.error(error);
 		})
