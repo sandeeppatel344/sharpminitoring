@@ -17,10 +17,17 @@ app.controller("channelCtrl",function($scope,channelModel,$stateParams,channelSe
     $scope.regExDecimal = /^(?:\d*\.\d{1,2}|\d+)$/;
     $scope.regnumer = /^[0-9]+$/;
 
-    $scope.channel_category = [{"id":"1","name":"Sports"},{"id":"2","name":"News"},{"id":"3","name":"Entertainment"}];
+    $scope.channel_category = [];
+    $scope.getChannelCategoryList = function(){
+        channelService.getChannelCategoryList().then(function(res){
+           $scope.channel_category = res.data; 
+        })
+    }
+    $scope.getChannelCategoryList();
     $scope.saveChannel = function(valid){
         if(valid){
         $scope.channelObj.channel_category_id = $scope.channelObj.channel_category.id;
+        $scope.channelObj.created_by = localStorageService.get("currentuserid");
         channelService.saveChannel($scope.channelObj).then(function(res){
             console.log(res);
         },function(error){

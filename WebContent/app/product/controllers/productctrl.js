@@ -19,6 +19,7 @@ this.modelObj = productModel;
     $scope.productObj = new this.modelObj.productData();
     $scope.saveProduct = function(valid){
         if(valid){
+            $scope.productObj.created_by = localStorageService.get("currentuserid");
         productService.saveProduct($scope.productObj).then(function(res){
             console.log(res)
         },function(error){

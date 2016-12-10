@@ -20,5 +20,8 @@ app.factory("channelService",function($http){
     obj.updateChannel = function(data){
         return $http.post(userserviceapiurl+"channel/update",data);
     }
+    obj.getChannelCategoryList = function(){
+        return $http.get(userserviceapiurl+"channel/fetchChannelCategory");
+    }
     return obj;
 })
