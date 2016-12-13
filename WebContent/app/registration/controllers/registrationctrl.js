@@ -27,4 +27,31 @@ app.controller("registrationCtrl",function($scope,registrationModel,registerServ
         })
     }
     }
+
+     $scope.editData = function(id){
+        registerService.editRegister(id).then(function(res){
+            console.log(res)
+            $scope.regObj.editData(res.data[0]);
+        },function(error){
+            console.error(error);
+        })
+    }
+    $scope.registerId = $stateParams.id?$stateParams.id:localStorageService.get("registerid");
+
+    if($scope.registerId){
+        $scope.editData($scope.registerId);
+        $scope.isshowUpdate = false;
+    }else{
+        $scope.isshowUpdate = true;
+    }
+
+    $scope.updateChannel = function(valid){
+        if(valid){
+        registerService.updateRegister($scope.regObj).then(function(res){
+            console.log(res)
+        },function(error){
+            console.error(error);
+        })
+    }
+    }
 })

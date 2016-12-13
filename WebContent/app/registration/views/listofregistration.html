@@ -4,20 +4,24 @@
         <thead>
         <tr style="text-align: center">
             <th>SrNo.</th>
-            <th>Movie Name</th>
-            <th>Songs</th>
-            <th>Music Company</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Date of Birth</th>
+            <th>Email/th>
+            <th>Mobile</th>
             <th colspan="2">Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="product in productList" ng-if="product.movie_name">
+        <tr ng-repeat="register in registerList" ng-if="product.movie_name">
             <td>{{$index+1}}</td>
-            <td>{{ product.movie_name }}</td>
-            <td>{{ product.songs }}</td>
-            <td>{{ product.music_company }}</td>
-            <td title="Edit Channel"><button class="btn btn-success" ng-click="editData(product.id)"><i class="glyphicon glyphicon-pencil"></i></button></td>
-            <td title="Delete Channel"><button class="btn btn-danger" ng-click="deleteData(product.id)"><i class="glyphicon glyphicon-trash" ></i></button></td>
+            <td>{{ register.first_name }}</td>
+            <td>{{ register.last_name }}</td>
+            <td>{{ register.dob }}</td>
+            <td>{{ register.email }}</td>
+            <td>{{ register.contact }}</td>
+            <td title="Edit Channel"><button class="btn btn-success" ng-click="editData(register.id)"><i class="glyphicon glyphicon-pencil"></i></button></td>
+            <td title="Delete Channel"><button class="btn btn-danger" ng-click="deleteData(register.id)"><i class="glyphicon glyphicon-trash" ></i></button></td>
         </tr>
         </tbody>
     </table>

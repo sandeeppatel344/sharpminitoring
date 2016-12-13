@@ -42,7 +42,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label" for="inputLarge">Username<span class="required"> *</span></label>
-                                <input type="text" class="form-control" ng-model="regObj.lenguage" ng-pattern="regExName" name="username" placeholder="Username" ng-maxlength="50" limit-to="50" required>
+                                <input type="text" class="form-control" ng-model="regObj.username" ng-pattern="regExName" name="username" placeholder="Username" ng-maxlength="50" limit-to="50" required>
                             </div>
                             <p class="errorMessage" ng-show="(registrationForm.username.$invalid &&isshowmsg)||(registrationForm.username.$error.maxlength||registrationForm.username.$invalid&&registrationForm.username.$touched)||registrationForm.username.$error.pattern">
                                 Please enter valid Username.
@@ -83,7 +83,7 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label class="control-label" for="inputLarge">Email <span class="required">*</span></label>
-                    <input class="form-control" name="email" ng-pattern="regExEmail" ng-model="regObj.email_id"  type="text" placeholder="Email" ng-maxlength="100" limit-to="100" ng-disabled="isdisabled" required>
+                    <input class="form-control" name="email" ng-pattern="regExEmail" ng-model="regObj.email"  type="text" placeholder="Email" ng-maxlength="100" limit-to="100" ng-disabled="isdisabled" required>
                 </div>
                 <p class="errorMessage" ng-show="(registrationForm.email.$invalid &&isshowmsg)||(registrationForm.email.$error.maxlength||registrationForm.email.$invalid&&registrationForm.email.$touched)||registrationForm.email.$error.pattern">
                     Please enter valid Email.
@@ -93,7 +93,7 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label class="control-label" for="inputLarge">Mobile <span class="required">*</span></label>
-                    <input class="form-control" name="mobile" ng-pattern="regExMobile" ng-model="regObj.contact_no"  type="text" placeholder="Mobile No" ng-maxlength="10" limit-to="10" ng-disabled="isdisabled" required>
+                    <input class="form-control" name="mobile" ng-pattern="regExMobile" ng-model="regObj.contact"  type="text" placeholder="Mobile No" ng-maxlength="10" limit-to="10" ng-disabled="isdisabled" required>
                 </div>
                 <p class="errorMessage" ng-show="(registrationForm.mobile.$invalid &&isshowmsg)||(registrationForm.mobile.$error.maxlength||registrationForm.mobile.$invalid&&registrationForm.mobile.$touched)||registrationForm.mobile.$error.pattern">
                     Please enter valid Mobile.
