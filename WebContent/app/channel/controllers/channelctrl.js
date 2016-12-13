@@ -1,7 +1,7 @@
 /**
  * Created by sandeep on 12/6/2016.
  */
-app.controller("channelCtrl",function($scope,channelModel,$stateParams,channelService,localStorageService){
+app.controller("channelCtrl",function($scope,channelModel,$stateParams,channelService,localStorageService,ngToast){
     this.modelObj = channelModel
     $scope.channelObj = new this.modelObj.channelData();
     $scope.regExName = /^[A-Z a-z]{2,50}$/;
@@ -23,6 +23,8 @@ app.controller("channelCtrl",function($scope,channelModel,$stateParams,channelSe
            $scope.channel_category = res.data; 
         })
     }
+    
+    ngToast.create('a toast message...');
     $scope.getChannelCategoryList();
     $scope.saveChannel = function(valid){
         if(valid){

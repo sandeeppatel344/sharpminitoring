@@ -1,5 +1,6 @@
 app.controller("listOfRegistrationCtrl",function($scope,$state,localStorageService,registerService){
 	localStorageService.set("registerid","");
+	$scope.registerList = [];
 	$scope.addNewRegistration = function(){
 		$state.go("sharpmonitoring.registration",{isnew:true})
 	}
@@ -17,4 +18,14 @@ app.controller("listOfRegistrationCtrl",function($scope,$state,localStorageServi
 			console.log(error);
 		})
 	}
+
+	$scope.getAllRegister = function(){
+		registerService.getAllRegister().then(function(res){
+			$scope.registerList = res.data;
+		},function(error){
+			console.log(error);
+		})
+	}
+
+	$scope.getAllRegister();
 })

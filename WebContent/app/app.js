@@ -1,5 +1,5 @@
 var app = angular.module('sharpmonitoring', [ 'ui.router',
-   'ui.bootstrap','ngCookies','angular-loading-bar','datatables']);
+   'ui.bootstrap','ngCookies','angular-loading-bar','datatables','ngToast']);
 
 var userserviceapiurl = "http://localhost/travel2stay-api/public/";
 app.run(function($rootScope,$timeout, $state, $state, $stateParams) {

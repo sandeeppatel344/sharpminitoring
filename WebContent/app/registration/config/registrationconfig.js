@@ -5,7 +5,7 @@ app.config([ '$stateProvider','$urlRouterProvider', function($stateProvider,$url
 
     $stateProvider.state('sharpmonitoring.registration', {
         url : '/registration',
-        params:{isnew:null,id:null}
+        params:{isnew:null,id:null},
         views : {
             '@' : {
                 templateUrl : 'app/registration/views/registration.html',
