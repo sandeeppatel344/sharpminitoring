@@ -15,14 +15,15 @@ app.controller("productCtrl",function($scope,$stateParams,productModel,productSe
     $scope.regExAadhar = /^\\d{12}$/;
     $scope.regExDecimal = /^(?:\d*\.\d{1,2}|\d+)$/;
     $scope.regnumer = /^[0-9]+$/;
-this.modelObj = productModel;
+     var _this = this;
+    this.modelObj = productModel;
     $scope.productObj = new this.modelObj.productData();
     $scope.saveProduct = function(valid){
         if(valid){
             $scope.productObj.created_by = localStorageService.get("currentuserid");
         productService.saveProduct($scope.productObj).then(function(res){
             console.log(res)
-            $scope.productObj = new this.modelObj.productData();
+            $scope.productObj = new _this.modelObj.productData();
         },function(error){
             console.error(error);
         })

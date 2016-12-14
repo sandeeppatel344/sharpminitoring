@@ -2,7 +2,8 @@
  * Created by sandeep on 12/6/2016.
  */
 app.controller("channelCtrl",function($scope,channelModel,$stateParams,channelService,localStorageService,ngToast){
-    this.modelObj = channelModel
+    this.modelObj = channelModel;
+    var _this = this;
     $scope.channelObj = new this.modelObj.channelData();
     $scope.regExName = /^[A-Z a-z]{2,50}$/;
     $scope.regExAlphaNumeric = /^[ A-Za-z0-9_@.\/()#&+-]*$/;
@@ -32,7 +33,7 @@ app.controller("channelCtrl",function($scope,channelModel,$stateParams,channelSe
         $scope.channelObj.created_by = localStorageService.get("currentuserid");
         channelService.saveChannel($scope.channelObj).then(function(res){
             console.log(res);
-            $scope.channelObj = new this.modelObj.channelData();
+            $scope.channelObj = new _this.modelObj.channelData();
         },function(error){
             console.error(error);
         })

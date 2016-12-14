@@ -1,7 +1,7 @@
 /**
  * Created by sandeep on 12/7/2016.
  */
-app.controller("registrationCtrl",function($scope,registrationModel,registerService){
+app.controller("registrationCtrl",function($scope,registrationModel,$stateParams,registerService){
 
     $scope.regExName = /^[A-Z a-z]{2,50}$/;
     $scope.regExAlphaNumeric = /^[ A-Za-z0-9_@.\/()#&+-]*$/;
@@ -16,6 +16,7 @@ app.controller("registrationCtrl",function($scope,registrationModel,registerServ
     $scope.regExDecimal = /^(?:\d*\.\d{1,2}|\d+)$/;
     $scope.regnumer = /^[0-9]+$/;
     $scope.currentdate = new Date();
+     var _this = this;
     this.modelObj = registrationModel;
     $scope.regObj = new this.modelObj.registrationData();
     $scope.registration =function(valid){
@@ -23,7 +24,7 @@ app.controller("registrationCtrl",function($scope,registrationModel,registerServ
         $scope.regObj.created_by = localStorageService.get("currentuserid");
         registerService.saveUser($scope.regObj).then(function(res){
             console.log(res);
-              $scope.regObj = new this.modelObj.registrationData();
+              $scope.regObj = new _this.modelObj.registrationData();
         },function(error){
             console.error(error)
         })

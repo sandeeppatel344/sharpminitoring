@@ -1,4 +1,4 @@
-app.controller("listOfRegistrationCtrl",function($scope,$state,localStorageService,registerService){
+app.controller("listOfRegistrationCtrl",function($scope,$state,$stateParams,localStorageService,registerService){
 	localStorageService.set("registerid","");
 	$scope.registerList = [];
 	$scope.addNewRegistration = function(){
