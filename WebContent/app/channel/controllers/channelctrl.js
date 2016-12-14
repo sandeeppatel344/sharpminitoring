@@ -63,7 +63,7 @@ app.controller("channelCtrl",function($scope,channelModel,$stateParams,$timeout,
 
     $scope.updateChannel = function(valid){
         if(valid){
-        $scope.channelObj.channel_category_id = $scope.channelObj.channel_category.category_id;
+        $scope.channelObj.channel_category_id = $scope.channelObj.channel_category.id;
          $scope.channelObj.updated_by = localStorageService.get("currentuserid");
         channelService.updateChannel($scope.channelObj).then(function(res){
             console.log(res)
