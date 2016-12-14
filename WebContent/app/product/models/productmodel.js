@@ -9,6 +9,7 @@ app.factory("productModel",function(){
             this.songs = "";
             this.music_company = "";
             this.editData = function(data){
+                this.id = data.id
                 this.movie_name = data.movie_name;
                 this.songs = data.songs;
                 this.music_company = data.music_company;

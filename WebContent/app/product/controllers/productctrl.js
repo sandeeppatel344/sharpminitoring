@@ -1,7 +1,7 @@
 /**
  * Created by sandeep on 12/7/2016.
  */
-app.controller("productCtrl",function($scope,$stateParams,productModel,productService,localStorageService){
+app.controller("productCtrl",function($scope,$stateParams,productModel,$timeout,productService,localStorageService){
 
     $scope.regExName = /^[A-Z a-z]{2,50}$/;
     $scope.regExAlphaNumeric = /^[ A-Za-z0-9_@.\/()#&+-]*$/;
