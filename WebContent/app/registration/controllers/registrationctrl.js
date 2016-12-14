@@ -75,4 +75,6 @@ app.controller("registrationCtrl",function($scope,registrationModel,$stateParams
             $scope.roles = res.data;
         })
     }
+
+    $scope.getAllRoles();
 })
