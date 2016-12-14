@@ -2,7 +2,7 @@
  * Created by sandeep on 12/6/2016.
  */
 app.config([ '$stateProvider','$urlRouterProvider', function($stateProvider,$urlRouterProvider) {
-        $urlRouterProvider.otherwise('sharpmonitoring/channel');
+        $urlRouterProvider.otherwise('sharpmonitoring/login');
         $stateProvider.state('sharpmonitoring', {
             url : '/sharpmonitoring',
             abstract :true

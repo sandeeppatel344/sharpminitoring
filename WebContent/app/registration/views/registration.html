@@ -17,6 +17,20 @@
 <form name="registrationForm">
     <div class="col-md-12 child-info infoo">
         <div class="row">
+            <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label" for="inputLarge">User Role <span class="required">*</span></label>
+                <select class="form-control" name="userrole"  ng-model="regObj.role_id" ng-options="croles.id as croles.role for croles in roles track by croles.id" required>
+                <option selected value="">Please Select User Role</option>
+                </select>
+                
+            </div>
+            <p class="errorMessage" ng-show="(registrationForm.userrole.$invalid &&isshowmsg)||(registrationForm.userrole.$error.maxlength||registrationForm.userrole.$invalid&&registrationForm.userrole.$touched)||registrationForm.userrole.$error.pattern">
+                Please enter valid Channel Category.
+            </p>
+        </div>
+        </div>
+        <div class="row">
             <div class="">
                 <div class="form-group">
                     <h1 class="main-heading">Registration Details</h1>
@@ -78,6 +92,7 @@
                 <p class="errorMessage" ng-show="(registrationForm.dob.$invalid &&isshowmsg)||(registrationForm.dob.$error.maxlength||registrationForm.dob.$invalid&&registrationForm.dob.$touched)||registrationForm.dob.$error.pattern||(regObj.dob>currentdate)">
                     Please enter valid Date of birth.
                 </p>
+                <p class="errorMessage">{{messages}}</p>
 
             </div>
             <div class="col-md-3">
@@ -103,8 +118,8 @@
         </div>
     </div>
 
-        <button class="btn btn-raised btn-primary" ng-click="saveRegister(registrationForm.$valid,productObj);isshowmsg=true" ng-if="isshowUpdate">Submit</button>
-    <button class="btn btn-raised btn-primary" ng-click="updateRegister(registrationForm.$valid,productObj);isshowmsg=true" ng-if="!isshowUpdate">Update</button>
+        <button class="btn btn-raised btn-primary" ng-click="registration(registrationForm.$valid,regObj);isshowmsg=true" ng-if="isshowUpdate">Submit</button>
+    <button class="btn btn-raised btn-primary" ng-click="updateRegister(registrationForm.$valid,regObj);isshowmsg=true" ng-if="!isshowUpdate">Update</button>
 
 
     <button class="btn btn-raised btn-danger" ui-sref="sharpmonitoring.listofregistration"  >Cancel</button>

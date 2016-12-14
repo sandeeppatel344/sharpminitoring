@@ -12,7 +12,8 @@ app.factory("registrationModel",function(){
             this.password = "";
             this.contact = "";
             this.dob = "";
-            this.id = "";
+            this.role_id = "";
+            
 
             this.editData = function(data){
                 this.id = data.id;

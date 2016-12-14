@@ -23,7 +23,11 @@ app.controller("productCtrl",function($scope,$stateParams,productModel,productSe
             $scope.productObj.created_by = localStorageService.get("currentuserid");
         productService.saveProduct($scope.productObj).then(function(res){
             console.log(res)
-            $scope.productObj = new _this.modelObj.productData();
+                $scope.isshowmsg = false;
+            $timeout(function(){
+              $scope.productObj = new _this.modelObj.productData();
+          },500)
+            
         },function(error){
             console.error(error);
         })
@@ -38,7 +42,7 @@ app.controller("productCtrl",function($scope,$stateParams,productModel,productSe
             console.error(error);
         })
     }
-    $scope.productId = $stateParams.id?$stateParams.id:localStorageService.get("productid");
+    $scope.productId = localStorageService.get("productid");
 
     if($scope.productId){
         $scope.editData($scope.productId);

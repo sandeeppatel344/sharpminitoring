@@ -18,5 +18,8 @@ app.factory("registerService",function($http){
 	obj.getAllRegister = function(){
 		return $http.get(userserviceapiurl+"registration/all");
 	}
+	obj.getAllRole = function(){
+		return $http.get(userserviceapiurl+"registration/getRole");
+	}
 	return obj;
 })

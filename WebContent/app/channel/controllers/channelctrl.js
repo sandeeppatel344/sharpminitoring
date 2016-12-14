@@ -1,7 +1,7 @@
 /**
  * Created by sandeep on 12/6/2016.
  */
-app.controller("channelCtrl",function($scope,channelModel,$stateParams,channelService,localStorageService,ngToast){
+app.controller("channelCtrl",function($scope,channelModel,$stateParams,$timeout,channelService,localStorageService,ngToast){
     this.modelObj = channelModel;
     var _this = this;
     $scope.channelObj = new this.modelObj.channelData();
@@ -33,7 +33,11 @@ app.controller("channelCtrl",function($scope,channelModel,$stateParams,channelSe
         $scope.channelObj.created_by = localStorageService.get("currentuserid");
         channelService.saveChannel($scope.channelObj).then(function(res){
             console.log(res);
-            $scope.channelObj = new _this.modelObj.channelData();
+            
+            $scope.isshowmsg = false;
+            $timeout(function(){
+              $scope.channelObj = new _this.modelObj.channelData(); 
+          },500)
         },function(error){
             console.error(error);
         })
@@ -48,7 +52,7 @@ app.controller("channelCtrl",function($scope,channelModel,$stateParams,channelSe
             console.error(error);
         })
     }
-    $scope.channelId = $stateParams.id?$stateParams.id:localStorageService.get("channelid");
+    $scope.channelId = localStorageService.get("channelid");
 
     if($scope.channelId){
         $scope.editData($scope.channelId);
