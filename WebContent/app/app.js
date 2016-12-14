@@ -121,7 +121,7 @@ app.config(
 			$locationProvider) {
 		$locationProvider.html5Mode(false);
 		$urlRouterProvider.when('', 'login');
-		//$httpProvider.interceptors.push('tokenInjector');
+        $httpProvider.interceptors.push('customInterceptor');
 	});
 
 angular.element(document).ready(function ($rootScope) {

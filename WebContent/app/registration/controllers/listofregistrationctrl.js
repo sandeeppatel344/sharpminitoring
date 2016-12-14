@@ -13,7 +13,7 @@ app.controller("listOfRegistrationCtrl",function($scope,$state,$stateParams,loca
 
 	$scope.deleteData = function(id){
 		registerService.deleteRegister(id).then(function(res){
-
+        $state.reload();
 		},function(error){
 			console.log(error);
 		})

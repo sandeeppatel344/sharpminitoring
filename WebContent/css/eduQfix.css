@@ -51,11 +51,11 @@ button.btn.btn-default.btn-sm.btn-info.active{
 	color: #273171;
 }
 
-.btn:hover
+/*.btn:hover
 {
     background-color:#09579c !important;
     color: rgba(255,255,255, 0.84);
-}
+}*/
 
 .btn:not(.btn-raised).btn-primary, .input-group-btn .btn:not(.btn-raised).btn-primary{
 	color: #ffffff;
@@ -824,3 +824,4 @@ select.form-control {
     height: 30px;
     padding: 0px 0;
 }
+

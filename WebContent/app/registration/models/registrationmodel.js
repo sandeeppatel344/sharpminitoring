@@ -7,7 +7,7 @@ app.factory("registrationModel",function(){
         this.registrationData = function(){
             this.first_name = "";
             this.last_name = "";
-            this.email_id = "";
+            this.email = "";
             this.username = "";
             this.password = "";
             this.contact = "";
@@ -19,11 +19,11 @@ app.factory("registrationModel",function(){
                 this.id = data.id;
                 this.first_name = data.first_name;
                 this.last_name = data.last_name;
-                this.emailid = data.emailid;
+                this.email = data.email;
                 this.username = data.username;
                 this.password = data.password;
                 this.contact = data.contact;
-                this.dob = data.dob;
+                this.dob = new Date(data.dob);
             }
         }
     }

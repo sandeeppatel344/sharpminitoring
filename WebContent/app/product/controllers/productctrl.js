@@ -1,7 +1,7 @@
 /**
  * Created by sandeep on 12/7/2016.
  */
-app.controller("productCtrl",function($scope,$stateParams,productModel,$timeout,productService,localStorageService){
+app.controller("productCtrl",function($scope,$stateParams,ngToast,productModel,$timeout,productService,localStorageService){
 
     $scope.regExName = /^[A-Z a-z]{2,50}$/;
     $scope.regExAlphaNumeric = /^[ A-Za-z0-9_@.\/()#&+-]*$/;
@@ -24,11 +24,17 @@ app.controller("productCtrl",function($scope,$stateParams,productModel,$timeout,
         productService.saveProduct($scope.productObj).then(function(res){
             console.log(res)
                 $scope.isshowmsg = false;
+            ngToast.success({
+                content: '<div role="alert">Product Added Successfully.</div>'
+            });
             $timeout(function(){
               $scope.productObj = new _this.modelObj.productData();
           },500)
             
         },function(error){
+            ngToast.danger({
+                content: '<div role="alert">Error in Add Product Try again</div>'
+            });
             console.error(error);
         })
     }
@@ -56,8 +62,14 @@ app.controller("productCtrl",function($scope,$stateParams,productModel,$timeout,
         $scope.productObj.updated_by = localStorageService.get("currentuserid");
         productService.updateProduct($scope.productObj).then(function(res){
             console.log(res)
+            ngToast.success({
+                content: '<div role="alert">Product Updated Successfully.</div>'
+            });
            // $scope.productObj = new this.modelObj.productData();
         },function(error){
+            ngToast.danger({
+                content: '<div role="alert">Error in Update Product Try again</div>'
+            });
             console.error(error);
         })
     }

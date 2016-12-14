@@ -24,8 +24,7 @@ app.controller("channelCtrl",function($scope,channelModel,$stateParams,$timeout,
            $scope.channel_category = res.data; 
         })
     }
-    
-    ngToast.create('a toast message...');
+
     $scope.getChannelCategoryList();
     $scope.saveChannel = function(valid){
         if(valid){
@@ -33,12 +32,18 @@ app.controller("channelCtrl",function($scope,channelModel,$stateParams,$timeout,
         $scope.channelObj.created_by = localStorageService.get("currentuserid");
         channelService.saveChannel($scope.channelObj).then(function(res){
             console.log(res);
-            
+            ngToast.success({
+                 content: '<div role="alert">Channel Added Successfully.</div>'
+            });
+
             $scope.isshowmsg = false;
             $timeout(function(){
               $scope.channelObj = new _this.modelObj.channelData(); 
           },500)
         },function(error){
+            ngToast.danger({
+                content: '<div role="alert">Error in Add Channel Try again</div>'
+            });
             console.error(error);
         })
     }
@@ -67,9 +72,27 @@ app.controller("channelCtrl",function($scope,channelModel,$stateParams,$timeout,
          $scope.channelObj.updated_by = localStorageService.get("currentuserid");
         channelService.updateChannel($scope.channelObj).then(function(res){
             console.log(res)
+            ngToast.success({
+                content: '<div role="alert">Channel Updated Successfully.</div>'
+            });
         },function(error){
+            ngToast.danger({
+                content: '<div role="alert">Error in Update Channel Try again</div>'
+            });
             console.error(error);
         })
     }
     }
 })
+
+app.directive("limitTo", [function() {
+    return {
+        restrict: "A",
+        link: function(scope, elem, attrs) {
+            var limit = parseInt(attrs.limitTo);
+            angular.element(elem).on("keypress", function(e) {
+                if (this.value.length == limit) e.preventDefault();
+            });
+        }
+    }
+}]);

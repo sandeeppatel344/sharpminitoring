@@ -17,23 +17,26 @@
 <form name="registrationForm">
     <div class="col-md-12 child-info infoo">
         <div class="row">
-            <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label" for="inputLarge">User Role <span class="required">*</span></label>
-                <select class="form-control" name="userrole"  ng-model="regObj.role_id" ng-options="croles.id as croles.role for croles in roles track by croles.id" required>
-                <option selected value="">Please Select User Role</option>
-                </select>
-                
-            </div>
-            <p class="errorMessage" ng-show="(registrationForm.userrole.$invalid &&isshowmsg)||(registrationForm.userrole.$error.maxlength||registrationForm.userrole.$invalid&&registrationForm.userrole.$touched)||registrationForm.userrole.$error.pattern">
-                Please enter valid Channel Category.
-            </p>
+            <h1 class="main-heading">Registration Details</h1>
         </div>
+        <div class="row" ng-if="isshowUpdate">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" for="inputLarge">User Role <span class="required">*</span></label>
+                    <select class="form-control" name="userrole"  ng-model="regObj.role_id" ng-options="croles.id as croles.role for croles in roles track by croles.id" required>
+                        <option selected value="">Please Select User Role</option>
+                    </select>
+
+                </div>
+                <p class="errorMessage" ng-show="(registrationForm.userrole.$invalid &&isshowmsg)||(registrationForm.userrole.$error.maxlength||registrationForm.userrole.$invalid&&registrationForm.userrole.$touched)||registrationForm.userrole.$error.pattern">
+                    Please enter valid user role.
+                </p>
+            </div>
         </div>
         <div class="row">
             <div class="">
-                <div class="form-group">
-                    <h1 class="main-heading">Registration Details</h1>
+
+
                     <!-- <label class="control-label" for="inputLarge">Child Full Name <span class="required">*</span></label> -->
                     <div >
                         <div class="col-md-3">
@@ -75,7 +78,7 @@
 
 
                     </div>
-                </div>
+
             </div>
 
         </div>
@@ -85,14 +88,13 @@
                 <div class="form-group">
                     <label class="control-label" for="inputLarge">Date of birth <span class="required">*</span></label>
               <!--       <input class="form-control" name="dob"  ng-model="regObj.dob"  type="text" placeholder="Date of birth"  required> -->
-                    <input type="text" class=" form-control" name = "dob" valid-date 
-                        uib-datepicker-popup="dd/MM/yyyy" max-date="maxDate"    
-                        ng-model="regObj.dob" is-open = "isOpen" close-text="Close" ng-click="isOpen=true" on-focus="isOpen=true" required ng-disabled="isdisabled" placeholder="Date of birth"/>
+                    <input type="text" class=" form-control" name = "dateofbirth" uib-datepicker-popup="dd/MM/yyyy" max-date="maxDate"
+                        ng-model="regObj.dob" is-open = "isOpen" close-text="Close" ng-click="isOpen=true" ng-focus="isOpen=true" required  placeholder="Date of birth"/>
                 </div>
-                <p class="errorMessage" ng-show="(registrationForm.dob.$invalid &&isshowmsg)||(registrationForm.dob.$error.maxlength||registrationForm.dob.$invalid&&registrationForm.dob.$touched)||registrationForm.dob.$error.pattern||(regObj.dob>currentdate)">
+                <p class="errorMessage" ng-show="(registrationForm.dateofbirth.$invalid &&isshowmsg)||(registrationForm.dateofbirth.$invalid&&registrationForm.dateofbirth.$touched)">
                     Please enter valid Date of birth.
                 </p>
-                <p class="errorMessage">{{messages}}</p>
+                <p class="errorMessage" ng-if="message">{{messages}}</p>
 
             </div>
             <div class="col-md-3">

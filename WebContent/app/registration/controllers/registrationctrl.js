@@ -1,7 +1,7 @@
 /**
  * Created by sandeep on 12/7/2016.
  */
-app.controller("registrationCtrl",function($scope,registrationModel,$stateParams,$timeout,$filter,registerService){
+app.controller("registrationCtrl",function($scope,registrationModel,ngToast,$stateParams,$timeout,$filter,registerService,localStorageService){
 
     $scope.regExName = /^[A-Z a-z]{2,50}$/;
     $scope.regExAlphaNumeric = /^[ A-Za-z0-9_@.\/()#&+-]*$/;
@@ -17,6 +17,7 @@ app.controller("registrationCtrl",function($scope,registrationModel,$stateParams
     $scope.regnumer = /^[0-9]+$/;
     $scope.currentdate = new Date();
      var _this = this;
+    $scope.messages = "";
     this.modelObj = registrationModel;
     $scope.regObj = new this.modelObj.registrationData();
     $scope.registration =function(valid){
@@ -26,12 +27,18 @@ app.controller("registrationCtrl",function($scope,registrationModel,$stateParams
         $scope.regObj.dob = $filter('date')($scope.regObj.dob,'yyyy-mm-dd')
         registerService.saveUser($scope.regObj).then(function(res){
             console.log(res);
+            ngToast.success({
+                content: '<div role="alert">Registration Successfully.</div>'
+            });
             $scope.isshowmsg = false;
             $timeout(function(){
               $scope.regObj = new _this.modelObj.registrationData();  
           },500)
               
         },function(error){
+            ngToast.danger({
+                content: '<div role="alert">Error in Registration try again.</div>'
+            });
             console.error(error)
         })
         $scope.messages = "";
@@ -64,14 +71,20 @@ app.controller("registrationCtrl",function($scope,registrationModel,$stateParams
             $scope.regObj.updated_by = localStorageService.get("currentuserid");
         registerService.updateRegister($scope.regObj).then(function(res){
             console.log(res)
+            ngToast.success({
+                content: '<div role="alert">Registration Updated Successfully.</div>'
+            });
         },function(error){
+            ngToast.danger({
+                content: '<div role="alert">Error in update Registration try again.</div>'
+            });
             console.error(error);
         })
     }
     }
     $scope.roles = [];
     $scope.getAllRoles = function(){
-        registerService.getAllRole().then(function(){
+        registerService.getAllRole().then(function(res){
             $scope.roles = res.data;
         })
     }
