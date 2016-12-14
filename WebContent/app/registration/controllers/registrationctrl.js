@@ -20,8 +20,10 @@ app.controller("registrationCtrl",function($scope,registrationModel,registerServ
     $scope.regObj = new this.modelObj.registrationData();
     $scope.registration =function(valid){
         if(valid){
+        $scope.regObj.created_by = localStorageService.get("currentuserid");
         registerService.saveUser($scope.regObj).then(function(res){
             console.log(res);
+              $scope.regObj = new this.modelObj.registrationData();
         },function(error){
             console.error(error)
         })
@@ -32,6 +34,7 @@ app.controller("registrationCtrl",function($scope,registrationModel,registerServ
         registerService.editRegister(id).then(function(res){
             console.log(res)
             $scope.regObj.editData(res.data[0]);
+
         },function(error){
             console.error(error);
         })
@@ -47,6 +50,7 @@ app.controller("registrationCtrl",function($scope,registrationModel,registerServ
 
     $scope.updateChannel = function(valid){
         if(valid){
+            $scope.regObj.updated_by = localStorageService.get("currentuserid");
         registerService.updateRegister($scope.regObj).then(function(res){
             console.log(res)
         },function(error){

@@ -33,7 +33,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group"><label class="control-label" for="inputLarge">Program Name  <span class="required">*</span></label>
-                            <input class="form-control "  type="text" placeholder="Program name" ng-model="channelObj.program_name" name="programname" ng-maxlength="50" limit-to="50" ng-pattern="regExName" ng-disabled="isdisabled">
+                            <input class="form-control "  type="text" placeholder="Program name" ng-model="channelObj.program_name" name="programname" ng-maxlength="50" limit-to="50" ng- ng-disabled="isdisabled">
                         </div>
                         <p class="errorMessage" style="white-space:nowrap"ng-show="(channelForm.programname.$invalid &&isshowmsg)||(channelForm.programname.$error.maxlength||channelForm.programname.$invalid&&channelForm.programname.$touched)||channelForm.programname.$error.pattern">
                             Please enter valid Program Name.
@@ -42,7 +42,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="control-label" for="inputLarge">Category <span class="required">*</span></label>
-                            <input class="form-control" name="category" ng-pattern="regExName" ng-model="channelObj.category"  type="text" placeholder="Category" ng-maxlength="50" limit-to="50" ng-disabled="isdisabled">
+                            <input class="form-control" name="category"  ng-model="channelObj.category"  type="text" placeholder="Category" ng-maxlength="50" limit-to="50" ng-disabled="isdisabled">
                         </div>
                         <p class="errorMessage" ng-show="(channelForm.category.$invalid &&isshowmsg)||(channelForm.category.$error.maxlength||channelForm.category.$invalid&&channelForm.category.$touched)||channelForm.category.$error.pattern">
                             Please enter valid Category.

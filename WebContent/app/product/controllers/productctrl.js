@@ -22,6 +22,7 @@ this.modelObj = productModel;
             $scope.productObj.created_by = localStorageService.get("currentuserid");
         productService.saveProduct($scope.productObj).then(function(res){
             console.log(res)
+            $scope.productObj = new this.modelObj.productData();
         },function(error){
             console.error(error);
         })
@@ -45,11 +46,15 @@ this.modelObj = productModel;
         $scope.isshowUpdate = true;
     }
 
-    $scope.updateProduct = function(){
+    $scope.updateProduct = function(valid){
+        if(valid){
+        $scope.productObj.updated_by = localStorageService.get("currentuserid");
         productService.updateProduct($scope.productObj).then(function(res){
             console.log(res)
+           // $scope.productObj = new this.modelObj.productData();
         },function(error){
             console.error(error);
         })
+    }
     }
 })

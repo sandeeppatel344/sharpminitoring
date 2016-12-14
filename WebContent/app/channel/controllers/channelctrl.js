@@ -32,6 +32,7 @@ app.controller("channelCtrl",function($scope,channelModel,$stateParams,channelSe
         $scope.channelObj.created_by = localStorageService.get("currentuserid");
         channelService.saveChannel($scope.channelObj).then(function(res){
             console.log(res);
+            $scope.channelObj = new this.modelObj.channelData();
         },function(error){
             console.error(error);
         })
@@ -57,6 +58,8 @@ app.controller("channelCtrl",function($scope,channelModel,$stateParams,channelSe
 
     $scope.updateChannel = function(valid){
         if(valid){
+        $scope.channelObj.channel_category_id = $scope.channelObj.channel_category.id;
+         $scope.channelObj.updated_by = localStorageService.get("currentuserid");
         channelService.updateChannel($scope.channelObj).then(function(res){
             console.log(res)
         },function(error){
