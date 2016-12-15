@@ -24,7 +24,7 @@ app.controller("registrationCtrl",function($scope,registrationModel,ngToast,$sta
         if(valid){
             if($scope.regObj.dob<=new Date()){
         $scope.regObj.created_by = localStorageService.get("currentuserid");
-        $scope.regObj.dob = $filter('date')($scope.regObj.dob,'yyyy-mm-dd')
+        
         registerService.saveUser($scope.regObj).then(function(res){
             console.log(res);
             ngToast.success({

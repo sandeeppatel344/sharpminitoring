@@ -1,3 +1,4 @@
+
 app.factory("entriesformService",function($http){
 	var obj = {};
 	obj.saveEntries = function(postdata){
@@ -16,5 +17,6 @@ app.factory("entriesformService",function($http){
 		return $http.post(userserviceapiurl+"entries/delete?id=",id)
 	}
 	
+
 	return obj;
 })

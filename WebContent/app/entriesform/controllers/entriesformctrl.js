@@ -1,3 +1,6 @@
-app.controller("entriesformCtrl",function($scope){
-	
+
+app.controller("entriesformCtrl",function($scope,entriesformModel){
+	this.modelObj = entriesformModel;
+	this.entryObj = new entriesformModel.entriesformData();
+
 })

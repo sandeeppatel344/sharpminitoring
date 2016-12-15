@@ -26,6 +26,7 @@ app.controller("listOfProduct",function($scope,$state,productService,DTOptionsBu
 
         productService.deleteProduct(id).then(function(res){
             console.log(res)
+             $state.reload();
         },function(error){
             console.error(error);
         })

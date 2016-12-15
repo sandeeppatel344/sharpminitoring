@@ -27,6 +27,7 @@ app.controller("listOfChannel",function($scope,$state,channelService,localStorag
 
         channelService.deleteChannel(id).then(function(res){
             console.log(res)
+             $state.reload();
         },function(error){
             console.error(error);
         })

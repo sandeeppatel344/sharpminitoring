@@ -1,11 +1,13 @@
-app.factory("registerService",function($http){
+app.factory("registerService",function($http,$filter){
 	var obj = {};
 	obj.saveUser =function(data){
+		data.dob = $filter('date')(data.dob,'yyyy-MM-dd');
 		return $http.post(userserviceapiurl+"registration/add",data);
 	}
 
-	obj.updateRegister = function(){
-		return $http.post(userserviceapiurl+"registration/update");
+	obj.updateRegister = function(postdata){
+		postdata.dob = $filter('date')(postdata.dob,'yyyy-MM-dd');
+		return $http.post(userserviceapiurl+"registration/update",postdata);
 	}
 
 	obj.editRegister = function(id){

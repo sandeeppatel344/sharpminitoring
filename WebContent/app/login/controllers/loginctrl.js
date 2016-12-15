@@ -1,3 +1,4 @@
+
 app.controller("loginCtrl",function($scope,loginService,$state,localStorageService){
 	$scope.login = {};
 	$scope.doLogin = function(valid){
@@ -9,10 +10,7 @@ app.controller("loginCtrl",function($scope,loginService,$state,localStorageServi
 			localStorageService.set("currentuserid",res.data[0].id)
 			$state.go("sharpmonitoring.channel")
 			}
-		},function(error){
-			console.error(error);
-		})
-	}
-	}
+
+
 })
 

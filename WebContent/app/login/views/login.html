@@ -11,19 +11,15 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title pull-left">Login</h3>
-							<!-- <p class="pull-right">
-							Need an account? <a href="#" data-ui-sref="registration.view">Register
-								Now</a>
-						</p>
-					<p class="pull-right">
-							 <a href="#" data-ui-sref="login.invitationcode">Enter Invitation Code</a>
-						</p>  -->
+
 						<div class="clearfix"></div>
 					</div>
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-md-12">
+
 								<form name="loginDetail" class="container-fluid" ng-submit="doLogin(loginDetail.$valid,login)">
+
 									<!-- <p>
 										<font color='RED'>
 											<h5>{{$root.loginErrorMessage}} {{message}}</h5>
@@ -32,7 +28,9 @@
 									<div class="form-group">
 										<label for="idUsername" class="control-label">Registration Id</label>
 										<input type="text" id="idUsername" class="form-control"
+
 											name="username" ng-model="login.username" value=""
+
 											ng-required='true'>
 									</div>
 									<div class="form-group">
@@ -43,11 +41,17 @@
 									</div>
 
 									<div class="form-group">
-				<input type="submit"
+
+
+										<input type="submit"
 											class="btn btn-raised btn-warning"
 											 ng-disabled="loginDetail.$invalid"
 											value="Login">
-										
+											<button type="button"
+											class="btn btn-raised btn-danger"
+											 ng-click="gotoHome()"
+											value="Cancel">Cancel<buttom>
+
 									</div>
 
 								</form>

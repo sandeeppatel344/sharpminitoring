@@ -59,7 +59,7 @@
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label" for="inputLarge">Username<span class="required"> *</span></label>
-                                <input type="text" class="form-control" ng-model="regObj.username" ng-pattern="regExName" name="username" placeholder="Username" ng-maxlength="50" limit-to="50" required>
+                                <input type="text" class="form-control" ng-model="regObj.username" ng-pattern="regExMobile" name="username" placeholder="Mobile No" ng-maxlength="10" limit-to="10" required>
                             </div>
                             <p class="errorMessage" ng-show="(registrationForm.username.$invalid &&isshowmsg)||(registrationForm.username.$error.maxlength||registrationForm.username.$invalid&&registrationForm.username.$touched)||registrationForm.username.$error.pattern">
                                 Please enter valid Username.
