@@ -38,18 +38,18 @@
 	<div class="container">	
 		<div class="row">
 			<div class="col-xs-7 col-md-12 no-padding" ng-clock>
-				<a href="#"><img ng-clock height="120" src="images/logo.jpg"/></a>
+				<a href="#" ng-click="gotToHome()"><img ng-clock height="120" src="images/logo.jpg"/></a>
 				<h1 class="schoolName"></h1>
 
 				<div class="pull-right"   ng-clock>
 
-                    <div class="btn-group" role="group">
+                    <div class="btn-group" id="logout" role="group" style="display: none">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="glyphicon glyphicon-user"></i>
+                            <i class="glyphicon glyphicon-user"></i>{{currentuser.first_name}} {{currentuser.last_name}}
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Logout</a></li>
+                            <li ng-click="logout()">Logout</li>
 
                         </ul>
                     </div>
@@ -103,10 +103,11 @@
 	<script src="vendor/fullcalendar/fullcalendar.js"></script>
 	<script src="vendor/fullcalendar/gcal.js"></script>
 	<!-- TimeTable Calendar Files End -->
-
+        <script src="vendor/dagre-d3/dist/dagre-d3.core.min.js"></script>
 	<script src="vendor/progressbar/loading-bar.js"></script>
+        <script src="vendor/gsap/src/minified/TweenMax.min.js"></script>
 	<script src="vendor/angular/angular-animate.js"></script>
-
+        <script src="vendor/ng-Fx/dist/ng-Fx.min.js"></script>
 	<script src="vendor/angular-dashboard/Chart.min.js"></script>
 	<script src="vendor/angular-dashboard/angular-chart.min.js"></script>
 	<script src="vendor/oauth-io/oauth.js"></script>
@@ -166,6 +167,8 @@
      <script type="text/javascript" src="app/entriesform/services/entriesformservice.js"></script>
      <script type="text/javascript" src="app/entriesform/models/entriesformmodel.js"></script>
 
+        <script src="app/home/confighome.js"></script>
+        <script src="app/home/homectrl.js"></script>
       
 
       <!--guicalendar files-->
