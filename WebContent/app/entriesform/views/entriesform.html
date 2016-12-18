@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Entry Form</title>
+</head>
+<body>
+
+
+<h1 class="main-heading"><span ng-if="!isshowUpdate">Edit</span> <span ng-if="isshowUpdate">New</span>Entry</h1>
+
+<div class="oaerror warning" ng-hide="isdisabled">Note :<span class="required">*</span>Marked Is Mandatory!</div>
+
+
+<form name="entryForm">
+    <div class="col-md-12 child-info infoo">
+        <div class="row">
+            <div class="">
+                <div class="form-group">
+                    <h1 class="main-heading">Entry Details</h1>
+                    <!-- <label class="control-label" for="inputLarge">Child Full Name <span class="required">*</span></label> -->
+                    <div >
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" >Channel Category <span class="required">*</span></label>
+                                <select class="form-control" name="channelcategory"  ng-model="entryObj.category" ng-options="cat.category_name as cat.category_name for cat in channelCategoryList track by cat.id" required>
+                                    <option selected value="">Please Select Channel Category</option>
+                                </select>
+
+                            </div>
+                            <p class="errorMessage" ng-show="(entryForm.channelcategory.$invalid &&isshowmsg)||(entryForm.channelcategory.$error.maxlength||entryForm.channelcategory.$invalid&&entryForm.channelcategory.$touched)||entryForm.channelcategory.$error.pattern">
+                                Please enter valid Channel Category.
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" >Channel<span class="required">*</span></label>
+                                <select class="form-control" name="channel" ng-change="getAllProgramList(entryObj.channel)" ng-model="entryObj.channel" ng-options="channellist.channel_name as channellist.channel_name for channellist in channelList track by channellist.id" required>
+                                    <option selected value="">Please Select Channel</option>
+                                </select>
+
+                            </div>
+                            <p class="errorMessage" ng-show="(entryForm.channel.$invalid &&isshowmsg)||(entryForm.channel.$error.maxlength||entryForm.channel.$invalid&&entryForm.channel.$touched)||entryForm.channel.$error.pattern">
+                                Please enter valid Channel.
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label" >Program Name<span class="required">*</span></label>
+                                <select class="form-control" name="programname"  ng-model="entryObj.program_name" ng-options="program.program_name as program.program_name for program in programlList track by program.id" required>
+                                    <option selected value="">Please Select Program</option>
+                                </select>
+
+                            </div>
+                            <p class="errorMessage" ng-show="(entryForm.programname.$invalid &&isshowmsg)||(entryForm.programname.$error.maxlength||entryForm.programname.$invalid&&entryForm.programname.$touched)||entryForm.programname.$error.pattern">
+                                Please enter valid Program Name.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" >Product Name<span class="required">*</span></label>
+                    <select class="form-control" name="productname"  ng-change="getAllSongsList(entryObj.product_name)" ng-model="entryObj.product_name" ng-options="product.movie_name as product.movie_name for product in productlList track by $index" required>
+                        <option selected value="">Please Select Product</option>
+                    </select>
+
+                </div>
+                <p class="errorMessage" ng-show="(entryForm.productname.$invalid &&isshowmsg)||(entryForm.productname.$error.maxlength||entryForm.productname.$invalid&&entryForm.productname.$touched)||entryForm.productname.$error.pattern">
+                    Please enter valid Product Name.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" >Songs<span class="required">*</span></label>
+                    <select class="form-control" name="songs"  ng-model="entryObj.product_name" ng-options="song.product_name as product.product_name for product in productlList track by product.id" required>
+                        <option selected value="">Please Select Songs</option>
+                    </select>
+
+                </div>
+                <p class="errorMessage" ng-show="(entryForm.songs.$invalid &&isshowmsg)||(entryForm.songs.$error.maxlength||entryForm.songs.$invalid&&entryForm.songs.$touched)||entryForm.songs.$error.pattern">
+                    Please enter valid songs.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" >Activity<span class="required">*</span></label>
+                    <select class="form-control" name="activity"  ng-model="entryObj.activity" ng-options="act as act for act in activity track by $index" required>
+                        <option selected value="">Please Select Activity</option>
+                    </select>
+
+                </div>
+                <p class="errorMessage" ng-show="(entryForm.activity.$invalid &&isshowmsg)||(entryForm.activity.$error.maxlength||entryForm.activity.$invalid&&entryForm.activity.$touched)||entryForm.activity.$error.pattern">
+                    Please enter valid activity.
+                </p>
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label" >End Time<span class="required"> *</span></label>
+                <input type="text" class="form-control" ng-model="entryObj.end_time"  name="endtime" placeholder="End Time"  required="true">
+            </div>
+            <p class="errorMessage" ng-show="(entryForm.endtime.$invalid &&isshowmsg)||(entryForm.endtime.$error.maxlength||entryForm.endtime.$invalid&&entryForm.endtime.$touched)||entryForm.endtime.$error.pattern">
+                Please enter valid endtime.
+            </p>
+
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label" >Duration<span class="required"> *</span></label>
+                <input type="text" class="form-control" ng-model="entryObj.duration"  name="duration" placeholder="Duration"  required="true">
+            </div>
+            <p class="errorMessage" ng-show="(entryForm.duration.$invalid &&isshowmsg)||(entryForm.duration.$error.maxlength||entryForm.duration.$invalid&&entryForm.duration.$touched)||entryForm.duration.$error.pattern">
+                Please enter valid duration.
+            </p>
+
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label" >Channel Usage<span class="required"> *</span></label>
+                <input type="text" class="form-control" ng-model="entryObj.channel_usage"  name="channelusage" placeholder="Channel Usage"  required="true">
+            </div>
+            <p class="errorMessage" ng-show="(entryForm.channelusage.$invalid &&isshowmsg)||(entryForm.channelusage.$error.maxlength||entryForm.channelusage.$invalid&&entryForm.channelusage.$touched)||entryForm.channelusage.$error.pattern">
+                Please enter valid channel usage.
+            </p>
+
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" >Story<span class="required"> *</span></label>
+                    <input type="text" class="form-control" ng-model="entryObj.story"  name="story" placeholder="Story"  required="true">
+                </div>
+                <p class="errorMessage" ng-show="(entryForm.story.$invalid &&isshowmsg)||(entryForm.story.$error.maxlength||entryForm.story.$invalid&&entryForm.story.$touched)||entryForm.story.$error.pattern">
+                    Please enter valid story.
+                </p>
+
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" >Language<span class="required"> *</span></label>
+                    <input type="text" class="form-control" ng-model="entryObj.language"  name="language" placeholder="Language"  required="true">
+                </div>
+                <p class="errorMessage" ng-show="(entryForm.language.$invalid &&isshowmsg)||(entryForm.language.$error.maxlength||entryForm.language.$invalid&&entryForm.language.$touched)||entryForm.language.$error.pattern">
+                    Please enter valid language.
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    <button class="btn btn-raised btn-primary" ng-click="saveChannel(entryForm.$valid,entryObj);isshowmsg=true"  ng-if="isshowUpdate">Submit</button><!--ng-show="!isdisabled"-->
+    <button class="btn btn-raised btn-primary" ng-click="updateChannel(entryForm.$valid,entryObj);isshowmsg=true" ng-if="!isshowUpdate">Update</button>
+
+
+    <button class="btn btn-raised btn-danger" ui-sref="sharpmonitoring.listofchannel"  >Cancel</button>
+
+
+
+</form>
+</div>
+
+</body>
+</html>

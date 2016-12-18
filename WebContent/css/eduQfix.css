@@ -825,3 +825,79 @@ select.form-control {
     padding: 0px 0;
 }
 
+.customreporttable{
+    border-collapse: collapse;
+    width: 100%;
+}
+.customreporttable td{
+    vertical-align: top;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+}
+
+.customreporttable th{
+    vertical-align: top;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
+
+.customrreporttablewithoutpadding{
+    border-collapse: collapse;
+    width: 100%;
+}
+.customrreporttablewithoutpadding td{
+    vertical-align: top;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.customreporttableheader{
+    border-top: 1px solid #808080;
+    border-bottom: 1px solid #808080;
+}
+
+.custormreportdate{
+    width : 20px;
+}
+.customreportdrcr{
+    width : 20px;
+}
+.customreportvoucherno{
+    width : 100px;
+}
+.customreportvouchertype{
+    width : 170px;
+}
+
+.customreportdebit{
+    width : 110px;
+    padding-right: 10px !important;
+}
+
+.customreportbalance{
+    width : 150px;
+}
+
+.customreportcredit{
+    width : 110px;
+    padding-right: 10px !important;
+}
+.text-center{
+    text-align: center!important;
+}
+.customreporttablecontent{
+    /*
+        border-top: 1px solid #808080;
+    */
+    border-bottom: 1px solid #808080;
+}
+.customreporttablecolumnwithrightborder{
+    border-right: 1px solid #808080;
+}
+.customreporttablecolumnworightborder{
+    border-right: 0px none;
+
+}
+.customreporttablefooter{
+    border-bottom: 1px solid #808080;
+}

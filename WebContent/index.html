@@ -5,7 +5,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-	<title>Sharp Minitoring</title>
+	<title class="hidden-print" id="ptitle">Sharp Monitoring</title>
+    <title  id="rtitle">Sharp Monitoring12</title>
 
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
 	<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -41,9 +42,9 @@
 				<a href="#" ng-click="gotToHome()"><img ng-clock height="120" src="images/logo.jpg"/></a>
 				<h1 class="schoolName"></h1>
 
-				<div class="pull-right"   ng-clock>
+				<div class="pull-right hidden-print"   ng-clock>
 
-                    <div class="btn-group" id="logout" role="group" style="display: none">
+                    <div class="btn-group hidden-print" id="logout" role="group" style="display: none">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="glyphicon glyphicon-user"></i>{{currentuser.first_name}} {{currentuser.last_name}}
                             <span class="caret"></span>
@@ -169,6 +170,11 @@
 
         <script src="app/home/confighome.js"></script>
         <script src="app/home/homectrl.js"></script>
+
+        <!--Rpoerts Files-->
+        <script src="app/reports/config/reportconfig.js"></script>
+        <script src="app/reports/controllers/userandpasswordreportctrl.js"></script>
+        <script src="app/reports/services/reportsservices.js"></script>
       
 
       <!--guicalendar files-->

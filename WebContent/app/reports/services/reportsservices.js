@@ -1,0 +1,10 @@
+/**
+ * Created by sandeep on 12/18/2016.
+ */
+app.factory("reportsService",function($http){
+    var obj = {};
+    obj.getUserAndPassword = function(){
+        return $http.get(userserviceapiurl+"registration/getUsernameAndPassword")
+    }
+    return obj;
+})

@@ -16,7 +16,19 @@ app.factory("entriesformService",function($http){
 	obj.deleteEntries = function(id){
 		return $http.post(userserviceapiurl+"entries/delete?id=",id)
 	}
-	
+
+    obj.getChannelList = function(){
+        return $http.get(userserviceapiurl+"channel/getChannel");
+    }
+    obj.getProgramsList = function(channelname){
+        return $http.get(userserviceapiurl+"channel/getProgramByChannel?channelname="+channelname)
+    }
+    obj.getProductList = function(){
+        return $http.get(userserviceapiurl+"product/fetchAllMovies");
+    }
+    obj.getSongsList = function(productname){
+        return $http.get(userserviceapiurl+"product/fetchSongsByMovie?movieName="+productname)
+    }
 
 	return obj;
 })
