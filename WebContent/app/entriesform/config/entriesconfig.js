@@ -5,7 +5,7 @@ app.config([ '$stateProvider','$urlRouterProvider', function($stateProvider,$url
         //$urlRouterProvider.otherwise('sharpmonitoring/channel');
         $stateProvider.state('sharpmonitoring.entriesform', {
             url : '/entriesform',
-            params:{isnew:false}
+            params:{isnew:null},
             views : {
                 '@' : {
                     templateUrl : 'app/entriesform/views/entriesform.html',
@@ -15,7 +15,7 @@ app.config([ '$stateProvider','$urlRouterProvider', function($stateProvider,$url
 
         }).state('sharpmonitoring.listofentries', {
             url : '/listofentries',
-            params:{isnew:false}
+            params:{isnew:null},
             views : {
                 '@' : {
                     templateUrl : 'app/entriesform/views/listofentries.html',

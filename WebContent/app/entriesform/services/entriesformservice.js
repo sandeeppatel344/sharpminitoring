@@ -5,7 +5,7 @@ app.factory("entriesformService",function($http){
 		return $http.post(userserviceapiurl+"entries/add",postdata)
 	}
 	obj.getAllEntries = function(){
-		return $http.post(userserviceapiurl+"entries/add",postdata)
+		return $http.post(userserviceapiurl+"entries/all")
 	}
 	obj.editEntries = function(id){
 		return $http.post(userserviceapiurl+"entries/edit?id=",id)

@@ -9,7 +9,7 @@
 <body>
 
 
-<h1 class="main-heading"><span ng-if="!isshowUpdate">Edit</span><span ng-if="isshowUpdate">New</span>Registration Form</h1>
+<h1 class="main-heading"><span ng-if="!isshowUpdate">Edit </span><span ng-if="isshowUpdate">New </span>Registration Form</h1>
 
 <div class="oaerror warning" ng-hide="isdisabled">Note :<span class="required">*</span>Marked Is Mandatory!</div>
 
@@ -62,7 +62,7 @@
                                 <input type="text" class="form-control" ng-model="regObj.username" ng-pattern="regExMobile" name="username" placeholder="Mobile No" ng-maxlength="10" limit-to="10" required>
                             </div>
                             <p class="errorMessage" ng-show="(registrationForm.username.$invalid &&isshowmsg)||(registrationForm.username.$error.maxlength||registrationForm.username.$invalid&&registrationForm.username.$touched)||registrationForm.username.$error.pattern">
-                                Please enter valid Username.
+                                Please enter valid Username.Enter your mobile no.
                             </p>
 
                         </div>

@@ -1,0 +1,30 @@
+<div>
+    <form>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                <input type="text" class=" form-control" name = "fromdate" uib-datepicker-popup="dd/MM/yyyy" max-date="maxDate"
+                 ng-model="filterObj.fromdate" is-open = "isOpen" close-text="Close" ng-click="isOpen=true" ng-focus="isOpen=true" required  placeholder="From Date"/>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                <input type="text" class=" form-control" name = "todate" uib-datepicker-popup="dd/MM/yyyy" max-date="maxDate"
+                       ng-model="filterObj.todate" is-open = "isOpent" close-text="Close" ng-click="isOpent=true" ng-focus="isOpent=true" required  placeholder="To Date"/>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+
+                <select class="form-control" name="channelcategory"  ng-model="filterObj.userid" ng-options="cat.id as cat.first_name for cat in userList track by cat.id" required>
+                    <option selected value="">Please Select User</option>
+                </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+            <button class="btn btn-success">Go</button>
+            </div>
+        </div>
+    </form>
+
+</div>

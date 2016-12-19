@@ -15,7 +15,7 @@ app.factory("entriesformModel",function(){
 
 			this.editData = function(data){
                 this.id = data.id
-                this.channel = data.channel;
+                this.channel = {channel_name:data.channel,id:""};
                 this.program_name = data.program_name;
                 this.songs = data.songs;
                 this.product_name = data.program_name;

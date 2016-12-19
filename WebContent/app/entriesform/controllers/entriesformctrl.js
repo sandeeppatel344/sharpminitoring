@@ -1,5 +1,5 @@
 
-app.controller("entriesformCtrl",function($scope,entriesformModel,entriesformService,channelService,ngToast){
+app.controller("entriesformCtrl",function($scope,entriesformModel,entriesformService,channelService,ngToast,localStorageService){
 	this.modelObj = entriesformModel;
 	$scope.entryObj = new entriesformModel.entriesformData();
     $scope.channelList = [];
@@ -50,6 +50,7 @@ app.controller("entriesformCtrl",function($scope,entriesformModel,entriesformSer
     $scope.getEntry = function(id){
         entriesformService.editEntries(id).then(function(res){
             $scope.entryObj.editData(res.data)
+            console.log("Dattttttaaaa---"+res.data)
         },function(error){
             console.error(error);
         })
@@ -57,7 +58,7 @@ app.controller("entriesformCtrl",function($scope,entriesformModel,entriesformSer
    $scope.entryId = localStorageService.get("entryid");
 
     if($scope.entryId){
-        $scope.editData($scope.entryId);
+        $scope.getEntry($scope.entryId);
         $scope.isshowUpdate = false;
     }else{
         $scope.isshowUpdate = true;

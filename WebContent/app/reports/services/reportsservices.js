@@ -6,5 +6,12 @@ app.factory("reportsService",function($http){
     obj.getUserAndPassword = function(){
         return $http.get(userserviceapiurl+"registration/getUsernameAndPassword")
     }
+    obj.getEmployeeWorkingTime = function(filterData){
+        return $http.post(userserviceapiurl+"login/usercheckinoutreport"+filterData)
+    }
+
+    obj.getRegisteredUser = function(){
+        return $http.get(userserviceapiurl+"registration/getRegisteredUsers")
+    }
     return obj;
 })

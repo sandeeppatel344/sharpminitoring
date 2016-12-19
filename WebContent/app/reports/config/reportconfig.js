@@ -13,6 +13,26 @@ app.config([ '$stateProvider','$urlRouterProvider', function($stateProvider,$url
             }
         }
 
+    }).state('sharpmonitoring.reportappstore', {
+        url : '/reportappstore',
+
+        views : {
+            '@' : {
+                templateUrl : 'app/reports/views/reportappstore.html',
+                controller:'reportappstoreCtrl'
+            }
+        }
+
+    }).state('sharpmonitoring.workingtimereport', {
+        url : '/workingtimereport',
+
+        views : {
+            '@' : {
+                templateUrl : 'app/reports/views/workingtimereport.html',
+                controller:'workingTimeCtrl'
+            }
+        }
+
     })
 }]);
 
