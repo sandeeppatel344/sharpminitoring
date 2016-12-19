@@ -1,7 +1,7 @@
 
 app.controller("entriesformCtrl",function($scope,entriesformModel,entriesformService,channelService){
 	this.modelObj = entriesformModel;
-	this.entryObj = new entriesformModel.entriesformData();
+	$scope.entryObj = new entriesformModel.entriesformData();
     $scope.channelList = [];
     $scope.programlList = [];
     $scope.productlList = [];
@@ -46,6 +46,23 @@ app.controller("entriesformCtrl",function($scope,entriesformModel,entriesformSer
             console.error(error);
         })
     }
+
+    $scope.getEntry = function(id){
+        entriesformService.editEntries(id).then(function(res){
+            $scope.entryObj.editData(res.data)
+        },function(error){
+            console.error(error);
+        })
+    }
+   $scope.entryId = localStorageService.get("entryid");
+
+    if($scope.entryId){
+        $scope.editData($scope.entryId);
+        $scope.isshowUpdate = false;
+    }else{
+        $scope.isshowUpdate = true;
+    }
+    
 
     $scope.getAllChannelList();
    // $scope.getAllProgramList();
