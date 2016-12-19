@@ -1,7 +1,7 @@
 /**
  * Created by sandeep on 12/18/2016.
  */
-app.controller("listOfEntriesCtrl",function($scope,$state,entriesformService,localStorageService){
+app.controller("listOfEntriesCtrl",function($scope,$state,entriesformService,localStorageService,ngToast){
 	$scope.ListOfEntries = [];
 	localStorageService.set("entryid","");
 	$scope.getListOfEntries = function(){
@@ -24,6 +24,9 @@ app.controller("listOfEntriesCtrl",function($scope,$state,entriesformService,loc
 	$scope.deleteEntries = function(id){
 	entriesformService.deleteEntries(id).then(function(res){
 		//$scope.ListOfEntries = res.data;
+		         ngToast.success({
+                 content: '<div role="alert">Entry Deleted Successfully.</div>'
+            });
 		$state.reload();
 	},function(error){
 		console.error(error);

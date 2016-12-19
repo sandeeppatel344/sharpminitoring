@@ -1,7 +1,7 @@
 /**
  * Created by sandeep on 12/7/2016.
  */
-app.controller("listOfChannel",function($scope,$state,channelService,localStorageService){
+app.controller("listOfChannel",function($scope,$state,channelService,localStorageService,ngToast){
     $scope.channelList = [];
     localStorageService.set("channelid","");
     $scope.getChannelList = function(){
@@ -27,6 +27,9 @@ app.controller("listOfChannel",function($scope,$state,channelService,localStorag
 
         channelService.deleteChannel(id).then(function(res){
             console.log(res)
+                ngToast.success({
+                 content: '<div role="alert">Channel Deleted Successfully.</div>'
+            });
              $state.reload();
         },function(error){
             console.error(error);

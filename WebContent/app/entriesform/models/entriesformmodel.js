@@ -14,6 +14,7 @@ app.factory("entriesformModel",function(){
                 this.language = "";
 
 			this.editData = function(data){
+                this.id = data.id
                 this.channel = data.channel;
                 this.program_name = data.program_name;
                 this.songs = data.songs;

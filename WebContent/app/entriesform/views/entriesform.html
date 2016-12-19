@@ -158,11 +158,11 @@
         </div>
     </div>
 
-    <button class="btn btn-raised btn-primary" ng-click="saveChannel(entryForm.$valid,entryObj);isshowmsg=true"  ng-if="isshowUpdate">Submit</button><!--ng-show="!isdisabled"-->
-    <button class="btn btn-raised btn-primary" ng-click="updateChannel(entryForm.$valid,entryObj);isshowmsg=true" ng-if="!isshowUpdate">Update</button>
+    <button class="btn btn-raised btn-primary" ng-click="saveEntry(entryForm.$valid);isshowmsg=true"  ng-if="isshowUpdate">Submit</button><!--ng-show="!isdisabled"-->
+    <button class="btn btn-raised btn-primary" ng-click="updateEntry(entryForm.$valid);isshowmsg=true" ng-if="!isshowUpdate">Update</button>
 
 
-    <button class="btn btn-raised btn-danger" ui-sref="sharpmonitoring.listofchannel"  >Cancel</button>
+    <button class="btn btn-raised btn-danger" ui-sref="sharpmonitoring.listofentries">Cancel</button>
 
 
 

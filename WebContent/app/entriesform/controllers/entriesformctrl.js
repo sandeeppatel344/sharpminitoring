@@ -1,5 +1,5 @@
 
-app.controller("entriesformCtrl",function($scope,entriesformModel,entriesformService,channelService){
+app.controller("entriesformCtrl",function($scope,entriesformModel,entriesformService,channelService,ngToast){
 	this.modelObj = entriesformModel;
 	$scope.entryObj = new entriesformModel.entriesformData();
     $scope.channelList = [];
@@ -61,6 +61,32 @@ app.controller("entriesformCtrl",function($scope,entriesformModel,entriesformSer
         $scope.isshowUpdate = false;
     }else{
         $scope.isshowUpdate = true;
+    }
+
+    $scope.saveEntry = function(valid){
+        if(valid){
+            $scope.entryObj.created_by = localStorageService.get("currentuserid");
+       entriesformService.saveEntries($scope.entryObj).then(function(res){
+            ngToast.success({
+                 content: '<div role="alert">Entry Added Successfully.</div>'
+            });
+       },function(error){
+        console.error(error);
+       }) 
+       }
+    }
+
+    $scope.updateEntry = function(valid){
+        if(valid){
+             $scope.entryObj.updated_by = localStorageService.get("currentuserid");
+            entriesformService.updateEntries($scope.entryObj).then(function(res){
+                      ngToast.success({
+                 content: '<div role="alert">Entry Updated Successfully.</div>'
+            });
+            },function(error){
+                console.error(error);
+            })
+        }
     }
     
 

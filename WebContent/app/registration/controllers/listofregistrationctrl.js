@@ -1,4 +1,4 @@
-app.controller("listOfRegistrationCtrl",function($scope,$state,$stateParams,localStorageService,registerService){
+app.controller("listOfRegistrationCtrl",function($scope,$state,$stateParams,localStorageService,registerService,ngToast){
 	localStorageService.set("registerid","");
 	$scope.registerList = [];
 	$scope.addNewRegistration = function(){
@@ -13,6 +13,9 @@ app.controller("listOfRegistrationCtrl",function($scope,$state,$stateParams,loca
 
 	$scope.deleteData = function(id){
 		registerService.deleteRegister(id).then(function(res){
+	               ngToast.success({
+        		 content: '<div role="alert">Register Deleted Successfully.</div>'
+            });
         $state.reload();
 		},function(error){
 			console.log(error);
