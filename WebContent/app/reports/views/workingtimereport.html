@@ -22,9 +22,43 @@
                 </div>
             </div>
             <div class="col-md-3">
-            <button class="btn btn-success">Go</button>
+            <button class="btn btn-success" ng-click="getReportData()">Go</button>
             </div>
         </div>
     </form>
+
+    <div class="row hidden-print">
+        <div class="col-md-12 input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            <input type="text" ng-model="serchtext" autofocus="true">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-12">
+
+            <table class="customreporttable table-responsive table table-bordered table-hover" id="userreport">
+                <thead id="userreportheading">
+                <th>SrNo.</th>
+                <th>Date</th>
+                <th>Login Time</th>
+                <th>Logout Time</th>
+                <th>Work Hours</th>
+                </thead>
+                <tbody>
+                <tr class="customreporttablecontent" ng-repeat="user in userData|filter:serchtext">
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{$index+1}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.username}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.password}}</td>
+                </tr>
+                </tbody>
+
+
+            </table>
+        </div>
+    </div>
+    <div class="hidden-print">
+        <button ng-click="print()">Print</button>
+    </div>
 
 </div>

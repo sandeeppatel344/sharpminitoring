@@ -17,6 +17,7 @@ app.controller("userandpasswordCtrl",function($scope,reportsService){
         jQuery(".hidden-print").hide();
         $scope.showheading = true
        // printElement(document.getElementById("userreport"));
+        document.title = "Username & Password Report"
         window.print();
         $scope.showheading = true
         jQuery("#userreportheading").show();
