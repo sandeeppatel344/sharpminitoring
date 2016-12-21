@@ -13,7 +13,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="register in registerList">
+        <tr ng-repeat="register in registerList|orderBy:'register.id':true">
             <td class="paddingzero">{{$index+1}}</td>
             <td class="paddingzero">{{ register.first_name }}</td>
             <td class="paddingzero">{{ register.last_name }}</td>

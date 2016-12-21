@@ -30,7 +30,7 @@
                                 </select>
 
                             </div>
-                            <p class="errorMessage" ng-show="(entryForm.channelcategory.$invalid &&isshowmsg)||(entryForm.channelcategory.$touched)">
+                            <p class="errorMessage" ng-show="(entryForm.channelcategory.$invalid &&isshowmsg)||(entryForm.channelcategory.$invalid&&entryForm.channelcategory.$touched)">
                                 Please enter valid Channel Category.
                             </p>
                         </div>
@@ -42,7 +42,7 @@
                                 </select>
 
                             </div>
-                            <p class="errorMessage" ng-show="(entryForm.channel.$invalid &&isshowmsg)||(entryForm.channel.$touched)">
+                            <p class="errorMessage" ng-show="(entryForm.channel.$invalid &&isshowmsg)||(entryForm.channel.$invalid &&entryForm.channel.$touched)">
                                 Please enter valid Channel.
                             </p>
                         </div>
@@ -54,7 +54,7 @@
                                 </select>
 
                             </div>
-                            <p class="errorMessage" ng-show="(entryForm.programname.$invalid &&isshowmsg)||(entryForm.programname.$touched)">
+                            <p class="errorMessage" ng-show="(entryForm.programname.$invalid &&isshowmsg)||(entryForm.programname.$invalid &&entryForm.programname.$touched)">
                                 Please enter valid Program Name.
                             </p>
                         </div>
@@ -72,7 +72,7 @@
                     </select>
 
                 </div>
-                <p class="errorMessage" ng-show="(entryForm.productname.$invalid &&isshowmsg)||(entryForm.productname.$touched)">
+                <p class="errorMessage" ng-show="(entryForm.productname.$invalid &&isshowmsg)||(entryForm.productname.$invalid &&entryForm.productname.$touched)">
                     Please enter valid Product Name.
                 </p>
             </div>
@@ -105,6 +105,16 @@
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
+                <label class="control-label" >Start Time<span class="required"> *</span></label>
+                <input type="text" class="form-control" ng-model="entryObj.start_time"  name="starttime" placeholder="Start Time"  required="true">
+            </div>
+            <p class="errorMessage" ng-show="(entryForm.starttime.$invalid &&isshowmsg)||(entryForm.starttime.$error.maxlength||entryForm.starttime.$invalid&&entryForm.starttime.$touched)||entryForm.starttime.$error.pattern">
+                Please enter valid starttime.
+            </p>
+
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
                 <label class="control-label" >End Time<span class="required"> *</span></label>
                 <input type="text" class="form-control" ng-model="entryObj.end_time"  name="endtime" placeholder="End Time"  required="true">
             </div>
@@ -123,18 +133,19 @@
             </p>
 
         </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label" >Channel Usage<span class="required"> *</span></label>
-                <input type="text" class="form-control" ng-model="entryObj.channel_usage"  name="channelusage" placeholder="Channel Usage"  required="true">
-            </div>
-            <p class="errorMessage" ng-show="(entryForm.channelusage.$invalid &&isshowmsg)||(entryForm.channelusage.$error.maxlength||entryForm.channelusage.$invalid&&entryForm.channelusage.$touched)||entryForm.channelusage.$error.pattern">
-                Please enter valid channel usage.
-            </p>
 
-        </div>
     </div>
         <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" >Channel Usage<span class="required"> *</span></label>
+                    <input type="text" class="form-control" ng-model="entryObj.channel_usage"  name="channelusage" placeholder="Channel Usage"  required="true">
+                </div>
+                <p class="errorMessage" ng-show="(entryForm.channelusage.$invalid &&isshowmsg)||(entryForm.channelusage.$error.maxlength||entryForm.channelusage.$invalid&&entryForm.channelusage.$touched)||entryForm.channelusage.$error.pattern">
+                    Please enter valid channel usage.
+                </p>
+
+            </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" >Story<span class="required"> *</span></label>

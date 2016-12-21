@@ -38,7 +38,9 @@ app.controller("channelCtrl",function($scope,channelModel,$stateParams,$timeout,
 
             $scope.isshowmsg = false;
             $timeout(function(){
-              $scope.channelObj = new _this.modelObj.channelData(); 
+              $scope.channelObj = angular.copy(new _this.modelObj.channelData());
+                $scope.channelForm.$setPristine();
+                $scope.channelForm.$setUntouched();
           },500)
         },function(error){
             ngToast.danger({

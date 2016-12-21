@@ -28,7 +28,10 @@ app.controller("productCtrl",function($scope,$stateParams,ngToast,productModel,$
                 content: '<div role="alert">Product Added Successfully.</div>'
             });
             $timeout(function(){
-              $scope.productObj = new _this.modelObj.productData();
+                $scope.productObj = angular.copy(new _this.modelObj.productData());
+                $scope.productForm.$setPristine();
+                $scope.productForm.$setUntouched();
+
           },500)
             
         },function(error){

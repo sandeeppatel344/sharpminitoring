@@ -71,6 +71,9 @@ app.controller("entriesformCtrl",function($scope,entriesformModel,entriesformSer
             ngToast.success({
                  content: '<div role="alert">Entry Added Successfully.</div>'
             });
+           $scope.entryObj = angular.copy(new _this.modelObj.entriesformData());
+           $scope.entryForm.$setPristine();
+           $scope.entryForm.$setUntouched();
        },function(error){
         console.error(error);
        }) 

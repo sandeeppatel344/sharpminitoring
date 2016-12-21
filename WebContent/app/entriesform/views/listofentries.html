@@ -13,7 +13,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="entry in ListOfEntries" ng-if="entry.channel">
+        <tr ng-repeat="entry in ListOfEntries|orderBy:'entry.id':true" ng-if="entry.channel">
             <td>{{$index+1}}</td>
             <td>{{ entry.channel }}</td>
             <td>{{ entry.program_name }}</td>

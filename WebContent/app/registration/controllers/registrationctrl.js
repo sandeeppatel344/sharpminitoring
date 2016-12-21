@@ -32,7 +32,10 @@ app.controller("registrationCtrl",function($scope,registrationModel,ngToast,$sta
             });
             $scope.isshowmsg = false;
             $timeout(function(){
-              $scope.regObj = new _this.modelObj.registrationData();  
+
+                $scope.regObj = angular.copy(new _this.modelObj.registrationData());
+                $scope.registrationForm.$setPristine();
+                $scope.registrationForm.$setUntouched();
           },500)
               
         },function(error){
