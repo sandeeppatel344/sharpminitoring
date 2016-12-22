@@ -10,6 +10,8 @@ app.controller("homeCtrl",function($scope,$rootScope,$timeout,$state,localStorag
     var element = document.getElementById("logout")
     element.style.display = "inline";
     $rootScope.currentuser = JSON.parse(localStorageService.get("currentuser"));
+    $scope.currentRole =  $rootScope.currentuser.role
+    
     $rootScope.gotToHome = function(){
         if($rootScope.currentuser.first_name){
             $state.go("sharpmonitoring.home");

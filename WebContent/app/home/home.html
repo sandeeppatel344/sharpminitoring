@@ -6,7 +6,7 @@
                 <div class="panel-body"  >
                     <div class="col-md-12 column">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-3" ng-if="currentRole=='Admin'">
 
                                 <a class="thumbnailapplayout " ui-sref="sharpmonitoring.listofregistration">
                                     <img alt="App Tools" src="images/accounting64x64.png" />
@@ -17,7 +17,7 @@
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3" ng-if="currentRole=='Admin'">
 
                                 <a class="thumbnailapplayout " ui-sref="sharpmonitoring.listofchannel">
                                     <img alt="App Tools" src="images/accounting64x64.png" />
@@ -28,7 +28,7 @@
                                     </div>
                                 </a>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-3" ng-if="currentRole=='Admin'">
 
                             <a class="thumbnailapplayout " ui-sref="sharpmonitoring.listofproduct">
                                 <img alt="App Tools" src="images/accounting64x64.png" />
@@ -50,7 +50,7 @@
                                     </div>
                                 </a>
                             </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3" ng-if="currentRole=='Admin'">
 
                                     <a class="thumbnailapplayout " ui-sref="sharpmonitoring.reportappstore">
                                         <img alt="App Tools" src="images/accounting64x64.png" />
@@ -65,9 +65,7 @@
 
 
                         </div>
-                            <div class="row">
-
-                                </div>
+                       
 
                      </div>
 
