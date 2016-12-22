@@ -67,7 +67,8 @@ app.controller("entriesformCtrl",function($scope,entriesformModel,entriesformSer
     $scope.saveEntry = function(valid){
         if(valid){
             $scope.entryObj.created_by = localStorageService.get("currentuserid");
-       entriesformService.saveEntries($scope.entryObj).then(function(res){
+            $scope.entryObj.program_date = $filter('date')(new Date(),'yyyy-MM-dd');
+            entriesformService.saveEntries($scope.entryObj).then(function(res){
             ngToast.success({
                  content: '<div role="alert">Entry Added Successfully.</div>'
             });

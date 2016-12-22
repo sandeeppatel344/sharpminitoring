@@ -22,7 +22,7 @@
                     <h1 class="main-heading">Product Details</h1>
                     <!-- <label class="control-label" for="inputLarge">Child Full Name <span class="required">*</span></label> -->
                     <div >
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label" for="inputLarge">Movie Name <span class="required">*</span></label>
                                 <input class="form-control" name="moviename" id="inputLarge" type="text" placeholder="Movie name" ng-model="productObj.movie_name" ng-maxlength="50" limit-to="50"   required>
@@ -31,7 +31,7 @@
                                 Please enter valid Movie Name.
                             </p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group"><label class="control-label" for="inputLarge">Songs  <span class="required">*</span></label>
                                 <input class="form-control "  type="text" placeholder="Songs" ng-model="productObj.songs" name="songs" ng-maxlength="100" limit-to="100" required>
                             </div>
@@ -39,13 +39,24 @@
                                 Please enter valid Songs.
                             </p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <div class="form-group">
                                 <label class="control-label" for="inputLarge">Music Company <span class="required">*</span></label>
                                 <input class="form-control" name="musiccompany"  ng-model="productObj.music_company"  type="text" placeholder="Music Company" ng-maxlength="50" limit-to="50" required>
                             </div>
                             <p class="errorMessage" ng-show="(productForm.musiccompany.$invalid &&isshowmsg)||(productForm.musiccompany.$error.maxlength||productForm.musiccompany.$invalid&&productForm.musiccompany.$touched)||productForm.musiccompany.$error.pattern">
                                 Please enter valid Music Company.
+                            </p>
+
+                        </div>
+
+                               <div class="col-md-3">
+                            <div class="form-group">
+                                <label class="control-label" for="inputLarge">Language <span class="required">*</span></label>
+                                <input class="form-control" name="productlanguage"  ng-model="productObj.product_language"  type="text" placeholder="Language" ng-maxlength="50" limit-to="50" required>
+                            </div>
+                            <p class="errorMessage" ng-show="(productForm.productlanguage.$invalid &&isshowmsg)||(productForm.productlanguage.$error.maxlength||productForm.productlanguage.$invalid&&productForm.productlanguage.$touched)||productForm.productlanguage.$error.pattern">
+                                Please enter valid Language.
                             </p>
 
                         </div>
