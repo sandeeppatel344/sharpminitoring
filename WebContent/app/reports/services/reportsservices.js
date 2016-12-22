@@ -16,7 +16,7 @@ app.factory("reportsService",function($http,$filter){
         return $http.get(userserviceapiurl+"registration/getRegisteredUsers")
     }
     obj.getEntryReport = function(){
-        return $http.get(userserviceapiurl+"registration/getRegisteredUsers")
+        return $http.get(userserviceapiurl+"entries/entriesReport")
     }
     return obj;
 })
