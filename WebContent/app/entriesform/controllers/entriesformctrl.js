@@ -1,5 +1,5 @@
 
-app.controller("entriesformCtrl",function($scope,entriesformModel,entriesformService,channelService,ngToast,localStorageService){
+app.controller("entriesformCtrl",function($scope,entriesformModel,entriesformService,channelService,ngToast,$filter,localStorageService){
 	this.modelObj = entriesformModel;
 	$scope.entryObj = new entriesformModel.entriesformData();
     $scope.channelList = [];

@@ -41,15 +41,19 @@
                 <thead id="userreportheading">
                 <th>SrNo.</th>
                 <th>Date</th>
+                <th>Emp Name</th>
                 <th>Login Time</th>
                 <th>Logout Time</th>
                 <th>Work Hours</th>
                 </thead>
                 <tbody>
-                <tr class="customreporttablecontent" ng-repeat="user in userData|filter:serchtext">
+                <tr class="customreporttablecontent" ng-repeat="user in EmpData|filter:serchtext">
                     <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{$index+1}}</td>
-                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.username}}</td>
-                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.password}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.date}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.firstname}} {{user.lastname}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.logintime}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.logouttime}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.workhours}}</td>
                 </tr>
                 </tbody>
 
