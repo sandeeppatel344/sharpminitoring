@@ -39,22 +39,33 @@
 	<div class="container">	
 		<div class="row">
 			<div class="col-xs-7 col-md-12 no-padding" ng-clock>
-				<a href="#" ng-click="gotToHome()"><img ng-clock height="120" src="images/logo.jpg"/></a>
+				<div ng-click="gotToHome()"><img ng-clock height="120" src="images/logo.jpg"/></div>
 				<h1 class="schoolName"></h1>
+                <!--{{currentuser.first_name}} {{currentuser.last_name}}-->
+                <div class="dropdown hidden-print" style="display: none" id="logout">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <i class="glyphicon glyphicon-user"></i> <span ng-bind="currentuser.first_name"></span> <span ng-bind="currentuser.last_name"></spanng-bind></span>
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="#"  ng-click="logout()">Logout</a></li>
 
-				<div class="pull-right hidden-print"   ng-clock>
+                    </ul>
+                </div>
+			<!--	<div class="pull-right hidden-print"   ng-clock>
 
-                    <div class="btn-group hidden-print" id="logout" role="group" style="display: none">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="glyphicon glyphicon-user"></i> {{currentuser.first_name}} {{currentuser.last_name}}
+                    <div class="btn-group hidden-print dropdown" id="logout" role="group" style="display: none">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu11" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <i class="glyphicon glyphicon-user"></i>
                             <span class="caret"></span>
                         </button>
-                        <ul class="dropdown-menu">
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             <li ng-click="logout()">Logout</li>
                         </ul>
                     </div>
 
-				</div>
+				</div>-->
             </div>
 		</div>
 	</div>			
@@ -177,6 +188,7 @@
         <script src="app/reports/controllers/userandpasswordreportctrl.js"></script>
         <script src="app/reports/services/reportsservices.js"></script>
         <script src="app/reports/controllers/workingtimereportctrl.js"></script>
+        <script src="app/reports/controllers/entryreportctrl.js"></script>
       
 
       <!--guicalendar files-->

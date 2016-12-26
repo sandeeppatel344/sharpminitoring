@@ -12,6 +12,7 @@ app.controller("workingTimeCtrl",function($scope,reportsService,$filter){
         })
     }
     $scope.getReportData = function(){
+        $scope.EmpData = [];
         reportsService.getEmployeeWorkingTime($scope.filterObj).then(function(res){
             console.log(res);
             angular.forEach(res.data,function(lst){
@@ -40,5 +41,38 @@ app.controller("workingTimeCtrl",function($scope,reportsService,$filter){
         })
     }
     $scope.getRegisteredUser();
+
+    $scope.print = function () {
+
+        jQuery("#workingreportheading").show();
+        jQuery(".hidden-print").hide();
+        $scope.showheading = true
+        // printElement(document.getElementById("userreport"));
+        document.title = "Employee Working Report"
+        window.print();
+        $scope.showheading = true
+        jQuery("#workingreportheading").show();
+        jQuery("th").css('border' ,'0px');
+        jQuery(".hidden-print").show();
+    }
+    function printElement(elem) {
+        // document.getElementById("heading")._css("display","inline-block")
+        $scope.showheading = true
+        var domClone = elem.cloneNode(true);
+        jQuery("#workingreportheading").show();
+        jQuery(".hidden-print").hide();
+        var $printSection = document.getElementById("printSection");
+        if (!$printSection) {
+            $scope.showheading = true
+            var $printSection = document.createElement("div");
+            $printSection.id = "printSection";
+            document.body.appendChild($printSection);
+        }
+
+        $printSection.innerHTML = "";
+
+        $printSection.appendChild(domClone);
+        domClone = "";
+    }
 
 })

@@ -49,7 +49,7 @@ app.controller("entriesformCtrl",function($scope,entriesformModel,entriesformSer
 
     $scope.getEntry = function(id){
         entriesformService.editEntries(id).then(function(res){
-            $scope.entryObj.editData(res.data)
+            $scope.entryObj.editData(res.data[0])
             console.log("Dattttttaaaa---"+res.data)
         },function(error){
             console.error(error);

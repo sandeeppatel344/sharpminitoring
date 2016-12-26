@@ -19,10 +19,11 @@ app.factory("entriesformModel",function(){
                 this.program_name = data.program_name;
                 this.songs = data.songs;
                 this.product_name = data.program_name;
-                this.category = data.category;
+                this.category = {category_name:data.category};
                 this.channel_usage = data.channel_usage;
                 this.activity = data.activity;
                 this.end_time = data.end_time;
+                this.start_time = data.start_time;
                 this.duration = data.duration;
                 this.story = data.story;
                 this.language = data.language;

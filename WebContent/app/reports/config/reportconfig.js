@@ -33,6 +33,16 @@ app.config([ '$stateProvider','$urlRouterProvider', function($stateProvider,$url
             }
         }
 
+    }).state('sharpmonitoring.entryreport', {
+        url : '/entryreport',
+
+        views : {
+            '@' : {
+                templateUrl : 'app/reports/views/entryreport.html',
+                controller:'entryreportCtrl'
+            }
+        }
+
     })
 }]);
 

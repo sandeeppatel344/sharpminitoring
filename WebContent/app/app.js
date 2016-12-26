@@ -12,7 +12,7 @@ app.run(function($rootScope,$timeout, $state,$stateParams,loginService,localStor
 
             $state.go("sharpmonitoring.login");
               localStorageService.clear();
-            //$state.reload();
+            $state.reload();
         })
 
 

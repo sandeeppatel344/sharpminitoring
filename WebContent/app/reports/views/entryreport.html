@@ -1,32 +1,79 @@
-<div class="alert alert-success hidden-print" role="alert"><strong>Entry Report Report</strong> </div>
-<div class="row hidden-print">
-    <div class="col-md-12 input-group">
-        <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-<input type="text" ng-model="serchtext" autofocus="true">
+<div>
+    <div class="alert alert-success hidden-print" role="alert"><strong>Entry Report</strong> </div>
+    <form>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input type="text" class=" form-control" name = "fromdate" uib-datepicker-popup="dd/MM/yyyy" max-date="maxDate"
+                           ng-model="filterObj.fromdate" is-open = "isOpen" close-text="Close" ng-click="isOpen=true" ng-focus="isOpen=true" required  placeholder="From Date"/>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input type="text" class=" form-control" name = "todate" uib-datepicker-popup="dd/MM/yyyy" max-date="maxDate"
+                           ng-model="filterObj.todate" is-open = "isOpent" close-text="Close" ng-click="isOpent=true" ng-focus="isOpent=true" required  placeholder="To Date"/>
+                </div>
+            </div>
+            <div class="col-md-2" style="margin-top: 8px">
+                <div class="form-group">
+
+                    <select class="form-control" name="channelcategory"  ng-model="filterObj.userid" ng-options="cat.id as cat.first_name for cat in userList track by cat.id" >
+                        <option selected value="">Please Select User</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-top: 8px">
+                <div class="form-group">
+
+                    <select class="form-control" name="channel"  ng-model="filterObj.channelname" ng-options="channellist.channel_name as channellist.channel_name for channellist in channelList track by channellist.id" required>
+                        <option selected value="">Please Select Channel</option>
+                    </select>
+
+                </div>
+
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-raised btn-success" ng-click="getAllEntries()">Go</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="row hidden-print">
+        <div class="col-md-12 input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            <input type="text" ng-model="serchtext" autofocus="true">
+        </div>
     </div>
-</div>
-<br>
-<div class="row">
-    <div class="col-md-12">
+    <br>
+    <div class="row">
+        <div class="col-md-12">
 
-<table class="customreporttable table-responsive table table-bordered table-hover" id="userreport">
-<thead id="userreportheading">
-<th>SrNo.</th>
-<th>User</th>
-<th>Password</th>
-</thead>
-<tbody>
-<tr class="customreporttablecontent" ng-repeat="user in userData|filter:serchtext">
-    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{$index+1}}</td>
-<td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.username}}</td>
-    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.password}}</td>
-</tr>
-</tbody>
+            <table class="customreporttable table-responsive table table-bordered table-hover" id="userreport">
+                <thead id="userreportheading">
+                <th>SrNo.</th>
+                <th>Date</th>
+                <th>Emp Name</th>
+                <th>Login Time</th>
+                <th>Logout Time</th>
+                <th>Work Hours</th>
+                </thead>
+                <tbody>
+                <tr class="customreporttablecontent" ng-repeat="user in EmpData|filter:serchtext">
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{$index+1}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.date}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.firstname}} {{user.lastname}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.logintime}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.logouttime}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.workhours}}</td>
+                </tr>
+                </tbody>
 
 
-</table>
+            </table>
+        </div>
     </div>
-</div>
-<div class="hidden-print">
-<button ng-click="print()">Print</button>
+    <div class="hidden-print">
+        <button class="btn btn-raised btn-primary" ng-click="print()">Print</button>
+    </div>
+
 </div>

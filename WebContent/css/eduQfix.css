@@ -901,3 +901,14 @@ select.form-control {
 .customreporttablefooter{
     border-bottom: 1px solid #808080;
 }
+@media print {
+    body{
+        width: 100%;
+        margin: 0;
+
+    }
+    @page {
+        size: auto;   /* auto is the initial value */
+        margin: 0;  /* this affects the margin in the printer settings */
+    }
+}

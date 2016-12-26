@@ -5,16 +5,16 @@ app.factory("entriesformService",function($http){
 		return $http.post(userserviceapiurl+"entries/add",postdata);
 	}
 	obj.getAllEntries = function(){
-		return $http.post(userserviceapiurl+"entries/all");
+		return $http.get(userserviceapiurl+"entries/all");
 	}
 	obj.editEntries = function(id){
-		return $http.post(userserviceapiurl+"entries/edit?id=",id);
+		return $http.get(userserviceapiurl+"entries/edit?id="+id);
 	}
 	obj.updateEntries = function(postdata){
 		return $http.post(userserviceapiurl+"entries/update",postdata);
 	}
 	obj.deleteEntries = function(id){
-		return $http.post(userserviceapiurl+"entries/delete?id=",id);
+		return $http.get(userserviceapiurl+"entries/delete?id="+id);
 	}
 
     obj.getChannelList = function(){

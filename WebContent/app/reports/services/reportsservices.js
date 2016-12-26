@@ -15,8 +15,10 @@ app.factory("reportsService",function($http,$filter){
     obj.getRegisteredUser = function(){
         return $http.get(userserviceapiurl+"registration/getRegisteredUsers")
     }
-    obj.getEntryReport = function(){
-        return $http.get(userserviceapiurl+"entries/entriesReport")
+    obj.getEntryReport = function(filterData){
+        filterData.fromdate = $filter('date')(filterData.fromdate,'yyyy-MM-dd');
+        filterData.todate = $filter('date')(filterData.todate,'yyyy-MM-dd');
+        return $http.post(userserviceapiurl+"entries/entriesReport",filterData)
     }
     return obj;
 })

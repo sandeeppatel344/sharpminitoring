@@ -1,5 +1,6 @@
 <div>
-    <form>
+    <div class="alert alert-success hidden-print" role="alert"><strong>Employee Working Report</strong> </div>
+    <form class="hidden-print">
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
@@ -13,7 +14,7 @@
                        ng-model="filterObj.todate" is-open = "isOpent" close-text="Close" ng-click="isOpent=true" ng-focus="isOpent=true" required  placeholder="To Date"/>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3" style="margin-top: 8px">
                 <div class="form-group">
 
                 <select class="form-control" name="channelcategory"  ng-model="filterObj.userid" ng-options="cat.id as cat.first_name for cat in userList track by cat.id" >
@@ -22,7 +23,7 @@
                 </div>
             </div>
             <div class="col-md-3">
-            <button class="btn btn-success" ng-click="getReportData()">Go</button>
+            <button class="btn btn-raised btn-success" ng-click="getReportData()">Go</button>
             </div>
         </div>
     </form>
@@ -38,7 +39,7 @@
         <div class="col-md-12">
 
             <table class="customreporttable table-responsive table table-bordered table-hover" id="userreport">
-                <thead id="userreportheading">
+                <thead id="workingreportheading">
                 <th>SrNo.</th>
                 <th>Date</th>
                 <th>Emp Name</th>
@@ -62,7 +63,7 @@
         </div>
     </div>
     <div class="hidden-print">
-        <button ng-click="print()">Print</button>
+        <button class="btn btn-raised btn-primary" ng-click="print()">Print</button>
     </div>
 
 </div>
