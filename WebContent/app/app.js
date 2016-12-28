@@ -2,6 +2,8 @@ var app = angular.module('sharpmonitoring', [ 'ui.router',
    'ui.bootstrap','ngCookies','angular-loading-bar','datatables','ngToast', 'fx.animations']);
 
 var userserviceapiurl = "http://localhost/travel2stay-api/public/";
+var curPage = 0;// current Page
+var pageSize = 10;
 app.run(function($rootScope,$timeout, $state,$stateParams,loginService,localStorageService) {
 	// this solves page refresh and getting back to state
 	//editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
@@ -12,11 +14,30 @@ app.run(function($rootScope,$timeout, $state,$stateParams,loginService,localStor
 
             $state.go("sharpmonitoring.login");
               localStorageService.clear();
-            $state.reload();
+
+            if(localStorageService.get("currentuser")){
+                $rootScope.currentuser = JSON.parse(localStorageService.get("currentuser"));
+            }
+
+            if($rootScope.currentuser){
+                var element = document.getElementById("logout")
+                element.style.display = "none";
+            }
+
         })
 
 
   }
+    if(localStorageService.get("currentuser")){
+        $rootScope.currentuser = JSON.parse(localStorageService.get("currentuser"));
+    }
+
+    if($rootScope.currentuser){
+        var element = document.getElementById("logout")
+        element.style.display = "inline";
+    }
+
+
 /*  $rootScope.ishowbaner = false;
   $roo$rootScope.ishowbaner = true;tScope.ishowbanerdal = false;*/
 
@@ -130,6 +151,13 @@ app.config(
 		$urlRouterProvider.when('', 'login');
         $httpProvider.interceptors.push('customInterceptor');
 	});
+
+app.filter('pagination', function() {
+    return function (input, start) {
+        start = +start;
+        return input.slice(start);
+    };
+})
 
 angular.element(document).ready(function ($rootScope) {
   angular.bootstrap(document,["sharpmonitoring"])

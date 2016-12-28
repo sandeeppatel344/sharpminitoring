@@ -1,5 +1,6 @@
 <div >
-    <div class="alert alert-success" role="alert"><strong>Product List</strong> <div class="pull-right"><button ng-click="addNewProduct()" class="glyphicon glyphicon-plus-sign" title="Add new channel"></button></div></div>
+    <div class="alert alert-success" role="alert"><strong>Product List</strong> <div class="pull-right"><button ng-click="addNewProduct()" class="glyphicon glyphicon-plus-sign btn-small btn-raised btn-primary ng-scope" title="Add new channel"></button></div></div>
+    <div class="form-group"><input type="text" class="form-control" ng-model="searchtext" autofocus="true" placeholder="Search"><span class="glyphicon glyphicon-search form-control-feedback"></span></div>
     <table class="table"  class="row-border hover">
         <thead>
         <tr style="text-align: center">
@@ -11,7 +12,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="product in productList|orderBy:'product.id':true" ng-if="product.movie_name">
+        <tr ng-repeat="product in productList|orderBy:'product.id':true|filter:searchtext" ng-if="product.movie_name">
             <td>{{$index+1}}</td>
             <td>{{ product.movie_name }}</td>
             <td>{{ product.songs }}</td>
@@ -23,3 +24,9 @@
     </table>
 </div>
 
+<div class="pagination-div pull-right" ng-show="productList.length">
+
+    <button ng-click="curPage=curPage-1" ng-disabled="curPage == 0" type="button" class="btn-default">PREV</button></li>
+    <span>Page {{curPage + 1}} of {{ numberOfPages() }}</span></li>
+    <button ng-click="curPage = curPage+1" ng-disabled="curPage >= productList.length/pageSize - 1" type="button" class="btn-default">NEXT</button></li>
+</div>

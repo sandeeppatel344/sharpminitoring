@@ -3,6 +3,8 @@
  */
 app.controller("listOfProduct",function($scope,$state,productService,ngToast,DTOptionsBuilder,DTColumnDefBuilder,DTColumnBuilder,localStorageService){
     $scope.productList = [];
+    $scope.curPage = curPage;// current Page
+    $scope.pageSize = pageSize;
     localStorageService.set("productid","");
     $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers')
     $scope.getProductList = function(){
@@ -34,6 +36,11 @@ app.controller("listOfProduct",function($scope,$state,productService,ngToast,DTO
             console.error(error);
         })
     }
+
+    $scope.numberOfPages = function()
+    {
+        return Math.ceil($scope.productList.length / $scope.pageSize);
+    };
 
     $scope.getProductList();
     })

@@ -38,11 +38,12 @@
 " ng-clock>
 	<div class="container">	
 		<div class="row">
-			<div class="col-xs-7 col-md-12 no-padding" ng-clock>
-				<div ng-click="gotToHome()"><img ng-clock height="120" src="images/logo.jpg"/></div>
-				<h1 class="schoolName"></h1>
+			<div class="col-md-6 no-padding" ng-click="gotToHome()" ng-clock>
+				<div ><img ng-clock height="120" src="images/logo.jpg"/></div>
+			</div>
                 <!--{{currentuser.first_name}} {{currentuser.last_name}}-->
-                <div class="dropdown hidden-print" style="display: none" id="logout">
+            <div class="col-md-6">
+                <div class="dropdown hidden-print pull-right" style="display: none" id="logout">
                     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <i class="glyphicon glyphicon-user"></i> <span ng-bind="currentuser.first_name"></span> <span ng-bind="currentuser.last_name"></spanng-bind></span>
                         <span class="caret"></span>
@@ -52,6 +53,7 @@
 
                     </ul>
                 </div>
+            </div>
 			<!--	<div class="pull-right hidden-print"   ng-clock>
 
                     <div class="btn-group hidden-print dropdown" id="logout" role="group" style="display: none">

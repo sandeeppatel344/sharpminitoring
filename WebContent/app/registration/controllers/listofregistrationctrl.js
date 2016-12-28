@@ -1,6 +1,8 @@
 app.controller("listOfRegistrationCtrl",function($scope,$state,$stateParams,localStorageService,registerService,ngToast){
 	localStorageService.set("registerid","");
 	$scope.registerList = [];
+    $scope.curPage = curPage;// current Page
+    $scope.pageSize = pageSize;
 	$scope.addNewRegistration = function(){
 		$state.go("sharpmonitoring.registration",{isnew:true})
 	}
@@ -29,6 +31,10 @@ app.controller("listOfRegistrationCtrl",function($scope,$state,$stateParams,loca
 			console.log(error);
 		})
 	}
+    $scope.numberOfPages = function()
+    {
+        return Math.ceil($scope.registerList.length / $scope.pageSize);
+    };
 
 	$scope.getAllRegister();
 })
