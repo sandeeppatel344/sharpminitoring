@@ -9,7 +9,8 @@ app.controller("homeCtrl",function($scope,$rootScope,$timeout,$state,localStorag
     }, 100);
     var element = document.getElementById("logout")
     element.style.display = "inline";
-
+    $rootScope.currentuser = JSON.parse(localStorageService.get("currentuser"));
+    $scope.currentRole =  $rootScope.currentuser.role
     
     $rootScope.gotToHome = function(){
         $rootScope.currentuser = JSON.parse(localStorageService.get("currentuser"));
