@@ -34,7 +34,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
 
     $scope.getAllSongsList = function(productname){
 
-        entriesformService.getSongsList(productname).then(function(res){
+        entriesformService.getSongsList(productname.movie_name).then(function(res){
             $scope.songsList = res.data;
         },function(error){
             console.error(error);
