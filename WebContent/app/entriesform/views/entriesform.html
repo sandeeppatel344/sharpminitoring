@@ -51,7 +51,7 @@
                                 <label class="control-label" >Program Name<span class="required" >*</span></label>
                                 <select class="form-control" name="programname"  ng-model="entryObj.program_name" ng-change="getCategoryForStory(entryObj.program_name)" required>
                                     <option  value="">Please Select Program</option>
-                                    <option ng-repeat='program in programlList' value="{{program.program_name}}">{{program.program_name}}</option>
+                                    <option ng-repeat='program in programlList' value="program.program_name">{{program.program_name}}</option>
                                 </select>
 
                             </div>
@@ -175,7 +175,7 @@
                     <label class="control-label" >End Time<span class="required"> *</span></label>
                     <input type="text" class="form-control" ng-model="entryObj.end_time" ng-change="calcilateDuration(entryObj.start_time,entryObj.end_time)" ng-init="entryObj.end_time='00:00:00'" name="endtime" placeholder="End Time"  required="true">
                 </div>
-                <p class="errorMessage" ng-show="(entryForm.endtime.$invalid &&isshowmsg)||(entryForm.endtime.$error.maxlength||entryForm.endtime.$invalid&&entryForm.endtime.$touched)||(endh>24&&entryForm.starttime.$touched)||(endm>60&&entryForm.starttime.$touched)||(ends>60&&entryForm.starttime.$touched)">
+                <p class="errorMessage" ng-show="(entryForm.endtime.$invalid &&isshowmsg)||(entryForm.endtime.$error.maxlength||entryForm.endtime.$invalid&&entryForm.endtime.$touched)||(endh>24&&entryForm.starttime.$touched)||(endm>60&&entryForm.starttime.$touched)||(ends>60&&entryForm.starttime.$touched)||endh<starth||endm<startm||ends<starts">
                     Please enter valid endtime.
                 </p>
 
