@@ -3,6 +3,7 @@ app.factory("entriesformService",function($http){
 	var obj = {};
 	obj.saveEntries = function(postdata){
         postdata.program_name = postdata.program_name.movie_name;
+        postdata.channel = postdata.channel.channel_name;
 		return $http.post(userserviceapiurl+"entries/add",postdata);
 	}
 	obj.getAllEntries = function(){

@@ -18,7 +18,8 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
         })
     }
     $scope.getAllProgramList = function(channelname){
-        entriesformService.getProgramsList(channelname).then(function(res){
+       // channelname = JSON.parse(channelname);
+        entriesformService.getProgramsList(channelname.channel_name).then(function(res){
             $scope.programlList = res.data;
             },function(error){
             console.error(error);

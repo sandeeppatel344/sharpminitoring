@@ -25,7 +25,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label" >Channel<span class="required">*</span></label>
-                                <select class="form-control" name="channel" ng-change="getAllProgramList(entryObj.channel)" ng-model="entryObj.channel" ng-options="channellist.channel_name as channellist.channel_name for channellist in channelList track by channellist.id" required>
+                                <select class="form-control" name="channel" ng-change="getAllProgramList(entryObj.channel);entryObj.language=entryObj.channel.language" ng-model="entryObj.channel" ng-options="channellist as channellist.channel_name for channellist in channelList track by channellist.id" required>
                                     <option selected value="">Please Select Channel</option>
                                 </select>
 
@@ -212,7 +212,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label class="control-label" >Language<span class="required"> *</span></label>
-                <input type="text" class="form-control" ng-model="entryObj.language"  name="language" placeholder="Language"   required="true">
+                <input type="text" class="form-control" ng-model="entryObj.language"  name="language" placeholder="Language" disabled  required="true">
             </div>
             <p class="errorMessage" ng-show="(entryForm.language.$invalid &&isshowmsg)||(entryForm.language.$error.maxlength||entryForm.language.$invalid&&entryForm.language.$touched)">
                 Please enter valid language.
