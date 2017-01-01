@@ -51,7 +51,7 @@
                                 <label class="control-label" >Program Name<span class="required" >*</span></label>
                                 <select class="form-control" name="programname"  ng-model="entryObj.program_name" ng-change="getCategoryForStory(entryObj.program_name)" required>
                                     <option  value="">Please Select Program</option>
-                                    <option ng-repeat='program in programlList' value="program.program_name">{{program.program_name}}</option>
+                                    <option ng-repeat='program in programlList' value="{{program.program_name}}">{{program.program_name}}</option>
                                 </select>
 
                             </div>
