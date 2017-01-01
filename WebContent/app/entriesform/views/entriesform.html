@@ -48,9 +48,10 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="control-label" >Program Name<span class="required">*</span></label>
-                                <select class="form-control" name="programname"  ng-model="entryObj.program_name" ng-options="program.program_name as program.program_name for program in programlList track by $index" required>
-                                    <option selected value="">Please Select Program</option>
+                                <label class="control-label" >Program Name<span class="required" >*</span></label>
+                                <select class="form-control" name="programname"  ng-model="entryObj.program_name"  required>
+                                    <option  value="">Please Select Program</option>
+                                    <option ng-repeat='program in programlList' value="{{program.program_name}}">{{program.program_name}}</option>
                                 </select>
 
                             </div>
@@ -67,8 +68,9 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" >Product Name<span class="required">*</span></label>
-                    <select class="form-control" name="productname"  ng-change="getAllSongsList(entryObj.product_name)" ng-model="entryObj.product_name" ng-options="product.movie_name as product.movie_name for product in productlList track by $index" required>
-                        <option selected value="">Please Select Product</option>
+                    <select class="form-control" name="productname"  ng-change="getAllSongsList(entryObj.product_name)" ng-model="entryObj.product_name"  required>
+                        <option  value="">Please Select Product</option>
+                        <option ng-repeat='product in productlList' value="{{product.movie_name}}">{{product.movie_name}}</option>
                     </select>
 
                 </div>
@@ -79,8 +81,9 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" >Songs<span class="required">*</span></label>
-                    <select class="form-control" name="songs"  ng-model="entryObj.songs" ng-options="song.songs as song.songs for song in songsList track by $index" required>
+                    <select class="form-control" name="songs"  ng-model="entryObj.songs"  required>
                         <option selected value="">Please Select Songs</option>
+                        <option ng-repeat='song in songsList' value="{{song.songs}}">{{song.songs}}</option>
                     </select>
 
                 </div>

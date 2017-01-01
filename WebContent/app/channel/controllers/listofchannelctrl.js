@@ -3,6 +3,8 @@
  */
 app.controller("listOfChannel",function($scope,$state,channelService,localStorageService,ngToast){
     $scope.channelList = [];
+    $scope.curPage = 0;// current Page
+    $scope.pageSize = 10;
     localStorageService.set("channelid","");
     $scope.getChannelList = function(){
         channelService.getChannelList().then(function(res){
@@ -36,7 +38,10 @@ app.controller("listOfChannel",function($scope,$state,channelService,localStorag
         })
     }
 
-
+    $scope.numberOfPages = function()
+    {
+        return Math.ceil($scope.channelList.length / $scope.pageSize);
+    };
 
     $scope.getChannelList();
 })

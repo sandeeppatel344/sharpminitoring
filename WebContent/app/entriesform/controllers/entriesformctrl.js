@@ -1,12 +1,12 @@
 
-app.controller("entriesformCtrl",function($scope,entriesformModel,entriesformService,channelService,ngToast,$filter,localStorageService){
+app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entriesformService,channelService,ngToast,$filter,localStorageService){
 	this.modelObj = entriesformModel;
 	$scope.entryObj = new entriesformModel.entriesformData();
     $scope.channelList = [];
     $scope.programlList = [];
     $scope.productlList = [];
     $scope.songsList = [];
-    $scope.activity = ["Audio","Video"];
+    $scope.activity = ["Audio","Video","Audio/Video"];
 
     $scope.getAllChannelList = function(){
         entriesformService.getChannelList().then(function(res){
@@ -19,7 +19,7 @@ app.controller("entriesformCtrl",function($scope,entriesformModel,entriesformSer
     $scope.getAllProgramList = function(channelname){
         entriesformService.getProgramsList(channelname).then(function(res){
             $scope.programlList = res.data;
-        },function(error){
+            },function(error){
             console.error(error);
         })
     }

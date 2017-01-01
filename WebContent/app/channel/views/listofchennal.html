@@ -14,7 +14,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="channel in channelList|orderBy:'channel.id':true|filter:searchtext" ng-if="channel.channel_name">
+        <tr ng-repeat="channel in channelList|orderBy:'channel.id':true|filter:searchtext track by channel.id" ng-if="channel.channel_name">
             <td>{{$index+1}}</td>
             <td>{{ channel.channel_name }}</td>
             <td>{{ channel.program_name }}</td>
@@ -26,5 +26,12 @@
         </tr>
         </tbody>
     </table>
+</div>
+
+<div class="pagination-div pull-right" ng-show="channelList.length">
+
+    <button ng-click="curPage=curPage-1" ng-disabled="curPage == 0" type="button" class="btn-default">PREV</button></li>
+    <span>Page {{curPage + 1}} of {{ numberOfPages() }}</span></li>
+    <button ng-click="curPage = curPage+1" ng-disabled="curPage >= channelList.length/pageSize - 1" type="button" class="btn-default">NEXT</button></li>
 </div>
 

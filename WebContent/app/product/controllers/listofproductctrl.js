@@ -3,8 +3,8 @@
  */
 app.controller("listOfProduct",function($scope,$state,productService,ngToast,DTOptionsBuilder,DTColumnDefBuilder,DTColumnBuilder,localStorageService){
     $scope.productList = [];
-    $scope.curPage = curPage;// current Page
-    $scope.pageSize = pageSize;
+    $scope.curPage = 0;// current Page
+    $scope.pageSize = 10;
     localStorageService.set("productid","");
     $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers')
     $scope.getProductList = function(){
