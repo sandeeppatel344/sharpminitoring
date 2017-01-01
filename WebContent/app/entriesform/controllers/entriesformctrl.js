@@ -75,7 +75,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
     $scope.getCategoryForStory = function(programname){
         channelService.getCategory(programname).then(function(res){
             console.log(res);
-            $scope.entryObj.story= res.data.category;
+            $scope.entryObj.story= res.data[0].category;
         },function(error){
             console.error(error)
         })
