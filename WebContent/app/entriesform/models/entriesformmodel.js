@@ -8,10 +8,12 @@ app.factory("entriesformModel",function(){
                 this.category = "";
                 this.channel_usage = "";
                 this.activity = "";
-                this.end_time = "";
+                this.start_time = "00:00:00"
+                this.end_time = "00:00:00";
                 this.duration = "";
                 this.story = "";
                 this.language = "";
+                this.product_language = "";
 
 			this.editData = function(data){
                 this.id = data.id
@@ -27,6 +29,7 @@ app.factory("entriesformModel",function(){
                 this.duration = data.duration;
                 this.story = data.story;
                 this.language = data.language;
+                this.product_language = data.product_language;
 			}
 		}
 	}

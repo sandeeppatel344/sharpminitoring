@@ -6,7 +6,8 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
     $scope.programlList = [];
     $scope.productlList = [];
     $scope.songsList = [];
-    $scope.activity = ["Audio","Video","Audio/Video"];
+    $scope.channelUsagelist = ["Audio","Video","Audio/Video"];
+    $scope.activity = ["Dance","Singing","Dancing/Singing","Instrumental","Mobile Tune"];
 
     $scope.getAllChannelList = function(){
         entriesformService.getChannelList().then(function(res){
@@ -32,11 +33,17 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
     }
 
     $scope.getAllSongsList = function(productname){
+
         entriesformService.getSongsList(productname).then(function(res){
             $scope.songsList = res.data;
         },function(error){
             console.error(error);
         })
+    }
+
+    $scope.setplanguageValue = function(product){
+        product = JSON.parse(product)
+        $scope.entryObj.product_language = product.product_language;
     }
 
     $scope.getAllChannelCategoryList = function(){
@@ -62,6 +69,14 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
         $scope.isshowUpdate = false;
     }else{
         $scope.isshowUpdate = true;
+    }
+
+    $scope.getCategoryForStory = function(programname){
+        channelService.getCategory(programname).then(function(res){
+            console.log(res);
+        },function(error){
+            console.error(error)
+        })
     }
 
     $scope.saveEntry = function(valid){
@@ -93,7 +108,39 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
             })
         }
     }
-    
+
+    $scope.calcilateDuration = function(start,end){
+        var durationcalc = [];
+        $scope.starttime = start.split(":")
+        $scope.starth = parseInt($scope.starttime[0]);
+        $scope.startm = parseInt($scope.starttime[1]);
+        $scope.starts = parseInt($scope.starttime[2]);
+
+        $scope.endtime = end.split(":")
+        $scope.endh = parseInt($scope.endtime[0]);
+        $scope.endm = parseInt($scope.endtime[1]);
+        $scope.ends = parseInt($scope.endtime[2]);
+
+        $scope.calh = Math.abs($scope.starth - $scope.endh).toString();
+        $scope.calm = Math.abs($scope.startm - $scope.endm).toString();
+        $scope.cals = Math.abs($scope.starts - $scope.ends).toString();
+        if($scope.calh.length<2){
+            $scope.calh = "0"+$scope.calh
+        }
+
+        if($scope.cals.length<2){
+            $scope.cals = "0"+$scope.cals
+        }
+
+        if($scope.calm.length<2){
+            $scope.calm = "0"+$scope.calm
+        }
+
+
+
+        $scope.entryObj.duration = [$scope.calh,$scope.calm,$scope.cals].join(":")
+
+    }
 
     $scope.getAllChannelList();
    // $scope.getAllProgramList();

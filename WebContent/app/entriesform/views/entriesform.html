@@ -49,7 +49,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label" >Program Name<span class="required" >*</span></label>
-                                <select class="form-control" name="programname"  ng-model="entryObj.program_name"  required>
+                                <select class="form-control" name="programname"  ng-model="entryObj.program_name" ng-change="getCategoryForStory(entryObj.program_name)" required>
                                     <option  value="">Please Select Program</option>
                                     <option ng-repeat='program in programlList' value="{{program.program_name}}">{{program.program_name}}</option>
                                 </select>
@@ -68,9 +68,9 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" >Product Name<span class="required">*</span></label>
-                    <select class="form-control" name="productname"  ng-change="getAllSongsList(entryObj.product_name)" ng-model="entryObj.product_name"  required>
+                    <select class="form-control" name="productname"  ng-change="getAllSongsList(entryObj.product_name);setplanguageValue(entryObj.product_name)" ng-model="entryObj.product_name"  required>
                         <option  value="">Please Select Product</option>
-                        <option ng-repeat='product in productlList' value="{{product.movie_name}}">{{product.movie_name}}</option>
+                        <option ng-repeat='product in productlList' value="{{product}}" >{{product.movie_name}}</option>
                     </select>
 
                 </div>
@@ -82,7 +82,7 @@
                 <div class="form-group">
                     <label class="control-label" >Songs<span class="required">*</span></label>
                     <select class="form-control" name="songs"  ng-model="entryObj.songs"  required>
-                        <option selected value="">Please Select Songs</option>
+                        <option  value="">Please Select Songs</option>
                         <option ng-repeat='song in songsList' value="{{song.songs}}">{{song.songs}}</option>
                     </select>
 
@@ -94,8 +94,9 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" >Activity<span class="required">*</span></label>
-                    <select class="form-control" name="activity"  ng-model="entryObj.activity" ng-options="act as act for act in activity track by $index" required>
-                        <option selected value="">Please Select Activity</option>
+                    <select class="form-control" name="activity"  ng-model="entryObj.activity"  required>
+                        <option  value="">Please Select Activity</option>
+                        <option ng-repeat="act in activity" value="act">{{act}}</option>
                     </select>
 
                 </div>
@@ -109,7 +110,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label class="control-label" >Start Time<span class="required"> *</span></label>
-                <input type="text" class="form-control" ng-model="entryObj.start_time"  name="starttime" placeholder="Start Time"  required="true">
+                <input type="text" class="form-control" ng-model="entryObj.start_time" ng-init="entryObj.start_time='00:00:00'" ng-change="calcilateDuration(entryObj.start_time,entryObj.end_time)" name="starttime" placeholder="Start Time"  required="true">
             </div>
             <p class="errorMessage" ng-show="(entryForm.starttime.$invalid &&isshowmsg)||(entryForm.starttime.$error.maxlength||entryForm.starttime.$invalid&&entryForm.starttime.$touched)">
                 Please enter valid starttime.
@@ -119,7 +120,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label class="control-label" >End Time<span class="required"> *</span></label>
-                <input type="text" class="form-control" ng-model="entryObj.end_time"  name="endtime" placeholder="End Time"  required="true">
+                <input type="text" class="form-control" ng-model="entryObj.end_time" ng-change="calcilateDuration(entryObj.start_time,entryObj.end_time)" ng-init="entryObj.end_time='00:00:00'" name="endtime" placeholder="End Time"  required="true">
             </div>
             <p class="errorMessage" ng-show="(entryForm.endtime.$invalid &&isshowmsg)||(entryForm.endtime.$error.maxlength||entryForm.endtime.$invalid&&entryForm.endtime.$touched)">
                 Please enter valid endtime.
@@ -129,7 +130,7 @@
         <div class="col-md-4">
             <div class="form-group">
                 <label class="control-label" >Duration<span class="required"> *</span></label>
-                <input type="text" class="form-control" ng-model="entryObj.duration"  name="duration" placeholder="Duration"  required="true">
+                <input type="text" class="form-control" ng-model="entryObj.duration"  ng-init="entryObj.duration='00:00:00'" disabled name="duration" placeholder="Duration"  required="true">
             </div>
             <p class="errorMessage" ng-show="(entryForm.duration.$invalid &&isshowmsg)||(entryForm.duration.$error.maxlength||entryForm.duration.$invalid&&entryForm.duration.$touched)">
                 Please enter valid duration.
@@ -142,7 +143,11 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" >Channel Usage<span class="required"> *</span></label>
-                    <input type="text" class="form-control" ng-model="entryObj.channel_usage"  name="channelusage" placeholder="Channel Usage"  required="true">
+                    <!--<input type="text" class="form-control" ng-model="entryObj.channel_usage"  name="channelusage" placeholder="Channel Usage"  required="true">-->
+                    <select class="form-control" ng-model="entryObj.channel_usage"  name="channelusage" required="true">
+                        <option value="">Please select Channel Usage</option>
+                        <option ng-repeat="cu in channelUsagelist" value="cu">{{cu}}</option>
+                    </select>
                 </div>
                 <p class="errorMessage" ng-show="(entryForm.channelusage.$invalid &&isshowmsg)||(entryForm.channelusage.$error.maxlength||entryForm.channelusage.$invalid&&entryForm.channelusage.$touched)">
                     Please enter valid channel usage.
@@ -162,10 +167,22 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" >Language<span class="required"> *</span></label>
-                    <input type="text" class="form-control" ng-model="entryObj.language"  name="language" placeholder="Language"  required="true">
+                    <input type="text" class="form-control" ng-model="entryObj.language"  name="language" placeholder="Language"   required="true">
                 </div>
                 <p class="errorMessage" ng-show="(entryForm.language.$invalid &&isshowmsg)||(entryForm.language.$error.maxlength||entryForm.language.$invalid&&entryForm.language.$touched)">
                     Please enter valid language.
+                </p>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" >Product Language<span class="required"> *</span></label>
+                    <input type="text" class="form-control" ng-model="entryObj.product_language"  name="productlanguage" placeholder="Product Language" disabled  required="true">
+                </div>
+                <p class="errorMessage" ng-show="(entryForm.productlanguage.$invalid &&isshowmsg)||(entryForm.productlanguage.$error.maxlength||entryForm.productlanguage.$invalid&&entryForm.productlanguage.$touched)">
+                    Please enter valid Product language.
                 </p>
 
             </div>
