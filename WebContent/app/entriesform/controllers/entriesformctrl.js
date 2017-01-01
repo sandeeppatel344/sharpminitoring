@@ -1,13 +1,14 @@
 
 app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entriesformService,channelService,ngToast,$filter,localStorageService){
 	this.modelObj = entriesformModel;
+    var _this = this;
 	$scope.entryObj = new entriesformModel.entriesformData();
     $scope.channelList = [];
     $scope.programlList = [];
     $scope.productlList = [];
     $scope.songsList = [];
     $scope.channelUsagelist = ["Audio","Video","Audio/Video"];
-    $scope.activity = ["Dance","Singing","Dancing/Singing","Instrumental","Mobile Tune"];
+    $scope.activity = ["N/A","Dance","Singing","Dancing/Singing","Instrumental","Mobile Tune"];
 
     $scope.getAllChannelList = function(){
         entriesformService.getChannelList().then(function(res){
@@ -86,6 +87,11 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
         if(valid){
             $scope.entryObj.created_by = localStorageService.get("currentuserid");
             $scope.entryObj.program_date = $filter('date')(new Date(),'yyyy-MM-dd');
+            $scope.entryObj.program_name = JSON.parse($scope.entryObj.program_name)
+            $scope.entryObj.program_name = $scope.entryObj.program_name.program_name;
+            $scope.entryObj.channel = $scope.entryObj.channel.channel_name
+            var product_name = JSON.parse($scope.entryObj.product_name);
+            $scope.entryObj.product_name = product_name.movie_name;
             entriesformService.saveEntries($scope.entryObj).then(function(res){
             ngToast.success({
                  content: '<div role="alert">Entry Added Successfully.</div>'

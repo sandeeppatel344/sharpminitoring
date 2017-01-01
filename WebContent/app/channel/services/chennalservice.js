@@ -24,7 +24,8 @@ app.factory("channelService",function($http){
         return $http.get(userserviceapiurl+"channel/fetchChannelCategory");
     }
     obj.getCategory = function(programname){
-        return $http.get(userserviceapiurl+"channel/fetchCategory?program_name="+"'"+programname+"'");
+        programname = JSON.parse(programname)
+        return $http.get(userserviceapiurl+"channel/fetchCategory?program_name="+"'"+programname.program_name+"'");
     }
     return obj;
 })

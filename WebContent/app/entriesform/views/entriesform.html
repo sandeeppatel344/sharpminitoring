@@ -51,7 +51,7 @@
                                 <label class="control-label" >Program Name<span class="required" >*</span></label>
                                 <select class="form-control" name="programname"  ng-model="entryObj.program_name" ng-change="getCategoryForStory(entryObj.program_name)" required>
                                     <option  value="">Please Select Program</option>
-                                    <option ng-repeat='program in programlList' value="{{program.program_name}}">{{program.program_name}}</option>
+                                    <option ng-repeat='program in programlList' value="{{program}}">{{program.program_name}}</option>
                                 </select>
 
                             </div>
@@ -124,7 +124,7 @@
                     <!--<input type="text" class="form-control" ng-model="entryObj.channel_usage"  name="channelusage" placeholder="Channel Usage"  required="true">-->
                     <select class="form-control" ng-model="entryObj.channel_usage"  name="channelusage" required="true">
                         <option value="">Please select Channel Usage</option>
-                        <option ng-repeat="cu in channelUsagelist" value="cu">{{cu}}</option>
+                        <option ng-repeat="cu in channelUsagelist" value="{{cu}}">{{cu}}</option>
                     </select>
                 </div>
                 <p class="errorMessage" ng-show="(entryForm.channelusage.$invalid &&isshowmsg)||(entryForm.channelusage.$error.maxlength||entryForm.channelusage.$invalid&&entryForm.channelusage.$touched)">
@@ -137,7 +137,7 @@
                     <label class="control-label" >Activity<span class="required">*</span></label>
                     <select class="form-control" name="activity"  ng-model="entryObj.activity"  required>
                         <option  value="">Please Select Activity</option>
-                        <option ng-repeat="act in activity" value="act">{{act}}</option>
+                        <option ng-repeat="act in activity" value="{{act}}">{{act}}</option>
                     </select>
 
                 </div>
@@ -151,7 +151,7 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" >courtesy<span class="required">*</span></label>
-                    <input type="text" class="form-control" ng-model="entryObj.courtesy"   name="ecourtesy" placeholder="Courtesy"  required="true">
+                    <input type="text" class="form-control" ng-model="entryObj.courtesy"   name="ecourtesy" placeholder="Courtesy">
 
                 </div>
                 <p class="errorMessage" ng-show="(entryForm.ecourtesy.$invalid &&isshowmsg)||(entryForm.ecourtesy.$error.maxlength||entryForm.ecourtesy.$invalid&&entryForm.ecourtesy.$touched)">
