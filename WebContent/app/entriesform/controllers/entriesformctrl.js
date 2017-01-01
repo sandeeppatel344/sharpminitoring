@@ -33,7 +33,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
     }
 
     $scope.getAllSongsList = function(productname){
-
+        productname = JSON.parse(productname);
         entriesformService.getSongsList(productname.movie_name).then(function(res){
             $scope.songsList = res.data;
         },function(error){
