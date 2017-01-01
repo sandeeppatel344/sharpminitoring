@@ -24,18 +24,6 @@
                     <div >
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label class="control-label" >Channel Category <span class="required">*</span></label>
-                                <select class="form-control" name="channelcategory"  ng-model="entryObj.category" ng-options="cat.category_name as cat.category_name for cat in channelCategoryList track by cat.id" required>
-                                    <option selected value="">Please Select Channel Category</option>
-                                </select>
-
-                            </div>
-                            <p class="errorMessage" ng-show="(entryForm.channelcategory.$invalid &&isshowmsg)||(entryForm.channelcategory.$invalid&&entryForm.channelcategory.$touched)">
-                                Please enter valid Channel Category.
-                            </p>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
                                 <label class="control-label" >Channel<span class="required">*</span></label>
                                 <select class="form-control" name="channel" ng-change="getAllProgramList(entryObj.channel)" ng-model="entryObj.channel" ng-options="channellist.channel_name as channellist.channel_name for channellist in channelList track by channellist.id" required>
                                     <option selected value="">Please Select Channel</option>
@@ -45,6 +33,18 @@
                             <p class="errorMessage" ng-show="(entryForm.channel.$invalid &&isshowmsg)||(entryForm.channel.$invalid &&entryForm.channel.$touched)">
                                 Please enter valid Channel.
                             </p>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Date <span class="required">*</span></label>
+                                <!--       <input class="form-control" name="dob"  ng-model="regObj.dob"  type="text" placeholder="Date of birth"  required> -->
+                                <input type="text" class=" form-control" name = "entrydate" uib-datepicker-popup="dd/MM/yyyy" max-date="maxDate"
+                                       ng-model="entryObj.program_date" is-open = "isOpen" close-text="Close" ng-click="isOpen=true" ng-focus="isOpen=true" required  placeholder="Date"/>
+                            </div>
+                            <p class="errorMessage" ng-show="(entryForm.entrydate.$invalid &&isshowmsg)||(entryForm.entrydate.$invalid &&entryForm.entrydate.$touched)">
+                                Please enter valid date.
+                            </p>
+
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
@@ -59,12 +59,26 @@
                                 Please enter valid Program Name.
                             </p>
                         </div>
+
+
+
+
                     </div>
                 </div>
             </div>
 
         </div>
         <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" >Start Time<span class="required"> *</span></label>
+                    <input type="text" class="form-control" ng-model="entryObj.start_time" ng-init="entryObj.start_time='00:00:00'" ng-change="calcilateDuration(entryObj.start_time,entryObj.end_time)" name="starttime" placeholder="Start Time"  required="true">
+                </div>
+                <p class="errorMessage" ng-show="(entryForm.starttime.$invalid &&isshowmsg)||(entryForm.starttime.$error.maxlength||entryForm.starttime.$invalid&&entryForm.starttime.$touched)||(starth>24&&entryForm.starttime.$touched)||(startm>60&&entryForm.starttime.$touched)||(starts>60&&entryForm.starttime.$touched)">
+                    Please enter valid starttime.
+                </p>
+
+            </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" >Product Name<span class="required">*</span></label>
@@ -80,6 +94,19 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
+                    <label class="control-label" >Music Compamy<span class="required">*</span></label>
+                    <input type="text" class="form-control" ng-model="entryObj.music_company"  disabled name="musiccompany" placeholder="Music Company"  required="true">
+
+                </div>
+                <p class="errorMessage" ng-show="(entryForm.musiccompany.$invalid &&isshowmsg)||(entryForm.musiccompany.$invalid &&entryForm.musiccompany.$touched)">
+                    Please enter valid Music Company.
+                </p>
+            </div>
+
+         </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
                     <label class="control-label" >Songs<span class="required">*</span></label>
                     <select class="form-control" name="songs"  ng-model="entryObj.songs"  required>
                         <option  value="">Please Select Songs</option>
@@ -91,55 +118,6 @@
                     Please enter valid songs.
                 </p>
             </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label class="control-label" >Activity<span class="required">*</span></label>
-                    <select class="form-control" name="activity"  ng-model="entryObj.activity"  required>
-                        <option  value="">Please Select Activity</option>
-                        <option ng-repeat="act in activity" value="act">{{act}}</option>
-                    </select>
-
-                </div>
-                <p class="errorMessage" ng-show="(entryForm.activity.$invalid &&isshowmsg)||(entryForm.activity.$error.maxlength||entryForm.activity.$invalid&&entryForm.activity.$touched)">
-                    Please enter valid activity.
-                </p>
-            </div>
-        </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label" >Start Time<span class="required"> *</span></label>
-                <input type="text" class="form-control" ng-model="entryObj.start_time" ng-init="entryObj.start_time='00:00:00'" ng-change="calcilateDuration(entryObj.start_time,entryObj.end_time)" name="starttime" placeholder="Start Time"  required="true">
-            </div>
-            <p class="errorMessage" ng-show="(entryForm.starttime.$invalid &&isshowmsg)||(entryForm.starttime.$error.maxlength||entryForm.starttime.$invalid&&entryForm.starttime.$touched)">
-                Please enter valid starttime.
-            </p>
-
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label" >End Time<span class="required"> *</span></label>
-                <input type="text" class="form-control" ng-model="entryObj.end_time" ng-change="calcilateDuration(entryObj.start_time,entryObj.end_time)" ng-init="entryObj.end_time='00:00:00'" name="endtime" placeholder="End Time"  required="true">
-            </div>
-            <p class="errorMessage" ng-show="(entryForm.endtime.$invalid &&isshowmsg)||(entryForm.endtime.$error.maxlength||entryForm.endtime.$invalid&&entryForm.endtime.$touched)">
-                Please enter valid endtime.
-            </p>
-
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label" >Duration<span class="required"> *</span></label>
-                <input type="text" class="form-control" ng-model="entryObj.duration"  ng-init="entryObj.duration='00:00:00'" disabled name="duration" placeholder="Duration"  required="true">
-            </div>
-            <p class="errorMessage" ng-show="(entryForm.duration.$invalid &&isshowmsg)||(entryForm.duration.$error.maxlength||entryForm.duration.$invalid&&entryForm.duration.$touched)">
-                Please enter valid duration.
-            </p>
-
-        </div>
-
-    </div>
-        <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
                     <label class="control-label" >Channel Usage<span class="required"> *</span></label>
@@ -156,25 +134,93 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label class="control-label" >Story<span class="required"> *</span></label>
-                    <input type="text" class="form-control" ng-model="entryObj.story"  name="story" placeholder="Story"  required="true">
-                </div>
-                <p class="errorMessage" ng-show="(entryForm.story.$invalid &&isshowmsg)||(entryForm.story.$error.maxlength||entryForm.story.$invalid&&entryForm.story.$touched)">
-                    Please enter valid story.
-                </p>
+                    <label class="control-label" >Activity<span class="required">*</span></label>
+                    <select class="form-control" name="activity"  ng-model="entryObj.activity"  required>
+                        <option  value="">Please Select Activity</option>
+                        <option ng-repeat="act in activity" value="act">{{act}}</option>
+                    </select>
 
+                </div>
+                <p class="errorMessage" ng-show="(entryForm.activity.$invalid &&isshowmsg)||(entryForm.activity.$error.maxlength||entryForm.activity.$invalid&&entryForm.activity.$touched)">
+                    Please enter valid activity.
+                </p>
+            </div>
+
+            </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" >courtesy<span class="required">*</span></label>
+                    <input type="text" class="form-control" ng-model="entryObj.courtesy"  disabled name="ecourtesy" placeholder="Courtesy"  required="true">
+
+                </div>
+                <p class="errorMessage" ng-show="(entryForm.ecourtesy.$invalid &&isshowmsg)||(entryForm.ecourtesy.$error.maxlength||entryForm.ecourtesy.$invalid&&entryForm.ecourtesy.$touched)">
+                    Please enter valid Courtesy.
+                </p>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label class="control-label" >Language<span class="required"> *</span></label>
-                    <input type="text" class="form-control" ng-model="entryObj.language"  name="language" placeholder="Language"   required="true">
+                    <label class="control-label" >Channel Category <span class="required">*</span></label>
+                    <select class="form-control" name="channelcategory"  ng-model="entryObj.category" ng-options="cat.category_name as cat.category_name for cat in channelCategoryList track by cat.id" required>
+                        <option selected value="">Please Select Channel Category</option>
+                    </select>
+
                 </div>
-                <p class="errorMessage" ng-show="(entryForm.language.$invalid &&isshowmsg)||(entryForm.language.$error.maxlength||entryForm.language.$invalid&&entryForm.language.$touched)">
-                    Please enter valid language.
+                <p class="errorMessage" ng-show="(entryForm.channelcategory.$invalid &&isshowmsg)||(entryForm.channelcategory.$invalid&&entryForm.channelcategory.$touched)">
+                    Please enter valid Channel Category.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" >End Time<span class="required"> *</span></label>
+                    <input type="text" class="form-control" ng-model="entryObj.end_time" ng-change="calcilateDuration(entryObj.start_time,entryObj.end_time)" ng-init="entryObj.end_time='00:00:00'" name="endtime" placeholder="End Time"  required="true">
+                </div>
+                <p class="errorMessage" ng-show="(entryForm.endtime.$invalid &&isshowmsg)||(entryForm.endtime.$error.maxlength||entryForm.endtime.$invalid&&entryForm.endtime.$touched)||(endh>24&&entryForm.starttime.$touched)||(endm>60&&entryForm.starttime.$touched)||(ends>60&&entryForm.starttime.$touched)">
+                    Please enter valid endtime.
                 </p>
 
             </div>
+
+
+
         </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label" >Duration<span class="required"> *</span></label>
+                <input type="text" class="form-control" ng-model="entryObj.duration"  ng-init="entryObj.duration='00:00:00'" disabled name="duration" placeholder="Duration"  required="true">
+            </div>
+            <p class="errorMessage" ng-show="(entryForm.duration.$invalid &&isshowmsg)||(entryForm.duration.$error.maxlength||entryForm.duration.$invalid&&entryForm.duration.$touched)">
+                Please enter valid duration.
+            </p>
+
+        </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label" >Story<span class="required"> *</span></label>
+                <input type="text" class="form-control" ng-model="entryObj.story"  name="story" placeholder="Story" disabled  required="true">
+            </div>
+            <p class="errorMessage" ng-show="(entryForm.story.$invalid &&isshowmsg)||(entryForm.story.$error.maxlength||entryForm.story.$invalid&&entryForm.story.$touched)">
+                Please enter valid story.
+            </p>
+
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="control-label" >Language<span class="required"> *</span></label>
+                <input type="text" class="form-control" ng-model="entryObj.language"  name="language" placeholder="Language"   required="true">
+            </div>
+            <p class="errorMessage" ng-show="(entryForm.language.$invalid &&isshowmsg)||(entryForm.language.$error.maxlength||entryForm.language.$invalid&&entryForm.language.$touched)">
+                Please enter valid language.
+            </p>
+
+        </div>
+
+    </div>
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
@@ -186,6 +232,9 @@
                 </p>
 
             </div>
+        </div>
+        <div class="row">
+
         </div>
     </div>
 

@@ -44,6 +44,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
     $scope.setplanguageValue = function(product){
         product = JSON.parse(product)
         $scope.entryObj.product_language = product.product_language;
+        $scope.entryObj.music_company = product.music_company;
     }
 
     $scope.getAllChannelCategoryList = function(){
@@ -74,6 +75,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
     $scope.getCategoryForStory = function(programname){
         channelService.getCategory(programname).then(function(res){
             console.log(res);
+            $scope.entryObj.story= res.data.category;
         },function(error){
             console.error(error)
         })

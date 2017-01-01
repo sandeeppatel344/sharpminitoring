@@ -14,6 +14,9 @@ app.factory("entriesformModel",function(){
                 this.story = "";
                 this.language = "";
                 this.product_language = "";
+                this.music_company = "";
+                this.courtesy = "";
+                this.program_date = new Date();
 
 			this.editData = function(data){
                 this.id = data.id
@@ -30,6 +33,9 @@ app.factory("entriesformModel",function(){
                 this.story = data.story;
                 this.language = data.language;
                 this.product_language = data.product_language;
+                this.music_company = data.music_company;
+                this.courtesy = data.courtesy;
+                this.program_date = data.program_date;
 			}
 		}
 	}
