@@ -71,10 +71,33 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
+                    <div class="row form-group" >
                     <label class="control-label" >Start Time<span class="required"> *</span></label>
-                    <input type="text" class="form-control" ng-model="entryObj.start_time" ng-init="entryObj.start_time='00:00:00'" ng-change="calcilateDuration(entryObj.start_time,entryObj.end_time)" name="starttime" placeholder="Start Time"  required="true">
+                    </div>
+                    <div class="row">
+                    <div class="col-md-2"><input type="text" class="form-control" ng-model="startTimeObj.starthour" ng-init="startTimeObj.starthour='00'" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="starthour"   required="true"> </div>
+                    <div class="col-md-2"><input type="text" class="form-control" ng-model="startTimeObj.startminutes" ng-init="startTimeObj.startminutes='00'" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="startminute"   required="true"> </div>
+                    <div class="col-md-2"><input type="text" class="form-control" ng-model="startTimeObj.startsecond"  ng-init="startTimeObj.startsecond='00'" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="startsecond"   required="true"></div>
+                    </div>
+
+                   <!-- <input type="text" class="form-control" ng-model="entryObj.start_time" ng-init="entryObj.start_time='00:00:00'" ng-change="calcilateDuration(entryObj.start_time,entryObj.end_time)" name="starttime" placeholder="Start Time"  required="true">-->
                 </div>
-                <p class="errorMessage" ng-show="(entryForm.starttime.$invalid &&isshowmsg)||(entryForm.starttime.$error.maxlength||entryForm.starttime.$invalid&&entryForm.starttime.$touched)||(starth>24&&entryForm.starttime.$touched)||(startm>60&&entryForm.starttime.$touched)||(starts>60&&entryForm.starttime.$touched)">
+                <p class="errorMessage" ng-show="(entryForm.starthour.$invalid &&isshowmsg)
+                                                    ||(entryForm.startminute.$invalid &&isshowmsg)
+                                                    ||(entryForm.startsecond.$invalid &&isshowmsg)
+                                                    ||(entryForm.starthour.$invalid&&entryForm.starthour.$touched)
+                                                    ||(entryForm.startminute.$invalid&&entryForm.startminute.$touched)
+                                                     ||(entryForm.startsecond.$invalid&&entryForm.startsecond.$touched)
+                                                    ||(startTimeObj.starthour>24&&entryForm.starthour.$touched)
+                                                    ||(startTimeObj.startminutes>60&&entryForm.startminute.$touched)
+                                                    ||(startTimeObj.startsecond>60&&entryForm.startsecond.$touched)">
+
+             <!--       ||(startTimeObj.starthour=='00'&&isshowmsg)
+                    ||(startTimeObj.starthour=='00'&&isshowmsg)
+                    ||(startTimeObj.startsecond=='00'&&isshowmsg)
+                    ||(startTimeObj.starthour=='00'&&entryForm.starthour.$touched)
+                    ||(startTimeObj.starthour=='00'&&entryForm.startminute.$touched)
+                    ||(startTimeObj.startsecond=='00'&&entryForm.startsecond.$touched)-->
                     Please enter valid starttime.
                 </p>
 
@@ -150,7 +173,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                    <label class="control-label" >courtesy<span class="required">*</span></label>
+                    <label class="control-label" >courtesy<!--<span class="required">*</span>--></label>
                     <input type="text" class="form-control" ng-model="entryObj.courtesy"   name="ecourtesy" placeholder="Courtesy">
 
                 </div>
@@ -168,12 +191,36 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <label class="control-label" >End Time<span class="required"> *</span></label>
-                    <input type="text" class="form-control" ng-model="entryObj.end_time" ng-change="calcilateDuration(entryObj.start_time,entryObj.end_time)" ng-init="entryObj.end_time='00:00:00'" name="endtime" placeholder="End Time"  required="true">
+                    <div class="row form-group" >
+                        <label class="control-label" >End Time<span class="required"> *</span></label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"><input type="text" class="form-control" ng-model="endTimeObj.endhours" ng-init="endTimeObj.endhours='00'" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endhour"   required="true"> </div>
+                        <div class="col-md-2"><input type="text" class="form-control" ng-model="endTimeObj.endminute" ng-init="endTimeObj.endminute='00'" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endminute"   required="true"> </div>
+                        <div class="col-md-2"><input type="text" class="form-control" ng-model="endTimeObj.endsecond"  ng-init="endTimeObj.endsecond='00'" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endsecond"   required="true"></div>
+                    </div>
+
+                    <!-- <input type="text" class="form-control" ng-model="entryObj.start_time" ng-init="entryObj.start_time='00:00:00'" ng-change="calcilateDuration(entryObj.start_time,entryObj.end_time)" name="starttime" placeholder="Start Time"  required="true">-->
                 </div>
-                <p class="errorMessage" ng-show="(entryForm.endtime.$invalid &&isshowmsg)||(entryForm.endtime.$error.maxlength||entryForm.endtime.$invalid&&entryForm.endtime.$touched)||(endh>24&&entryForm.starttime.$touched)||(endm>60&&entryForm.starttime.$touched)||(ends>60&&entryForm.starttime.$touched)||endh<starth">
+                <p class="errorMessage" ng-show="(entryForm.endhour.$invalid &&isshowmsg)
+                                                    ||(entryForm.endminute.$invalid &&isshowmsg)
+                                                    ||(entryForm.endsecond.$invalid &&isshowmsg)
+                                                    ||(entryForm.endhour.$invalid&&entryForm.endhour.$touched)
+                                                    ||(entryForm.endminute.$invalid&&entryForm.endminute.$touched)
+                                                     ||(entryForm.endsecond.$invalid&&entryForm.endsecond.$touched)
+                                                    ||(endTimeObj.endhour>24&&entryForm.endhour.$touched)
+                                                    ||(endTimeObj.endminute>60&&entryForm.endminute.$touched)
+                                                    ||(endTimeObj.endsecond>60&&entryForm.endsecond.$touched)">
+
+                    <!--       ||(startTimeObj.starthour=='00'&&isshowmsg)
+                           ||(startTimeObj.starthour=='00'&&isshowmsg)
+                           ||(startTimeObj.startsecond=='00'&&isshowmsg)
+                           ||(startTimeObj.starthour=='00'&&entryForm.starthour.$touched)
+                           ||(startTimeObj.starthour=='00'&&entryForm.startminute.$touched)
+                           ||(startTimeObj.startsecond=='00'&&entryForm.startsecond.$touched)-->
                     Please enter valid endtime.
                 </p>
+                <p class="errorMessage" ng-if="isShowMessage">End Time should be greater than Start Time</p>
 
             </div>
 

@@ -9,6 +9,15 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
     $scope.songsList = [];
     $scope.channelUsagelist = ["Audio","Video","Audio/Video"];
     $scope.activity = ["N/A","Dance","Singing","Dancing/Singing","Instrumental","Mobile Tune"];
+    $scope.startTimeObj  = {};
+    $scope.startTimeObj.starthour = "00";
+    $scope.startTimeObj.startminutes = "00";
+    $scope.startTimeObj.startsecond = "00";
+    $scope.endTimeObj = {};
+
+    $scope.endTimeObj.endhours = "00";
+    $scope.endTimeObj.endminute = "00";
+    $scope.endTimeObj.endsecond = "00";
 
     $scope.getAllChannelList = function(){
         entriesformService.getChannelList().then(function(res){
@@ -120,15 +129,15 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
 
     $scope.calcilateDuration = function(start,end){
         var durationcalc = [];
-        $scope.starttime = start.split(":")
-        $scope.starth = parseInt($scope.starttime[0]);
-        $scope.startm = parseInt($scope.starttime[1]);
-        $scope.starts = parseInt($scope.starttime[2]);
+        $scope.starttime = start;
+        $scope.starth = parseInt($scope.starttime.starthour);
+        $scope.startm = parseInt($scope.starttime.startminutes);
+        $scope.starts = parseInt($scope.starttime.startsecond);
 
-        $scope.endtime = end.split(":")
-        $scope.endh = parseInt($scope.endtime[0]);
-        $scope.endm = parseInt($scope.endtime[1]);
-        $scope.ends = parseInt($scope.endtime[2]);
+        $scope.endtime = end;
+        $scope.endh = parseInt($scope.endtime.endhours);
+        $scope.endm = parseInt($scope.endtime.endminute);
+        $scope.ends = parseInt($scope.endtime.endsecond);
 
         $scope.calh = Math.abs($scope.starth - $scope.endh).toString();
         $scope.calm = Math.abs($scope.startm - $scope.endm).toString();
@@ -144,8 +153,17 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
         if($scope.calm.length<2){
             $scope.calm = "0"+$scope.calm
         }
-
-
+        $scope.isShowMessage = false;
+    if($scope.endh<$scope.starth){
+        $scope.isShowMessage = true;
+        if($scope.endm<$scope.startm){
+            $scope.isShowMessage = true;
+        }else{
+            $scope.isShowMessage = false;
+        }
+    }else{
+            $scope.isShowMessage = false;
+        }
 
         $scope.entryObj.duration = [$scope.calh,$scope.calm,$scope.cals].join(":")
 
