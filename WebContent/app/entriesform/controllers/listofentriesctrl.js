@@ -33,5 +33,10 @@ app.controller("listOfEntriesCtrl",function($scope,$state,entriesformService,loc
 	})
 }
 $scope.getListOfEntries();
+$scope.toBeContinue = function(entryObj){
+    localStorageService.set("tobecontinueentryobj",JSON.stringify(entryObj))
+    localStorageService.set("istobecontinue",true);
+    $state.go("sharpmonitoring.entriesform");
+}
 
 })

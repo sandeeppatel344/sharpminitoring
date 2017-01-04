@@ -22,7 +22,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
     $scope.getAllChannelList = function(){
         entriesformService.getChannelList().then(function(res){
             $scope.channelList = res.data;
-
+            $scope.toBeContinue();
         },function(error){
             console.error(error);
         })
@@ -31,6 +31,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
        // channelname = JSON.parse(channelname);
         entriesformService.getProgramsList(channelname.channel_name).then(function(res){
             $scope.programlList = res.data;
+
             },function(error){
             console.error(error);
         })
@@ -38,6 +39,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
     $scope.getAllProductList = function(){
         entriesformService.getProductList().then(function(res){
             $scope.productlList = res.data;
+            $scope.toBeContinue();
         },function(error){
             console.error(error);
         })
@@ -169,6 +171,58 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
 
     }
 
+    $scope.toBeContinue = function(){
+        if(localStorageService.get("istobecontinue")=="true"){
+            localStorageService.set("istobecontinue",false);
+            $scope.toBeContinueEntry = JSON.parse(localStorageService.get("tobecontinueentryobj"));
+            console.log("TBEContineu======"+JSON.stringify($scope.toBeContinueEntry));
+            $scope.entryObj.channel = $filter('filter')($scope.channelList, {channel_name: $scope.toBeContinueEntry.channel})[0];
+            $scope.entryObj.language=$scope.entryObj.channel.language;
+            $scope.entryObj.category=$scope.entryObj.channel.category_name
+            $scope.getAllProgramList($scope.entryObj.channel)
+            $timeout(function(){
+                $scope.entryObj.program_name=$scope.toBeContinueEntry.program_name//$filter('filter')($scope.programlList, {program_name: $scope.toBeContinueEntry.program_name})[0];
+                $scope.getCategoryForStory(JSON.stringify({"program_name":$scope.toBeContinueEntry.program_name}))
+                $scope.entryObj.product_name = $filter('filter')($scope.productlList, {movie_name: $scope.toBeContinueEntry.product_name})[0];
+
+                $scope.setplanguageValue(JSON.stringify($scope.entryObj.product_name));
+                $scope.getAllSongsList(JSON.stringify($scope.entryObj.product_name))
+            },200)
+
+
+            $timeout(function(){
+                $scope.entryObj.songs = $filter('filter')($scope.songsList, {songs: $scope.toBeContinueEntry.songs})[0];
+                //$scope.songsList
+            },600)
+
+
+
+        }
+    }
+    $scope.getListOfEntries = function(){
+        entriesformService.getAllEntries().then(function(res){
+            $scope.ListOfEntries = res.data;
+        },function(error){
+            console.error(error);
+        })
+    }
+    $scope.editEntries = function(id){
+        localStorageService.set("entryid",id);
+        $state.go("sharpmonitoring.entriesform",{isnew:false})
+    }
+    $scope.deleteEntries = function(id){
+        entriesformService.deleteEntries(id).then(function(res){
+            //$scope.ListOfEntries = res.data;
+            ngToast.success({
+                content: '<div role="alert">Entry Deleted Successfully.</div>'
+            });
+            $scope.getListOfEntries();
+        },function(error){
+            console.error(error);
+        })
+    }
+    $scope.getListOfEntries();
+  //  $scope.toBeContinue();
     $scope.getAllChannelList();
    // $scope.getAllProgramList();
     $scope.getAllProductList();

@@ -11,7 +11,7 @@
             <th>Category</th>
             <th>Language</th>
             <th>Song</th>
-            <th colspan="2">Action</th>
+            <th colspan="3">Action</th>
         </tr>
         </thead>
         <tbody>
@@ -25,6 +25,7 @@
             <td>{{ entry.songs }}</td>
             <td title="Edit Channel"><button class="btn btn-success" ng-click="editEntries(entry.id)"><i class="glyphicon glyphicon-pencil"></i></button></td>
             <td title="Delete Channel"><button class="btn btn-danger" ng-click="deleteEntries(entry.id)"><i class="glyphicon glyphicon-trash" ></i></button></td>
+            <td title="Delete Channel"><button class="btn btn-danger" ng-click="toBeContinue(entry)"><i class="glyphicon glyphicon-trash" ></i></button></td>
         </tr>
         </tbody>
     </table>

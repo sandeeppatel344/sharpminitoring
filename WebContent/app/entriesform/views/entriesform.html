@@ -25,7 +25,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label" >Channel<span class="required">*</span></label>
-                                <select class="form-control" name="channel" ng-change="getAllProgramList(entryObj.channel);entryObj.language=entryObj.channel.language;entryObj.category=entryObj.channel.category_name" ng-model="entryObj.channel" ng-options="channellist as channellist.channel_name for channellist in channelList track by channellist.id" required>
+                                <select class="form-control" name="channel" ng-change="getAllProgramList(entryObj.channel);entryObj.language=entryObj.channel.language;entryObj.category=entryObj.channel.category_name" ng-model="entryObj.channel" ng-options="channellist as channellist.channel_name for channellist in channelList" required>
                                     <option selected value="">Please Select Channel</option>
                                 </select>
 
@@ -51,7 +51,7 @@
                                 <label class="control-label" >Program Name<span class="required" >*</span></label>
                                 <select class="form-control" name="programname"  ng-model="entryObj.program_name" ng-change="getCategoryForStory(entryObj.program_name)" required>
                                     <option  value="">Please Select Program</option>
-                                    <option ng-repeat='program in programlList' value="{{program}}">{{program.program_name}}</option>
+                                    <option ng-selected="entryObj.program_name == program.program_name" ng-repeat='program in programlList' ng-value="{{program}}">{{program.program_name}}</option>
                                 </select>
 
                             </div>
@@ -59,6 +59,7 @@
                                 Please enter valid Program Name.
                             </p>
                         </div>
+
 
 
 
@@ -107,7 +108,7 @@
                     <label class="control-label" >Product Name<span class="required">*</span></label>
                     <select class="form-control" name="productname"  ng-change="getAllSongsList(entryObj.product_name);setplanguageValue(entryObj.product_name)" ng-model="entryObj.product_name"  required>
                         <option  value="">Please Select Product</option>
-                        <option ng-repeat='product in productlList' value="{{product}}" >{{product.movie_name}}</option>
+                        <option ng-selected="entryObj.product_name.movie_name==product.movie_name" ng-repeat='product in productlList' value="{{product}}" >{{product.movie_name}}</option>
                     </select>
 
                 </div>
@@ -133,7 +134,7 @@
                     <label class="control-label" >Songs<span class="required">*</span></label>
                     <select class="form-control" name="songs"  ng-model="entryObj.songs"  required>
                         <option  value="">Please Select Songs</option>
-                        <option ng-repeat='song in songsList' value="{{song.songs}}">{{song.songs}}</option>
+                        <option ng-selected="entryObj.songs.songs==song.songs" ng-repeat='song in songsList' ng-value="{{song.songs}}">{{song.songs}}</option>
                     </select>
 
                 </div>
@@ -147,7 +148,7 @@
                     <!--<input type="text" class="form-control" ng-model="entryObj.channel_usage"  name="channelusage" placeholder="Channel Usage"  required="true">-->
                     <select class="form-control" ng-model="entryObj.channel_usage"  name="channelusage" required="true">
                         <option value="">Please select Channel Usage</option>
-                        <option ng-repeat="cu in channelUsagelist" value="{{cu}}">{{cu}}</option>
+                        <option ng-selected="toBeContinueEntry.channel_usage==cu" ng-repeat="cu in channelUsagelist" value="{{cu}}">{{cu}}</option>
                     </select>
                 </div>
                 <p class="errorMessage" ng-show="(entryForm.channelusage.$invalid &&isshowmsg)||(entryForm.channelusage.$error.maxlength||entryForm.channelusage.$invalid&&entryForm.channelusage.$touched)">
@@ -160,7 +161,7 @@
                     <label class="control-label" >Activity<span class="required">*</span></label>
                     <select class="form-control" name="activity"  ng-model="entryObj.activity"  required>
                         <option  value="">Please Select Activity</option>
-                        <option ng-repeat="act in activity" value="{{act}}">{{act}}</option>
+                        <option ng-selected="toBeContinueEntry.activity==act" ng-repeat="act in activity" value="{{act}}">{{act}}</option>
                     </select>
 
                 </div>
@@ -291,6 +292,33 @@
 
 </form>
 </div>
-
+<table class="table"  class="row-border hover">
+    <thead>
+    <tr style="text-align: center">
+        <th>SrNo.</th>
+        <th>Program Date</th>
+        <th>Channel Name</th>
+        <th>Program Name</th>
+        <th>Category</th>
+        <th>Language</th>
+        <th>Song</th>
+        <th colspan="3">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="entry in ListOfEntries|orderBy:'entry.id':true|filter:searchtext" ng-if="entry.channel">
+        <td>{{$index+1}}</td>
+        <td>{{ entry.program_date }}</td>
+        <td>{{ entry.channel }}</td>
+        <td>{{ entry.program_name }}</td>
+        <td>{{ entry.category }}</td>
+        <td>{{ entry.language }}</td>
+        <td>{{ entry.songs }}</td>
+        <td title="Edit Channel"><button class="btn btn-success" ng-click="editEntries(entry.id)"><i class="glyphicon glyphicon-pencil"></i></button></td>
+        <td title="Delete Channel"><button class="btn btn-danger" ng-click="deleteEntries(entry.id)"><i class="glyphicon glyphicon-trash" ></i></button></td>
+        <td title="Delete Channel"><button class="btn btn-danger" ng-click="toBeContinue(entry)"><i class="glyphicon glyphicon-trash" ></i></button></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
