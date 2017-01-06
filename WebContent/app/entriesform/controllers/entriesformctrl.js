@@ -1,5 +1,5 @@
 
-app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entriesformService,channelService,ngToast,$filter,localStorageService){
+app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformModel,entriesformService,channelService,ngToast,$filter,localStorageService){
 	this.modelObj = entriesformModel;
     var _this = this;
 	$scope.entryObj = new entriesformModel.entriesformData();
@@ -8,7 +8,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
     $scope.productlList = [];
     $scope.songsList = [];
     $scope.channelUsagelist = ["Audio","Video","Audio/Video"];
-    $scope.activity = ["N/A","Dance","Singing","Dancing/Singing","Instrumental","Mobile Tune"];
+    $scope.activity = ["Not Applicable","Dance","Singing","Dancing/Singing","Instrumental","Mobile Tune"];
     $scope.startTimeObj  = {};
     $scope.startTimeObj.starthour = "00";
     $scope.startTimeObj.startminutes = "00";
@@ -70,7 +70,15 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
 
     $scope.getEntry = function(id){
         entriesformService.editEntries(id).then(function(res){
-            $scope.entryObj.editData(res.data[0])
+            //$scope.entryObj.editData(res.data[0])
+            localStorageService.set("tobecontinueentryobj",JSON.stringify(res.data[0]))
+            localStorageService.set("istobecontinue",true);
+            $scope.entryId = localStorageService.get("entryid");
+            $timeout(function(){
+                $scope.toBeContinue();
+            },200)
+
+            //$state.reload();
             console.log("Dattttttaaaa---"+res.data)
         },function(error){
             console.error(error);
@@ -98,18 +106,38 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
         if(valid){
             $scope.entryObj.created_by = localStorageService.get("currentuserid");
             $scope.entryObj.program_date = $filter('date')(new Date(),'yyyy-MM-dd');
-            $scope.entryObj.program_name = JSON.parse($scope.entryObj.program_name)
-            $scope.entryObj.program_name = $scope.entryObj.program_name.program_name;
+            $scope.entryObj.program_name = $scope.entryObj.program_name//   JSON.parse($scope.entryObj.program_name)
+            //$scope.entryObj.program_name = $scope.entryObj.program_name.program_name;
             $scope.entryObj.channel = $scope.entryObj.channel.channel_name
-            var product_name = JSON.parse($scope.entryObj.product_name);
-            $scope.entryObj.product_name = product_name.movie_name;
+            var product_name = function(){
+                try{
+                    return JSON.parse($scope.entryObj.product_name)
+                }catch(e){
+                    return $scope.entryObj.product_name
+                }
+            };
+            $scope.entryObj.product_name = product_name();
+            $scope.entryObj.product_name = $scope.entryObj.product_name.movie_name;
+            $scope.entryObj.songs = angular.isObject($scope.entryObj.songs)?$scope.entryObj.songs.songs:$scope.entryObj.songs;
             entriesformService.saveEntries($scope.entryObj).then(function(res){
             ngToast.success({
                  content: '<div role="alert">Entry Added Successfully.</div>'
             });
-           $scope.entryObj = angular.copy(new _this.modelObj.entriesformData());
+          // $scope.entryObj.start_time = angular.copy($scope.entryObj.start_time="");//angular.copy(new _this.modelObj.entriesformData());
+            //    $scope.entryObj.end_time = angular.copy($scope.entryObj.end_time="")
+                $scope.startTimeObj  = {};
+                $scope.startTimeObj.starthour = "00";
+                $scope.startTimeObj.startminutes = "00";
+                $scope.startTimeObj.startsecond = "00";
+                $scope.endTimeObj = {};
+
+                $scope.endTimeObj.endhours = "00";
+                $scope.endTimeObj.endminute = "00";
+                $scope.endTimeObj.endsecond = "00";
            $scope.entryForm.$setPristine();
            $scope.entryForm.$setUntouched();
+                $scope.toBeContinue1($scope.entryObj);
+              //  $scope.getListOfEntries();
        },function(error){
         console.error(error);
        }) 
@@ -118,11 +146,28 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
 
     $scope.updateEntry = function(valid){
         if(valid){
+            $scope.entryObj.id=localStorageService.get("entryid")
              $scope.entryObj.updated_by = localStorageService.get("currentuserid");
+            $scope.entryObj.program_date = $filter('date')(new Date(),'yyyy-MM-dd');
+            $scope.entryObj.program_name = $scope.entryObj.program_name//   JSON.parse($scope.entryObj.program_name)
+            //$scope.entryObj.program_name = $scope.entryObj.program_name.program_name;
+            $scope.entryObj.channel = $scope.entryObj.channel.channel_name
+            var product_name = function(){
+                try{
+                    return JSON.parse($scope.entryObj.product_name)
+                }catch(e){
+                    return $scope.entryObj.product_name
+                }
+            };
+            $scope.entryObj.product_name = product_name();
+            $scope.entryObj.product_name = $scope.entryObj.product_name.movie_name;
+            $scope.entryObj.songs = angular.isObject($scope.entryObj.songs)?$scope.entryObj.songs.songs:$scope.entryObj.songs;
+
             entriesformService.updateEntries($scope.entryObj).then(function(res){
                       ngToast.success({
                  content: '<div role="alert">Entry Updated Successfully.</div>'
             });
+                $state.reload();
             },function(error){
                 console.error(error);
             })
@@ -132,11 +177,14 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
     $scope.calcilateDuration = function(start,end){
         var durationcalc = [];
         $scope.starttime = start;
+        $scope.endtime = end;
+        $scope.entryObj.start_time =$scope.starttime.starthour+":"+$scope.starttime.startminutes+":"+$scope.starttime.startsecond
+        $scope.entryObj.end_time = $scope.endtime.endhours+":"+$scope.endtime.endminute+":"+$scope.endtime.endsecond;
         $scope.starth = parseInt($scope.starttime.starthour);
         $scope.startm = parseInt($scope.starttime.startminutes);
         $scope.starts = parseInt($scope.starttime.startsecond);
 
-        $scope.endtime = end;
+
         $scope.endh = parseInt($scope.endtime.endhours);
         $scope.endm = parseInt($scope.endtime.endminute);
         $scope.ends = parseInt($scope.endtime.endsecond);
@@ -156,9 +204,9 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
             $scope.calm = "0"+$scope.calm
         }
         $scope.isShowMessage = false;
-    if($scope.endh<$scope.starth){
+    if($scope.endh<=$scope.starth){
         $scope.isShowMessage = true;
-        if($scope.endm<$scope.startm){
+        if($scope.endm<=$scope.startm){
             $scope.isShowMessage = true;
         }else{
             $scope.isShowMessage = false;
@@ -180,6 +228,8 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
             $scope.entryObj.language=$scope.entryObj.channel.language;
             $scope.entryObj.category=$scope.entryObj.channel.category_name
             $scope.getAllProgramList($scope.entryObj.channel)
+            $scope.entryObj.activity = $scope.toBeContinueEntry.activity
+            $scope.entryObj.channel_usage = $scope.toBeContinueEntry.channel_usage
             $timeout(function(){
                 $scope.entryObj.program_name=$scope.toBeContinueEntry.program_name//$filter('filter')($scope.programlList, {program_name: $scope.toBeContinueEntry.program_name})[0];
                 $scope.getCategoryForStory(JSON.stringify({"program_name":$scope.toBeContinueEntry.program_name}))
@@ -195,7 +245,18 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
                 //$scope.songsList
             },600)
 
-
+            if($scope.entryId){
+                $scope.entryObj.courtesy  =  $scope.toBeContinueEntry.courtesy;
+                $scope.entryObj.duration  =  $scope.toBeContinueEntry.duration;
+                var startTimes = $scope.toBeContinueEntry.start_time.split(":")
+                var endTimes = $scope.toBeContinueEntry.end_time.split(":")
+                $scope.startTimeObj.starthour = startTimes[0];
+                $scope.startTimeObj.startminutes = startTimes[1];
+                $scope.startTimeObj.startsecond = startTimes[2];
+                $scope.endTimeObj.endhours = endTimes[0];
+                $scope.endTimeObj.endminute = endTimes[1];
+                $scope.endTimeObj.endsecond = endTimes[2];
+            }
 
         }
     }
@@ -208,7 +269,9 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
     }
     $scope.editEntries = function(id){
         localStorageService.set("entryid",id);
-        $state.go("sharpmonitoring.entriesform",{isnew:false})
+        $scope.getEntry(id);
+        $state.reload();
+       // $state.go("sharpmonitoring.entriesform",{isnew:false})
     }
     $scope.deleteEntries = function(id){
         entriesformService.deleteEntries(id).then(function(res){
@@ -220,6 +283,14 @@ app.controller("entriesformCtrl",function($scope,$timeout,entriesformModel,entri
         },function(error){
             console.error(error);
         })
+    }
+    $scope.toBeContinue1 = function(entryObj){
+        localStorageService.set("tobecontinueentryobj",JSON.stringify(entryObj))
+        localStorageService.set("istobecontinue",true);
+        //$state.go("sharpmonitoring.entriesform");
+       // $scope.toBeContinue()
+       // $timeout(function)
+        $state.reload()
     }
     $scope.getListOfEntries();
   //  $scope.toBeContinue();

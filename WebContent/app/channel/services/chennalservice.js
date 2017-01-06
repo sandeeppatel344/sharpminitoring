@@ -23,9 +23,21 @@ app.factory("channelService",function($http){
     obj.getChannelCategoryList = function(){
         return $http.get(userserviceapiurl+"channel/fetchChannelCategory");
     }
+    obj.toJSONDATA = function(programname){
+        try {
+            var data = JSON.parse(programname);
+            return data.program_name;
+        }
+        catch(e) {
+            return programname;
+        }
+    }
     obj.getCategory = function(programname){
-        programname = JSON.parse(programname)
-        return $http.get(userserviceapiurl+"channel/fetchCategory?program_name="+"'"+programname.program_name+"'");
+       // if(programname)
+        programname = obj.toJSONDATA(programname);
+
+        //programname = JSON.parse(programname)
+        return $http.get(userserviceapiurl+"channel/fetchCategory?program_name="+"'"+programname+"'");
     }
     return obj;
 })

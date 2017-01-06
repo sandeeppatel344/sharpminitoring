@@ -3,6 +3,8 @@
  */
 app.controller("listOfEntriesCtrl",function($scope,$state,entriesformService,localStorageService,ngToast){
 	$scope.ListOfEntries = [];
+    $scope.curPage = 0;// current Page
+    $scope.pageSize = 10;
 	localStorageService.set("entryid","");
 	$scope.getListOfEntries = function(){
 		entriesformService.getAllEntries().then(function(res){
@@ -38,5 +40,10 @@ $scope.toBeContinue = function(entryObj){
     localStorageService.set("istobecontinue",true);
     $state.go("sharpmonitoring.entriesform");
 }
+
+    $scope.numberOfPages = function()
+    {
+        return Math.ceil($scope.ListOfEntries.length / $scope.pageSize);
+    };
 
 })

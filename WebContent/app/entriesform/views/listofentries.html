@@ -15,7 +15,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="entry in ListOfEntries|orderBy:'entry.id':true|filter:searchtext" ng-if="entry.channel">
+        <tr ng-repeat="entry in ListOfEntries|orderBy:'entry.id':true|filter:searchtext|pagination: curPage * pageSize | limitTo: pageSize" ng-if="entry.channel">
             <td>{{$index+1}}</td>
             <td>{{ entry.program_date }}</td>
             <td>{{ entry.channel }}</td>
@@ -23,11 +23,18 @@
             <td>{{ entry.category }}</td>
             <td>{{ entry.language }}</td>
             <td>{{ entry.songs }}</td>
-            <td title="Edit Channel"><button class="btn btn-success" ng-click="editEntries(entry.id)"><i class="glyphicon glyphicon-pencil"></i></button></td>
-            <td title="Delete Channel"><button class="btn btn-danger" ng-click="deleteEntries(entry.id)"><i class="glyphicon glyphicon-trash" ></i></button></td>
-            <td title="Delete Channel"><button class="btn btn-danger" ng-click="toBeContinue(entry)"><i class="glyphicon glyphicon-trash" ></i></button></td>
+            <td title="Edit Entry"><button class="btn btn-success" ng-click="editEntries(entry.id)"><i class="glyphicon glyphicon-pencil"></i></button></td>
+            <td title="Delete Entry"><button class="btn btn-danger" ng-click="deleteEntries(entry.id)"><i class="glyphicon glyphicon-trash" ></i></button></td>
+            <td title="To Be Continue"><button class="btn btn-success" ng-click="toBeContinue(entry)"><i class="glyphicon glyphicon-send" ></i></button></td>
         </tr>
         </tbody>
     </table>
+</div>
+
+<div class="pagination-div pull-right" ng-show="ListOfEntries.length">
+
+    <button ng-click="curPage=curPage-1" ng-disabled="curPage == 0" type="button" class="btn-default">PREV</button></li>
+    <span>Page {{curPage + 1}} of {{ numberOfPages() }}</span></li>
+    <button ng-click="curPage = curPage+1" ng-disabled="curPage >= ListOfEntries.length/pageSize - 1" type="button" class="btn-default">NEXT</button></li>
 </div>
 

@@ -1,7 +1,7 @@
 var app = angular.module('sharpmonitoring', [ 'ui.router',
    'ui.bootstrap','ngCookies','angular-loading-bar','datatables','ngToast', 'fx.animations']);
 
-var userserviceapiurl = "http://localhost:8012/travel2stay-api/public/";
+var userserviceapiurl = "http://localhost/travel2stay-api/public/";
 var curPage = 0;// current Page
 var pageSize = 10;
 app.run(function($rootScope,$timeout, $state,$stateParams,loginService,localStorageService) {
@@ -28,6 +28,13 @@ app.run(function($rootScope,$timeout, $state,$stateParams,loginService,localStor
 
 
   }
+    $rootScope.gotToHome = function(){
+        $rootScope.currentuser = JSON.parse(localStorageService.get("currentuser"));
+        $rootScope.currentRole =  $rootScope.currentuser.role
+        if($rootScope.currentuser.first_name){
+            $state.go("sharpmonitoring.home");
+        }
+    }
     if(localStorageService.get("currentuser")){
         $rootScope.currentuser = JSON.parse(localStorageService.get("currentuser"));
     }
