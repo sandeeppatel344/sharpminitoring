@@ -134,7 +134,7 @@
                     <label class="control-label" >Songs<span class="required">*</span></label>
                     <select class="form-control" name="songs"  ng-model="entryObj.songs"  required>
                         <option  value="">Please Select Songs</option>
-                        <option ng-selected="entryObj.songs.songs==song.songs" ng-repeat='song in songsList' ng-value="{{song.songs}}">{{song.songs}}</option>
+                        <option ng-selected="entryObj.songs.songs==song.songs" ng-repeat='song in songsList' ng-value="song.songs">{{song.songs}}</option>
                     </select>
 
                 </div>
@@ -161,7 +161,7 @@
                     <label class="control-label" >Activity<span class="required">*</span></label>
                     <select class="form-control" name="activity"  ng-model="entryObj.activity"  required>
                         <option  value="">Please Select Activity</option>
-                        <option ng-selected="toBeContinueEntry.activity==act" ng-repeat="act in activity" ng-value="{{act}}">{{act}}</option>
+                        <option ng-selected="toBeContinueEntry.activity==act" ng-repeat="act in activity" ng-value="act">{{act}}</option>
                     </select>
 
                 </div>

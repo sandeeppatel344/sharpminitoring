@@ -74,6 +74,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformMode
             localStorageService.set("tobecontinueentryobj",JSON.stringify(res.data[0]))
             localStorageService.set("istobecontinue",true);
             $scope.entryId = localStorageService.get("entryid");
+            localStorageService.set("entryid","");
             $timeout(function(){
                 $scope.toBeContinue();
             },200)
@@ -204,9 +205,9 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformMode
             $scope.calm = "0"+$scope.calm
         }
         $scope.isShowMessage = false;
-    if($scope.endh<=$scope.starth){
+    if($scope.endh<$scope.starth){
         $scope.isShowMessage = true;
-        if($scope.endm<=$scope.startm){
+        if($scope.endm<$scope.startm){
             $scope.isShowMessage = true;
         }else{
             $scope.isShowMessage = false;
