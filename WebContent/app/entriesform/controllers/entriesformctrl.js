@@ -269,7 +269,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformMode
     }
     $scope.editEntries = function(id){
         localStorageService.set("entryid",id);
-        $scope.getEntry(id);
+     //   $scope.getEntry(id);
         $state.reload();
        // $state.go("sharpmonitoring.entriesform",{isnew:false})
     }
