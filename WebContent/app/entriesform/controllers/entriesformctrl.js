@@ -210,10 +210,18 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformMode
         if($scope.endm<$scope.startm){
             $scope.isShowMessage = true;
         }else{
-            $scope.isShowMessage = false;
+         //   $scope.isShowMessage = false;
         }
     }else{
             $scope.isShowMessage = false;
+        }
+
+        if($scope.endh==$scope.starth&&$scope.endm<$scope.startm){
+            $scope.isShowMessage = true;
+        }
+
+        if($scope.endm==$scope.startm&&$scope.ends<$scope.starts){
+            $scope.isShowMessage = true;
         }
 
         $scope.entryObj.duration = [$scope.calh,$scope.calm,$scope.cals].join(":")
@@ -272,6 +280,9 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformMode
         localStorageService.set("entryid",id);
      //   $scope.getEntry(id);
         $state.reload();
+        $timeout(function(){
+            $state.reload()
+        },300)
        // $state.go("sharpmonitoring.entriesform",{isnew:false})
     }
     $scope.deleteEntries = function(id){
@@ -292,6 +303,9 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformMode
        // $scope.toBeContinue()
        // $timeout(function)
         $state.reload()
+        $timeout(function(){
+            $state.reload()
+        },300)
     }
     $scope.getListOfEntries();
   //  $scope.toBeContinue();
