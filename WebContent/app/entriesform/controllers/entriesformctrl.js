@@ -280,9 +280,6 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformMode
         localStorageService.set("entryid",id);
      //   $scope.getEntry(id);
         $state.reload();
-        $timeout(function(){
-            $state.reload()
-        },300)
        // $state.go("sharpmonitoring.entriesform",{isnew:false})
     }
     $scope.deleteEntries = function(id){
@@ -303,9 +300,6 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformMode
        // $scope.toBeContinue()
        // $timeout(function)
         $state.reload()
-        $timeout(function(){
-            $state.reload()
-        },300)
     }
     $scope.getListOfEntries();
   //  $scope.toBeContinue();
