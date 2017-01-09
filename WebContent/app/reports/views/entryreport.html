@@ -1,6 +1,6 @@
 <div>
     <div class="alert alert-success hidden-print" role="alert"><strong>Entry Report</strong> </div>
-    <form>
+    <form class="hidden-print">
         <div class="row">
             <div class="col-md-3">
                 <div class="form-group">
@@ -17,8 +17,8 @@
             <div class="col-md-2" style="margin-top: 8px">
                 <div class="form-group">
 
-                    <select class="form-control" name="channelcategory"  ng-model="filterObj.userid" ng-options="cat.id as cat.first_name for cat in userList track by cat.id" >
-                        <option selected value="">Please Select User</option>
+                    <select class="form-control" name="channelcategory"  ng-model="filterObj.entryid" ng-options="cat.id as cat.first_name for cat in userList track by cat.id" >
+                        <option selected value="">Please Select entry</option>
                     </select>
                 </div>
             </div>
@@ -45,26 +45,50 @@
         </div>
     </div>
     <br>
-    <div class="row">
+    <div class="row" style="width: 100%;overflow: auto">
         <div class="col-md-12">
 
-            <table class="customreporttable table-responsive table table-bordered table-hover" id="userreport">
-                <thead id="userreportheading">
+            <table class="customreporttable table-responsive table table-bordered table-hover" id="entryreport" >
+                <thead id="entryreportheading">
                 <th>SrNo.</th>
                 <th>Date</th>
-                <th>Emp Name</th>
-                <th>Login Time</th>
-                <th>Logout Time</th>
-                <th>Work Hours</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Duration</th>
+                <th>Channel</th>
+                <th>Program</th>
+                <th>Movie/Product</th>
+                <th>Songs</th>
+                <th>Music Company</th>
+                <th>Category</th>
+                <th>Activity</th>
+                <th>Usage</th>
+                <th>Story</th>
+                <th>Movie Language</th>
+                <th>Language</th>
+                <th>Courtesy</th>
+                <th>Status</th>
                 </thead>
                 <tbody>
-                <tr class="customreporttablecontent" ng-repeat="user in EmpData|filter:serchtext">
+                <tr class="customreporttablecontent" ng-repeat="entry in ListOfEntry|filter:serchtext|pagination: curPage * pageSize | limitTo: pageSize" style="white-space: nowrap">
                     <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{$index+1}}</td>
-                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.date}}</td>
-                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.firstname}} {{user.lastname}}</td>
-                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.logintime}}</td>
-                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.logouttime}}</td>
-                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{user.workhours}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.program_date}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.start_time}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.end_time}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.duration}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.channel_name}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.program_name}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.product_name}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.songs}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.music_company}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.category}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.activity}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.channel_usage}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.story}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.product_language}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.language}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.courtesy}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.channel_status}}</td>
                 </tr>
                 </tbody>
 
@@ -76,4 +100,11 @@
         <button class="btn btn-raised btn-primary" ng-click="print()">Print</button>
     </div>
 
+</div>
+
+<div class="pagination-div pull-right hidden-print" ng-show="ListOfEntry.length">
+
+    <button ng-click="curPage=curPage-1" ng-disabled="curPage == 0" type="button" class="btn-default">PREV</button></li>
+    <span>Page {{curPage + 1}} of {{ numberOfPages() }}</span></li>
+    <button ng-click="curPage = curPage+1" ng-disabled="curPage >= ListOfEntry.length/pageSize - 1" type="button" class="btn-default">NEXT</button></li>
 </div>

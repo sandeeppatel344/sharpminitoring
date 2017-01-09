@@ -3,8 +3,12 @@
  */
 app.controller("entryreportCtrl",function($scope,reportsService,entriesformService){
     $scope.filterObj = {};
-	$scope.getAllEntries = function(){
+    $scope.curPage = 0;// current Page
+    $scope.pageSize = 10;
+    $scope.ListOfEntry = [];
+    $scope.getAllEntries = function(){
 		reportsService.getEntryReport($scope.filterObj).then(function(res){
+            $scope.ListOfEntry = res.data;
 			console.log(res);
 		},function(error){
 			console.error(error);
@@ -57,4 +61,9 @@ app.controller("entryreportCtrl",function($scope,reportsService,entriesformServi
         $printSection.appendChild(domClone);
         domClone = "";
     }
+    $scope.numberOfPages = function()
+    {
+        return Math.ceil($scope.ListOfEntry.length / $scope.pageSize);
+    };
+
 })

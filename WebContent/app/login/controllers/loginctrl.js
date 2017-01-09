@@ -1,6 +1,7 @@
 
 app.controller("loginCtrl",function($scope,loginService,$state,$timeout,localStorageService) {
     $scope.login = {};
+    localStorageService.clear();
     $scope.doLogin = function (valid) {
         if (valid) {
             loginService.dologin($scope.login).then(function (res) {

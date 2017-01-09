@@ -1,8 +1,8 @@
 app.controller("listOfRegistrationCtrl",function($scope,$state,$stateParams,localStorageService,registerService,ngToast){
 	localStorageService.set("registerid","");
 	$scope.registerList = [];
-    $scope.curPage = curPage;// current Page
-    $scope.pageSize = pageSize;
+    $scope.curPage = 0;// current Page
+    $scope.pageSize = 10;
 	$scope.addNewRegistration = function(){
 		$state.go("sharpmonitoring.registration",{isnew:true})
 	}
