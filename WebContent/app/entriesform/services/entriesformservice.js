@@ -1,5 +1,5 @@
 
-app.factory("entriesformService",function($http){
+app.factory("entriesformService",function($http,localStorageService){
 	var obj = {};
 	obj.saveEntries = function(postdata){
       //  postdata.program_name = JSON.parse(postdata.program_name);
@@ -8,8 +8,13 @@ app.factory("entriesformService",function($http){
 		return $http.post(userserviceapiurl+"entries/add",postdata);
 	}
 	obj.getAllEntries = function(){
-		return $http.get(userserviceapiurl+"entries/all");
+        var userid = localStorageService.get("currentuserid")
+		return $http.get(userserviceapiurl+"entries/fetchMyEntries?userid="+userid);
 	}
+    obj.getLatestFiveEntries = function(){
+        var userid = localStorageService.get("currentuserid")
+        return $http.get(userserviceapiurl+"entries/latestUserwiseEntries?userid="+userid)
+    }
 	obj.editEntries = function(id){
 		return $http.get(userserviceapiurl+"entries/edit?id="+id);
 	}

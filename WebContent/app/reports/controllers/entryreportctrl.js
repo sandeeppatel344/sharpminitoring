@@ -34,7 +34,7 @@ app.controller("entryreportCtrl",function($scope,reportsService,entriesformServi
         jQuery("#entryreportheading").show();
         jQuery(".hidden-print").hide();
         $scope.showheading = true
-       // printElement(document.getElementById("userreport"));
+        printElement(document.getElementById("entryreport"));
         document.title = "Entry Report"
         window.print();
         $scope.showheading = true
@@ -48,7 +48,7 @@ app.controller("entryreportCtrl",function($scope,reportsService,entriesformServi
         var domClone = elem.cloneNode(true);
         jQuery("#userreportheading").show();
         jQuery(".hidden-print").hide();
-        var $printSection = document.getElementById("printSection");
+        var $printSection = document.getElementById("entryreport");
         if (!$printSection) {
             $scope.showheading = true
             var $printSection = document.createElement("div");

@@ -306,8 +306,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="entry in ListOfEntries|orderBy:'entry.id':true|filter:searchtext|limitTo:6" ng-if="entry.channel">
-        <td>{{$index}}</td>
+    <tr ng-repeat="entry in ListOfEntries|filter:searchtext|limitTo:6" ng-if="entry.channel">
+        <td>{{$index+1}}</td>
         <td>{{ entry.program_date }}</td>
         <td>{{ entry.channel }}</td>
         <td>{{ entry.program_name }}</td>

@@ -22,7 +22,10 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformMode
     $scope.getAllChannelList = function(){
         entriesformService.getChannelList().then(function(res){
             $scope.channelList = res.data;
-            $scope.toBeContinue();
+            $timeout(function(){
+                $scope.toBeContinue();
+            })
+
         },function(error){
             console.error(error);
         })
@@ -39,7 +42,9 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformMode
     $scope.getAllProductList = function(){
         entriesformService.getProductList().then(function(res){
             $scope.productlList = res.data;
-            $scope.toBeContinue();
+            $timeout(function(){
+                $scope.toBeContinue();
+            })
         },function(error){
             console.error(error);
         })
@@ -121,6 +126,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformMode
             $scope.entryObj.product_name = $scope.entryObj.product_name.movie_name;
             $scope.entryObj.songs = angular.isObject($scope.entryObj.songs)?$scope.entryObj.songs.songs:$scope.entryObj.songs;
             entriesformService.saveEntries($scope.entryObj).then(function(res){
+                $scope.toBeContinue1($scope.entryObj);
             ngToast.success({
                  content: '<div role="alert">Entry Added Successfully.</div>'
             });
@@ -137,7 +143,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformMode
                 $scope.endTimeObj.endsecond = "00";
            $scope.entryForm.$setPristine();
            $scope.entryForm.$setUntouched();
-                $scope.toBeContinue1($scope.entryObj);
+
               //  $scope.getListOfEntries();
        },function(error){
         console.error(error);
@@ -309,3 +315,9 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformMode
    // $scope.getAllSongsList();
     $scope.getAllChannelCategoryList();
 })
+
+app.filter('reverse', function() {
+    return function(items) {
+        return items.slice().reverse();
+    };
+});

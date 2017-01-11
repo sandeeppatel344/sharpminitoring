@@ -5,13 +5,13 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <input type="text" class=" form-control" name = "fromdate" uib-datepicker-popup="dd/MM/yyyy" max-date="maxDate"
-                           ng-model="filterObj.fromdate" is-open = "isOpen" close-text="Close" ng-click="isOpen=true" ng-focus="isOpen=true" required  placeholder="From Date"/>
+                           ng-model="filterObj.fromdate" is-open = "isOpen" close-text="Close" ng-click="isOpen=true" ng-focus="isOpen=true"   placeholder="From Date"/>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <input type="text" class=" form-control" name = "todate" uib-datepicker-popup="dd/MM/yyyy" max-date="maxDate"
-                           ng-model="filterObj.todate" is-open = "isOpent" close-text="Close" ng-click="isOpent=true" ng-focus="isOpent=true" required  placeholder="To Date"/>
+                           ng-model="filterObj.todate" is-open = "isOpent" close-text="Close" ng-click="isOpent=true" ng-focus="isOpent=true"   placeholder="To Date"/>
                 </div>
             </div>
             <div class="col-md-2" style="margin-top: 8px">
@@ -25,7 +25,7 @@
             <div class="col-md-3" style="margin-top: 8px">
                 <div class="form-group">
 
-                    <select class="form-control" name="channel"  ng-model="filterObj.channelname" ng-options="channellist.channel_name as channellist.channel_name for channellist in channelList track by channellist.id" required>
+                    <select class="form-control" name="channel"  ng-model="filterObj.channelname" ng-options="channellist.channel_name as channellist.channel_name for channellist in channelList track by channellist.id" >
                         <option selected value="">Please Select Channel</option>
                     </select>
 
@@ -33,7 +33,7 @@
 
             </div>
             <div class="col-md-1">
-                <button class="btn btn-raised btn-success" ng-click="getAllEntries()">Go</button>
+                <button class="btn btn-raised btn-success" ng-click="getAllEntries();isOpen=false">Go</button>
             </div>
         </div>
     </form>
@@ -49,7 +49,7 @@
         <div class="col-md-12">
 
             <table class="customreporttable table-responsive table table-bordered table-hover" id="entryreport" >
-                <thead id="entryreportheading">
+                <thead id="entryreportheading" style="white-space: nowrap">
                 <th>SrNo.</th>
                 <th>Date</th>
                 <th>Start</th>
@@ -76,7 +76,7 @@
                     <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.start_time}}</td>
                     <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.end_time}}</td>
                     <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.duration}}</td>
-                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.channel_name}}</td>
+                    <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.channel}}</td>
                     <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.program_name}}</td>
                     <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.product_name}}</td>
                     <td class="customreporttablecolumnwithrightborder customreporttablecolumnwithleftborder">{{entry.songs}}</td>
