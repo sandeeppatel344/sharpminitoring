@@ -15,6 +15,9 @@ app.factory("entriesformService",function($http,localStorageService){
         var userid = localStorageService.get("currentuserid")
         return $http.get(userserviceapiurl+"entries/latestUserwiseEntries?userid="+userid)
     }
+    obj.changeEntryStatus = function(data){
+        return $http.post(userserviceapiurl+"entries/updateChannelStatus",data)
+    }
 	obj.editEntries = function(id){
 		return $http.get(userserviceapiurl+"entries/edit?id="+id);
 	}

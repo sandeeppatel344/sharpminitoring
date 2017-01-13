@@ -314,6 +314,17 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformMode
     $scope.getAllProductList();
    // $scope.getAllSongsList();
     $scope.getAllChannelCategoryList();
+
+    $scope.changeChanelStatus = function(){
+        var data = {};
+        data.userid = localStorageService.get("currentuserid");
+        data.channel_name = $scope.entryObj.channel.channel_name;
+        entriesformService.changeEntryStatus(data).then(function(res){
+            ngToast.success({
+                content: '<div role="alert">Channel Done Successfully.</div>'
+            });
+        })
+    }
 })
 
 app.filter('reverse', function() {
