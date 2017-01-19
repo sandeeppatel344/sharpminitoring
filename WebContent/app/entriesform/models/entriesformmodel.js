@@ -17,6 +17,7 @@ app.factory("entriesformModel",function(){
                 this.music_company = "";
                 this.courtesy = "";
                 this.program_date = new Date();
+                this.channel_status = "";
 
 			this.editData = function(data){
                 this.id = data.id
@@ -36,6 +37,7 @@ app.factory("entriesformModel",function(){
                 this.music_company = data.music_company;
                 this.courtesy = data.courtesy;
                 this.program_date = data.program_date;
+                this.channel_status = data.channel_status;
 			}
 		}
 	}

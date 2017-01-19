@@ -14,7 +14,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformMode
     $scope.startTimeObj.startminutes = "00";
     $scope.startTimeObj.startsecond = "00";
     $scope.endTimeObj = {};
-
+    $scope.regExTime = /^[0-9]{2,2}$/;
     $scope.endTimeObj.endhours = "00";
     $scope.endTimeObj.endminute = "00";
     $scope.endTimeObj.endsecond = "00";
@@ -332,3 +332,15 @@ app.filter('reverse', function() {
         return items.slice().reverse();
     };
 });
+
+app.directive("limitTo", [function() {
+    return {
+        restrict: "A",
+        link: function(scope, elem, attrs) {
+            var limit = parseInt(attrs.limitTo);
+            angular.element(elem).on("keypress", function(e) {
+                if (this.value.length == limit) e.preventDefault();
+            });
+        }
+    }
+}]);
