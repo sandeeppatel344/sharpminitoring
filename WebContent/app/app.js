@@ -1,7 +1,7 @@
 var app = angular.module('sharpmonitoring', [ 'ui.router',
    'ui.bootstrap','ngCookies','angular-loading-bar','datatables','ngToast', 'fx.animations']);
 
-var userserviceapiurl = "http://192.168.1.17:8012/travel2stay-api/public/";
+var userserviceapiurl = "http://localhost/travel2stay-api/public/";
 var curPage = 0;// current Page
 var pageSize = 10;
 app.run(function($rootScope,$timeout, $state,$stateParams,loginService,localStorageService) {
@@ -44,7 +44,10 @@ app.run(function($rootScope,$timeout, $state,$stateParams,loginService,localStor
         element.style.display = "inline";
     }
 
-
+    window.onbeforeunload = function(){
+        $rootScope.logout();
+        return 'Are you sure you want to leave?';
+    };
 /*  $rootScope.ishowbaner = false;
   $roo$rootScope.ishowbaner = true;tScope.ishowbanerdal = false;*/
 
