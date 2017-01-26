@@ -14,26 +14,26 @@
 <div class="oaerror warning" ng-hide="isdisabled">Note :<span class="required">*</span>Marked Is Mandatory!</div>
 
 
-<form name="productForm">
+<form name="productForm"  form-autofill-fix>
     <div class="col-md-12 child-info infoo">
         <div class="row">
             <div class="">
                 <div class="form-group">
                     <h1 class="main-heading">Product Details</h1>
-                    <!-- <label class="control-label" for="inputLarge">Child Full Name <span class="required">*</span></label> -->
+                    <!-- <label class="control-label" >Child Full Name <span class="required">*</span></label> -->
                     <div >
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="control-label" for="inputLarge">Movie Name <span class="required">*</span></label>
-                                <input class="form-control" name="moviename" id="inputLarge" type="text" placeholder="Movie name" ng-model="productObj.movie_name" ng-maxlength="50" limit-to="50"   required>
+                                <label class="control-label" >Movie Name <span class="required">*</span></label>
+                                <input autocomplete="on" class="form-control" name="moviename"  type="text" placeholder="Movie name" ng-model="productObj.movie_name" ng-maxlength="50" limit-to="50"   required>
                             </div>
                             <p class="errorMessage" ng-show="(productForm.moviename.$invalid &&isshowmsg)||(productForm.moviename.$error.maxlength||productForm.moviename.$invalid&&productForm.moviename.$touched)">
                                 Please enter valid Movie Name.
                             </p>
                         </div>
                         <div class="col-md-3">
-                            <div class="form-group"><label class="control-label" for="inputLarge">Songs  <span class="required">*</span></label>
-                                <input class="form-control "  type="text" placeholder="Songs" ng-model="productObj.songs" name="songs" ng-maxlength="100" limit-to="100" required>
+                            <div class="form-group"><label class="control-label" >Songs  <span class="required">*</span></label>
+                                <input autocomplete="on" class="form-control "  type="text" placeholder="Songs" ng-model="productObj.songs" name="songs" ng-maxlength="100" limit-to="100" required>
                             </div>
                             <p class="errorMessage" style="white-space:nowrap"ng-show="(productForm.songs.$invalid &&isshowmsg)||(productForm.songs.$error.maxlength||productForm.songs.$invalid&&productForm.songs.$touched)||productForm.songs.$error.pattern">
                                 Please enter valid Songs.
@@ -41,8 +41,8 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label class="control-label" for="inputLarge">Music Company <span class="required">*</span></label>
-                                <input class="form-control" name="musiccompany"  ng-model="productObj.music_company"  type="text" placeholder="Music Company" ng-maxlength="50" limit-to="50" required>
+                                <label class="control-label" >Music Company <span class="required">*</span></label>
+                                <input autocomplete="on" class="form-control" name="musiccompany"  ng-model="productObj.music_company"  type="text" placeholder="Music Company" ng-maxlength="50" limit-to="50" required>
                             </div>
                             <p class="errorMessage" ng-show="(productForm.musiccompany.$invalid &&isshowmsg)||(productForm.musiccompany.$error.maxlength||productForm.musiccompany.$invalid&&productForm.musiccompany.$touched)||productForm.musiccompany.$error.pattern">
                                 Please enter valid Music Company.
@@ -52,18 +52,14 @@
 
                                <div class="col-md-3">
                             <div class="form-group">
-                                <label class="control-label" for="inputLarge">Language <span class="required">*</span></label>
-                                <input class="form-control" name="productlanguage"  ng-model="productObj.product_language"  type="text" placeholder="Language" ng-maxlength="50" limit-to="50" required>
+                                <label class="control-label" >Language <span class="required">*</span></label>
+                                <input autocomplete="on" class="form-control" name="productlanguage"  ng-model="productObj.product_language"  type="text" placeholder="Language" ng-maxlength="50" limit-to="50" required>
                             </div>
                             <p class="errorMessage" ng-show="(productForm.productlanguage.$invalid &&isshowmsg)||(productForm.productlanguage.$error.maxlength||productForm.productlanguage.$invalid&&productForm.productlanguage.$touched)||productForm.productlanguage.$error.pattern">
                                 Please enter valid Language.
                             </p>
 
                         </div>
-
-
-
-
                     </div>
                 </div>
             </div>

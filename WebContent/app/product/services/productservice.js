@@ -21,5 +21,8 @@ app.factory("productService",function($http){
     obj.updateProduct = function(data){
         return $http.post(userserviceapiurl+"product/update",data);
     }
+    obj.getMovieList=function(name){
+        return $http.get(userserviceapiurl+"product/fetchMoviesLike?moviename="+name);
+    }
     return obj;
 })

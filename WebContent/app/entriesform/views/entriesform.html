@@ -22,7 +22,7 @@
                     <h1 class="main-heading">Entry Details</h1>
                     <!-- <label class="control-label" for="inputLarge">Child Full Name <span class="required">*</span></label> -->
                     <div >
-                        <div class="col-md-4">
+                        <div class="col-md-4 data-{{entryForm.channel.$valid}}" >
                             <div class="form-group">
                                 <label class="control-label" >Channel<span class="required">*</span></label>
                                 <select class="form-control" name="channel" ng-change="getAllProgramList(entryObj.channel);entryObj.language=entryObj.channel.language;entryObj.category=entryObj.channel.category_name" ng-model="entryObj.channel" ng-options="channellist as channellist.channel_name for channellist in channelList" required>
@@ -49,7 +49,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label" >Program Name<span class="required" >*</span></label>
-                                <select class="form-control" name="programname"  ng-model="entryObj.program_name" ng-change="getCategoryForStory(entryObj.program_name)" required>
+                                <select class="form-control" name="programname" focus-me="focusMe" id ="proname"ng-model="entryObj.program_name" ng-change="getCategoryForStory(entryObj.program_name)" required>
                                     <option  value="">Please Select Program</option>
                                     <option ng-selected="entryObj.program_name == program.program_name" ng-repeat='program in programlList' ng-value="{{JSON.stringify(program)}}">{{program.program_name}}</option>
                                 </select>
@@ -76,9 +76,9 @@
                     <label class="control-label" style="color: #0000ff">Start Time<span class="required"> *</span></label>
                     </div>
                     <div class="row">
-                    <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="startTimeObj.starthour" ng-init="startTimeObj.starthour='00'" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="starthour"   required="true"> </div>
-                    <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="startTimeObj.startminutes" ng-init="startTimeObj.startminutes='00'" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="startminute"   required="true"> </div>
-                    <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="startTimeObj.startsecond"  ng-init="startTimeObj.startsecond='00'" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="startsecond"   required="true"></div>
+                    <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="startTimeObj.starthour" ng-init="startTimeObj.starthour=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="starthour"   required="true"> </div>
+                    <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="startTimeObj.startminutes" ng-init="startTimeObj.startminutes=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="startminute"   required="true"> </div>
+                    <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="startTimeObj.startsecond"  ng-init="startTimeObj.startsecond=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="startsecond"   required="true"></div>
                     </div>
 
                    <!-- <input type="text" class="form-control" ng-model="entryObj.start_time" ng-init="entryObj.start_time='00:00:00'" ng-change="calcilateDuration(entryObj.start_time,entryObj.end_time)" name="starttime" placeholder="Start Time"  required="true">-->
@@ -196,9 +196,9 @@
                         <label class="control-label" style="color: #0000ff">End Time<span class="required"> *</span></label>
                     </div>
                     <div class="row">
-                        <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="endTimeObj.endhours" ng-init="endTimeObj.endhours='00'" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endhour"   required="true"> </div>
-                        <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="endTimeObj.endminute" ng-init="endTimeObj.endminute='00'" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endminute"   required="true"> </div>
-                        <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="endTimeObj.endsecond"  ng-init="endTimeObj.endsecond='00'" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endsecond"   required="true"></div>
+                        <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="endTimeObj.endhours" ng-init="endTimeObj.endhours=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endhour"   required="true"> </div>
+                        <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="endTimeObj.endminute" ng-init="endTimeObj.endminute=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endminute"   required="true"> </div>
+                        <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="endTimeObj.endsecond"  ng-init="endTimeObj.endsecond=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endsecond"   required="true"></div>
                     </div>
 
                     <!-- <input type="text" class="form-control" ng-model="entryObj.start_time" ng-init="entryObj.start_time='00:00:00'" ng-change="calcilateDuration(entryObj.start_time,entryObj.end_time)" name="starttime" placeholder="Start Time"  required="true">-->
@@ -298,25 +298,30 @@
     <tr style="text-align: center">
         <th>SrNo.</th>
         <th>Program Date</th>
-        <th>Status</th>
         <th>Channel Name</th>
         <th>Program Name</th>
-        <th>Category</th>
-        <th>Language</th>
+        <th>Movie</th>
         <th>Song</th>
+        <th>Start</th>
+        <th>End</th>
+        <th>Duration</th>
+        <th>Status</th>
         <th colspan="3">Action</th>
     </tr>
     </thead>
     <tbody>
     <tr ng-repeat="entry in ListOfEntries|filter:searchtext|limitTo:6" ng-if="entry.channel">
         <td>{{$index+1}}</td>
+
         <td>{{ entry.program_date|date:'dd/MM/yyyy' }}</td>
-        <td>{{entry.channel_status}}</td>
         <td>{{ entry.channel }}</td>
         <td>{{ entry.program_name }}</td>
-        <td>{{ entry.category }}</td>
-        <td>{{ entry.language }}</td>
+        <td>{{ entry.product_name }}</td>
         <td>{{ entry.songs }}</td>
+        <td>{{entry.start_time}}</td>
+        <td>{{entry.end_time}}</td>
+        <td>{{entry.duration}}</td>
+        <td class="{{entry.channel_status}}">{{entry.channel_status}}</td>
         <td title="Edit Entry"><button class="btn btn-success" ng-click="editEntries(entry.id)"><i class="glyphicon glyphicon-pencil"></i></button></td>
         <td title="Delete Entry"><button class="btn btn-danger" ng-click="deleteEntries(entry.id)"><i class="glyphicon glyphicon-trash" ></i></button></td>
         <td title="To Be Continue"><button class="btn btn-success" ng-click="toBeContinue1(entry)"><i class="glyphicon glyphicon-send" ></i></button></td>

@@ -913,3 +913,17 @@ select.form-control {
     }
 }
 
+.pending{
+    color:red;
+    font-weight: bold;
+}
+
+.Done{
+    color: green;
+    font-weight: bold;
+}
+
+.data-true{
+    background-color: rgba(3, 169, 244, 0.28);
+}
+

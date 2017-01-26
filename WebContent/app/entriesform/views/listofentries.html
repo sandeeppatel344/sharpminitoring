@@ -6,25 +6,29 @@
         <tr style="text-align: center;white-space: nowrap">
             <th>SrNo.</th>
             <th>Program Date</th>
-            <th>Status</th>
             <th>Channel Name</th>
             <th>Program Name</th>
-            <th>Category</th>
-            <th>Language</th>
+            <th>Movie</th>
             <th>Song</th>
+            <th>Start</th>
+            <th>End</th>
+            <th>Duration</th>
+            <th>Status</th>
             <th colspan="3">Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="entry in ListOfEntries|filter:searchtext|pagination: curPage * pageSize | limitTo: pageSize" ng-if="entry.channel">
+        <tr ng-repeat="entry in ListOfEntries|filter:searchtext|pagination: curPage * pageSize | limitTo: pageSize" ng-if="entry.channel" style="white-space: nowrap">
             <td>{{$index+1}}</td>
             <td>{{ entry.program_date|date:'dd/MM/yyyy' }}</td>
-            <td>{{entry.channel_status}}</td>
             <td>{{ entry.channel }}</td>
             <td>{{ entry.program_name }}</td>
-            <td>{{ entry.category }}</td>
-            <td>{{ entry.language }}</td>
+            <td>{{ entry.product_name }}</td>
             <td>{{ entry.songs }}</td>
+            <td>{{entry.start_time}}</td>
+            <td>{{entry.end_time}}</td>
+            <td>{{entry.duration}}</td>
+            <td class="{{entry.channel_status}}">{{entry.channel_status}}</td>
             <td title="Edit Entry"><button class="btn btn-success" ng-click="editEntries(entry.id)"><i class="glyphicon glyphicon-pencil"></i></button></td>
             <td title="Delete Entry"><button class="btn btn-danger" ng-click="deleteEntries(entry.id)"><i class="glyphicon glyphicon-trash" ></i></button></td>
             <td title="To Be Continue"><button class="btn btn-success" ng-click="toBeContinue(entry)"><i class="glyphicon glyphicon-send" ></i></button></td>

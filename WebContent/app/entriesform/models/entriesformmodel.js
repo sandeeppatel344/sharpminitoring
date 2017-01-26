@@ -8,8 +8,8 @@ app.factory("entriesformModel",function(){
                 this.category = "";
                 this.channel_usage = "";
                 this.activity = "";
-                this.start_time = "00:00:00"
-                this.end_time = "00:00:00";
+                this.start_time = ""
+                this.end_time = "";
                 this.duration = "";
                 this.story = "";
                 this.language = "";

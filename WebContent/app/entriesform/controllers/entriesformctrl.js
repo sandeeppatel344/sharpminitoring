@@ -1,5 +1,5 @@
 
-app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformModel,entriesformService,channelService,ngToast,$filter,localStorageService){
+app.controller("entriesformCtrl",function($scope,$timeout,$state,focus,entriesformModel,entriesformService,channelService,ngToast,$filter,localStorageService){
 	this.modelObj = entriesformModel;
     var _this = this;
 	$scope.entryObj = new entriesformModel.entriesformData();
@@ -10,14 +10,14 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformMode
     $scope.channelUsagelist = ["Audio","Video","Audio/Video"];
     $scope.activity = ["Not Applicable","Dance","Singing","Dancing/Singing","Instrumental","Mobile Tune"];
     $scope.startTimeObj  = {};
-    $scope.startTimeObj.starthour = "00";
-    $scope.startTimeObj.startminutes = "00";
-    $scope.startTimeObj.startsecond = "00";
+    $scope.startTimeObj.starthour = "";
+    $scope.startTimeObj.startminutes = "";
+    $scope.startTimeObj.startsecond = "";
     $scope.endTimeObj = {};
     $scope.regExTime = /^[0-9]{2,2}$/;
-    $scope.endTimeObj.endhours = "00";
-    $scope.endTimeObj.endminute = "00";
-    $scope.endTimeObj.endsecond = "00";
+    $scope.endTimeObj.endhours = "";
+    $scope.endTimeObj.endminute = "";
+    $scope.endTimeObj.endsecond = "";
 
     $scope.getAllChannelList = function(){
         entriesformService.getChannelList().then(function(res){
@@ -133,17 +133,18 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,entriesformMode
           // $scope.entryObj.start_time = angular.copy($scope.entryObj.start_time="");//angular.copy(new _this.modelObj.entriesformData());
             //    $scope.entryObj.end_time = angular.copy($scope.entryObj.end_time="")
                 $scope.startTimeObj  = {};
-                $scope.startTimeObj.starthour = "00";
-                $scope.startTimeObj.startminutes = "00";
-                $scope.startTimeObj.startsecond = "00";
+                $scope.startTimeObj.starthour = "";
+                $scope.startTimeObj.startminutes = "";
+                $scope.startTimeObj.startsecond = "";
                 $scope.endTimeObj = {};
 
-                $scope.endTimeObj.endhours = "00";
-                $scope.endTimeObj.endminute = "00";
-                $scope.endTimeObj.endsecond = "00";
+                $scope.endTimeObj.endhours = "";
+                $scope.endTimeObj.endminute = "";
+                $scope.endTimeObj.endsecond = "";
            $scope.entryForm.$setPristine();
            $scope.entryForm.$setUntouched();
-
+            $scope.focusMe = true;
+                focus('proname');
               //  $scope.getListOfEntries();
        },function(error){
         console.error(error);
@@ -344,3 +345,40 @@ app.directive("limitTo", [function() {
         }
     }
 }]);
+
+app.directive('focusMe', ['$timeout', '$parse', function ($timeout, $parse) {
+    return {
+        //scope: true,   // optionally create a child scope
+        link: function (scope, element, attrs) {
+            var model = $parse(attrs.focusMe);
+            scope.$watch(model, function (value) {
+                console.log('value=', value);
+                if (value === true) {
+                    $timeout(function () {
+                        element[0].focus();
+                    });
+                }
+            });
+            // to address @blesh's comment, set attribute value to 'false'
+            // on blur event:
+            element.bind('blur', function () {
+                console.log('blur');
+                scope.$apply(model.assign(scope, false));
+            });
+        }
+    };
+}]);
+
+app.factory('focus', function($timeout, $window) {
+    return function(id) {
+        // timeout makes sure that it is invoked after any other event has been triggered.
+        // e.g. click events that need to run before the focus or
+        // inputs elements that are in a disabled state but are enabled when those events
+        // are triggered.
+        $timeout(function() {
+            var element = $window.document.getElementById(id);
+            if(element)
+                element.focus();
+        });
+    };
+});

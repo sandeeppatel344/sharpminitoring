@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	<title class="hidden-print" id="ptitle">Sharp Monitoring</title>
-    <title  id="rtitle">Sharp Monitoring12</title>
+
 
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
 	<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -73,14 +73,14 @@
 	</div>			
 </header>
 
-		<div class="container" ng-clock>
+		<div class="container" ng-clock style="width: 100%">
 			<div class="row-gd">
-				<div class="col-md-12">
+				<div class="col-md-12" style="width: 100%">
 					<div class="panel panel-default mt20">
 						<div class="panel-body">
 							
 							<div ng-clock ng-init = "isshowl=false;ishowbaner=true">
-								<div ng-clock ng-init = "isshowl=false" data-ui-view></div>
+								<div style="width: 100%" ng-clock ng-init = "isshowl=false" data-ui-view></div>
 							</div>
 						</div>
 					</div>
@@ -97,6 +97,7 @@
 	
 	<script src="vendor/jquery/jquery.blockUI.js"></script>
 	<script src="vendor/angular/angular.js"></script>
+        <script src="app/common/ngautocomplete.js"></script>
 	<script src="vendor/angular-xeditable/xeditable.js"></script>
 	<script src="vendor/angular-cookies/angular-cookies.js"></script>
 	<script src="vendor/angular-ui/angular-ui-router.js"></script>
