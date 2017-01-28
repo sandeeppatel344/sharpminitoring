@@ -76,9 +76,9 @@
                     <label class="control-label" style="color: #0000ff">Start Time<span class="required"> *</span></label>
                     </div>
                     <div class="row">
-                    <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="startTimeObj.starthour" ng-init="startTimeObj.starthour=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="starthour"   required="true"> </div>
-                    <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="startTimeObj.startminutes" ng-init="startTimeObj.startminutes=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="startminute"   required="true"> </div>
-                    <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="startTimeObj.startsecond"  ng-init="startTimeObj.startsecond=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="startsecond"   required="true"></div>
+                    <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="startTimeObj.starthour"  ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="starthour"   required="true"> </div>
+                    <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="startTimeObj.startminutes"  ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="startminute"   required="true"> </div>
+                    <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="startTimeObj.startsecond"   ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="startsecond"   required="true"></div>
                     </div>
 
                    <!-- <input type="text" class="form-control" ng-model="entryObj.start_time" ng-init="entryObj.start_time='00:00:00'" ng-change="calcilateDuration(entryObj.start_time,entryObj.end_time)" name="starttime" placeholder="Start Time"  required="true">-->

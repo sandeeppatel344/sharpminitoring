@@ -10,15 +10,16 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,focus,entriesfo
     $scope.channelUsagelist = ["Audio","Video","Audio/Video"];
     $scope.activity = ["Not Applicable","Dance","Singing","Dancing/Singing","Instrumental","Mobile Tune"];
     $scope.startTimeObj  = {};
-    $scope.startTimeObj.starthour = "";
-    $scope.startTimeObj.startminutes = "";
-    $scope.startTimeObj.startsecond = "";
+
     $scope.endTimeObj = {};
     $scope.regExTime = /^[0-9]{2,2}$/;
-    $scope.endTimeObj.endhours = "";
-    $scope.endTimeObj.endminute = "";
-    $scope.endTimeObj.endsecond = "";
 
+    if(localStorageService.get("saveEndTime")){
+        var savedEndTime = JSON.parse(localStorageService.get("saveEndTime"));
+        $scope.startTimeObj.starthour = savedEndTime.endhours;
+        $scope.startTimeObj.startminutes = savedEndTime.endminute;
+        $scope.startTimeObj.startsecond = savedEndTime.endsecond;
+    }
     $scope.getAllChannelList = function(){
         entriesformService.getChannelList().then(function(res){
             $scope.channelList = res.data;
@@ -230,7 +231,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,focus,entriesfo
         if($scope.endm==$scope.startm&&$scope.ends<$scope.starts){
             $scope.isShowMessage = true;
         }
-
+        localStorageService.set("saveEndTime",JSON.stringify(end));
         $scope.entryObj.duration = [$scope.calh,$scope.calm,$scope.cals].join(":")
 
     }
