@@ -1,7 +1,7 @@
 /**
  * Created by sandeep on 12/7/2016.
  */
-app.controller("productCtrl",function($scope,$stateParams,ngToast,productModel,$timeout,productService,localStorageService){
+app.controller("productCtrl",function($scope,$stateParams,$state,ngToast,productModel,entriesformService,$timeout,productService,localStorageService){
 
     $scope.regExName = /^[A-Z a-z]{2,50}$/;
     $scope.regExAlphaNumeric = /^[ A-Za-z0-9_@.\/()#&+-]*$/;
@@ -27,6 +27,7 @@ app.controller("productCtrl",function($scope,$stateParams,ngToast,productModel,$
             ngToast.success({
                 content: '<div role="alert">Product Added Successfully.</div>'
             });
+            $state.reload();
             $timeout(function(){
                 $scope.productObj = angular.copy(new _this.modelObj.productData());
                 $scope.productForm.$setPristine();
@@ -83,6 +84,36 @@ productService.getMovieList(name).then(function(res){
     $scope.movieList = res.data;
 })
     }
+
+    $scope.getAllSongsList = function(productname){
+        productname = JSON.parse(productname);
+        if(productname.movie_name=='New'){
+            $scope.isShowText = true
+            $scope.productObj.movie_name = "";
+        }else{
+            $scope.isShowText = false;
+        }
+
+        productname = JSON.parse(productname);
+        entriesformService.getSongsList(productname.movie_name).then(function(res){
+            $scope.songsList = res.data;
+        },function(error){
+            console.error(error);
+        })
+    }
+
+    $scope.getAllProductList = function(){
+        entriesformService.getProductList().then(function(res){
+            $scope.productlList = res.data;
+            $scope.productlList.unshift({movie_name:"New"})
+            $timeout(function(){
+                $scope.toBeContinue();
+            })
+        },function(error){
+            console.error(error);
+        })
+    }
+    $scope.getAllProductList();
 })
 
 

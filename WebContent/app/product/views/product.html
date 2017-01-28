@@ -22,7 +22,23 @@
                     <h1 class="main-heading">Product Details</h1>
                     <!-- <label class="control-label" >Child Full Name <span class="required">*</span></label> -->
                     <div >
-                        <div class="col-md-3">
+                        <div class="col-md-3"  ng-if="!isShowText">
+                            <div class="form-group">
+                                <label class="control-label" >Movie Name<span class="required">*</span></label>
+                                <select ng-hide="productObj.movie_name=='New'" class="form-control" name="moviename"  ng-change="getAllSongsList(productObj.movie_name)" ng-model="productObj.movie_name"  required>
+                                    <option  value="">Please Select Movie Name</option>
+
+                                    <option ng-selected="productObj.movie_name.movie_name==product.movie_name" ng-repeat='product in productlList' value="{{product}}" >{{product.movie_name}}</option>
+                                </select>
+
+                                <!--<input ng-show="productObj.movie_name=='New'" autocomplete="on" class="form-control" name="moviename"  type="text" placeholder="Movie name" ng-model="productObj.movie_name" ng-maxlength="50" limit-to="50"   required>-->
+                            </div>
+                            <p class="errorMessage" ng-show="(productForm.moviename.$invalid &&isshowmsg)||(productForm.moviename.$error.maxlength||productForm.moviename.$invalid&&productForm.moviename.$touched)">
+                                Please enter valid Movie Name.
+                            </p>
+                        </div>
+
+                        <div class="col-md-3" ng-if="isShowText">
                             <div class="form-group">
                                 <label class="control-label" >Movie Name <span class="required">*</span></label>
                                 <input autocomplete="on" class="form-control" name="moviename"  type="text" placeholder="Movie name" ng-model="productObj.movie_name" ng-maxlength="50" limit-to="50"   required>

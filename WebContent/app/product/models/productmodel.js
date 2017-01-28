@@ -8,7 +8,7 @@ app.factory("productModel",function(){
             this.movie_name = "";
             this.songs = "";
             this.music_company = "";
-            this.product_language = "";
+            this.product_language = "Hindi";
             this.editData = function(data){
                 this.id = data.id
                 this.movie_name = data.movie_name;
