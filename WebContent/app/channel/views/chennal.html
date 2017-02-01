@@ -25,7 +25,7 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label class="control-label" for="inputLarge">Channel Name <span class="required">*</span></label>
-                            <input class="form-control" name="channelname" id="inputLarge" type="text" placeholder="Channel name" ng-model="channelObj.channel_name" ng-maxlength="50" limit-to="50"  ng-disabled="isdisabled" required>
+                            <input class="form-control" autofocus="true" name="channelname" id="inputLarge" type="text" placeholder="Channel name" ng-model="channelObj.channel_name" ng-maxlength="50" limit-to="50"  ng-disabled="isdisabled" required>
                         </div>
                         <p class="errorMessage" ng-show="(channelForm.channelname.$invalid &&isshowmsg)||(channelForm.channelname.$error.maxlength||channelForm.channelname.$invalid&&channelForm.channelname.$touched)||channelForm.channelname.$error.pattern">
                             Please enter valid Channel Name.

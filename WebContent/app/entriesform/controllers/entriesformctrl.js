@@ -243,6 +243,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,focus,entriesfo
             console.log("TBEContineu======"+JSON.stringify($scope.toBeContinueEntry));
             $scope.entryObj.channel = $filter('filter')($scope.channelList, {channel_name: $scope.toBeContinueEntry.channel})[0];
             $scope.entryObj.language=$scope.entryObj.channel.language;
+            $scope.entryObj.program_date = new Date($scope.toBeContinueEntry.program_date);
             $scope.entryObj.category=$scope.entryObj.channel.category_name
             $scope.getAllProgramList($scope.entryObj.channel)
             $scope.entryObj.activity = $scope.toBeContinueEntry.activity

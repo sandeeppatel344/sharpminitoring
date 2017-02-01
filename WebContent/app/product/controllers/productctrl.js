@@ -18,9 +18,28 @@ app.controller("productCtrl",function($scope,$stateParams,$state,ngToast,product
      var _this = this;
     this.modelObj = productModel;
     $scope.productObj = new this.modelObj.productData();
+    $scope.getMoviewName = function(jsonObj){
+        try{
+            var moviename = JSON.parse(jsonObj);
+            return moviename.movie_name;
+        }catch(e) {
+            return jsonObj;
+        }
+    }
+
+    $scope.getSongsName = function(jsonObj){
+        try{
+            var songsname = JSON.parse(jsonObj);
+            return songsname.songs;
+        }catch(e) {
+            return jsonObj;
+        }
+    }
     $scope.saveProduct = function(valid){
         if(valid){
             $scope.productObj.created_by = localStorageService.get("currentuserid");
+            $scope.productObj.movie_name =  $scope.getMoviewName($scope.productObj.movie_name);
+            $scope.productObj.songs = $scope.getSongsName($scope.productObj.songs);
         productService.saveProduct($scope.productObj).then(function(res){
             console.log(res)
                 $scope.isshowmsg = false;
@@ -93,22 +112,36 @@ productService.getMovieList(name).then(function(res){
         }else{
             $scope.isShowText = false;
         }
+        try{
+            productname = JSON.parse(productname);
+        }catch (e){
+            productname = productname;
+        }
 
-        productname = JSON.parse(productname);
         entriesformService.getSongsList(productname.movie_name).then(function(res){
             $scope.songsList = res.data;
+            $scope.songsList.unshift({songs:"New"})
         },function(error){
             console.error(error);
         })
+    }
+
+    $scope.showHideSongs = function(songs){
+        songs = JSON.parse(songs);
+        if(songs.songs == 'New'){
+            $scope.isShowSongText = true;
+            $scope.productObj.songs = "";
+        }else{
+            $scope.isShowSongText = false;
+        }
+
     }
 
     $scope.getAllProductList = function(){
         entriesformService.getProductList().then(function(res){
             $scope.productlList = res.data;
             $scope.productlList.unshift({movie_name:"New"})
-            $timeout(function(){
-                $scope.toBeContinue();
-            })
+
         },function(error){
             console.error(error);
         })
