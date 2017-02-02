@@ -1,7 +1,7 @@
 /**
  * Created by sandeep on 12/6/2016.
  */
-app.controller("channelCtrl",function($scope,channelModel,$stateParams,$timeout,channelService,localStorageService,ngToast){
+app.controller("channelCtrl",function($scope,channelModel,$stateParams,$timeout,channelService,localStorageService,ngToast,entriesformService){
     this.modelObj = channelModel;
     var _this = this;
     $scope.channelObj = new this.modelObj.channelData();
@@ -25,11 +25,59 @@ app.controller("channelCtrl",function($scope,channelModel,$stateParams,$timeout,
         })
     }
 
+    $scope.getAllChannelList = function(){
+        entriesformService.getChannelList().then(function(res){
+            $scope.channelList = res.data;
+            $scope.channelList.unshift({channel_name:"New"});
+
+        },function(error){
+            console.error(error);
+        })
+    }
+
+    $scope.showHideProduct = function(productdata){
+        if(productdata=='New'){
+            $scope.isShowPrograme = true;
+            $scope.channelObj.program_name = "";
+        }else{
+            $scope.isShowPrograme = false;
+        }
+    }
+
+    $scope.getAllProgramList = function(channelname){
+        if(channelname.channel_name=="New"){
+            $scope.isShowChannel = true;
+            $scope.channelObj.channel_name = "";
+        }else{
+            $scope.isShowChannel=false
+        }
+        // channelname = JSON.parse(channelname);
+        entriesformService.getProgramsList(channelname.channel_name).then(function(res){
+            $scope.programlList = res.data;
+            $scope.programlList.unshift({program_name:"New"});
+
+        },function(error){
+            console.error(error);
+        })
+    }
+
+    $scope.getAllChannelList();
+
     $scope.getChannelCategoryList();
+    $scope.getChannelFromObj = function(){
+        try{
+            var channel = $scope.channelObj.channel_name.channel_name;
+            return channel;
+        }catch(e) {
+                return $scope.channelObj.channel_name
+        }
+    }
     $scope.saveChannel = function(valid){
         if(valid){
         $scope.channelObj.channel_category_id = $scope.channelObj.channel_category.id;
         $scope.channelObj.created_by = localStorageService.get("currentuserid");
+            $scope.channelObj.channel_name =  $scope.getChannelFromObj();
+           // $scope.channelObj.category_name = $scope.channelObj.channel_category.category_name
         channelService.saveChannel($scope.channelObj).then(function(res){
             console.log(res);
             ngToast.success({
