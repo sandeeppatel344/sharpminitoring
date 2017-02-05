@@ -67,6 +67,8 @@ app.controller("productCtrl",function($scope,$stateParams,$state,ngToast,product
         productService.editProduct(id).then(function(res){
             console.log(res)
             $scope.productObj.editData(res.data[0]);
+            $scope.isShowSongText = true;
+            $scope.isShowText = true;
         },function(error){
             console.error(error);
         })

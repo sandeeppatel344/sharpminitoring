@@ -103,6 +103,8 @@ app.controller("channelCtrl",function($scope,channelModel,$stateParams,$timeout,
         channelService.editChannel(id).then(function(res){
             console.log(res)
             $scope.channelObj.editData(res.data[0]);
+            $scope.isShowChannel = true;
+            $scope.isShowPrograme = true;
         },function(error){
             console.error(error);
         })
