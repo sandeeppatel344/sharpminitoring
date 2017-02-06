@@ -42,14 +42,14 @@ button.btn.btn-default.btn-sm.btn-info.active{
 	color: #ec2327 !important;
 	font-weight: bold;
 }
-
+/*
 .form-group.is-focused .form-control{
 	    background-image: linear-gradient(#273171, #273171), linear-gradient(#D2D2D2, #D2D2D2);
 }
 
 .form-group.is-focused label, .form-group.is-focused label.control-label{
 	color: #273171;
-}
+}*/
 
 /*.btn:hover
 {
@@ -927,3 +927,10 @@ select.form-control {
     background-color: rgba(3, 169, 244, 0.28);
 }
 
+.custom-form input {
+    border: 1px solid #cacaca;
+    border-radius: 5px;
+    padding: 10px;
+    height: 50px;
+    margin-bottom: 10px;
+}
