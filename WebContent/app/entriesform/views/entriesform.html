@@ -196,9 +196,9 @@
                         <label class="control-label" style="color: #0000ff">End Time<span class="required"> *</span></label>
                     </div>
                     <div class="row">
-                        <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="endTimeObj.endhours" ng-init="endTimeObj.endhours=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endhour"   required="true"> </div>
-                        <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="endTimeObj.endminute" ng-init="endTimeObj.endminute=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endminute"   required="true"> </div>
-                        <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="endTimeObj.endsecond"  ng-init="endTimeObj.endsecond=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endsecond"   required="true"></div>
+                        <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="endTimeObj.endhours" ng-init="endTimeObj.endhours=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endhour"  ng-focus="clearEndHour()" required="true"> </div>
+                        <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="endTimeObj.endminute" ng-init="endTimeObj.endminute=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endminute"  ng-focus="clearEndMin()" required="true"> </div>
+                        <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="endTimeObj.endsecond"  ng-init="endTimeObj.endsecond=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endsecond"  ng-focus="clearEndSec()"  required="true"></div>
                     </div>
 
                     <!-- <input type="text" class="form-control" ng-model="entryObj.start_time" ng-init="entryObj.start_time='00:00:00'" ng-change="calcilateDuration(entryObj.start_time,entryObj.end_time)" name="starttime" placeholder="Start Time"  required="true">-->
