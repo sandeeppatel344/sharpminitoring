@@ -2,8 +2,10 @@
 app.controller("entriesformCtrl",function(moment,$scope,$timeout,$state,focus,entriesformModel,entriesformService,channelService,ngToast,$filter,localStorageService){
 	this.modelObj = entriesformModel;
     var _this = this;
-
-
+if(localStorageService.get("enddate")=="undefined"){
+    $scope.endDates = new Date();
+    localStorageService.set("enddate",$scope.endDates);
+}
 
     $scope.entryObj = new entriesformModel.entriesformData();
     $scope.channelList = [];
@@ -11,28 +13,31 @@ app.controller("entriesformCtrl",function(moment,$scope,$timeout,$state,focus,en
     $scope.productlList = [];
     $scope.songsList = [];
     $scope.channelUsagelist = ["Audio","Video","Audio/Video"];
-    $scope.activity = ["Not Applicable","Dance","Singing","Dancing/Singing","Instrumental","Mobile Tune"];
+    $scope.activity = ["Not Applicable","Dance","Singing","Dancing/Singing","Instrumental","Mobile Tune","Making"];
     $scope.startTimeObj  = {};
 
     $scope.endTimeObj = {};
     $scope.regExTime = /^[0-9]{2,2}$/;
-    $scope.clearStartHour=function(){
-        $scope.startTimeObj.starthour = "";
+    $scope.clearStartHour=function(h){
+        $scope.startTimeObj.starthour = h;
+      //  $scope.startTimeObj.starthour = $scope.startTimeObj.starthour.length == 1?"0"+$scope.startTimeObj.starthour:$scope.startTimeObj.starthour;
     }
-    $scope.clearStartMin=function(){
-        $scope.startTimeObj.startminutes = "";
+    $scope.clearStartMin=function(m){
+        $scope.startTimeObj.startminutes = m;
+        ///$scope.startTimeObj.startminutes = $scope.startTimeObj.startminutes.length==1?"0"+$scope.startTimeObj.startminutes:$scope.startTimeObj.startminutes;
     }
-    $scope.clearStartSec=function(){
-        $scope.startTimeObj.startsecond = "";
+    $scope.clearStartSec=function(s){
+        $scope.startTimeObj.startsecond = s;
+        //$scope.startTimeObj.startsecond = $scope.startTimeObj.startsecond.length==1?"0"+$scope.startTimeObj.startsecond:$scope.startTimeObj.startsecond;
     }
     $scope.clearEndHour=function(){
-        $scope.endTimeObj.endhours = "";
+        //$scope.endTimeObj.endhours = $scope.endTimeObj.endhours.length==1?"0"+$scope.endTimeObj.endhours:$scope.endTimeObj.endhours;
     }
     $scope.clearEndMin=function(){
-        $scope.endTimeObj.endminute = "";
+        //$scope.endTimeObj.endminute = $scope.endTimeObj.endminute.length==1?"0"+$scope.endTimeObj.endminute:$scope.endTimeObj.endminute;
     }
     $scope.clearEndSec=function(){
-        $scope.endTimeObj.endsecond = "";
+        //$scope.endTimeObj.endsecond = $scope.endTimeObj.endsecond.length==1?"0"+$scope.endTimeObj.endsecond:$scope.endTimeObj.endsecond;
     }
     if(localStorageService.get("saveEndTime")){
         var savedEndTime = JSON.parse(localStorageService.get("saveEndTime"));
@@ -130,7 +135,7 @@ app.controller("entriesformCtrl",function(moment,$scope,$timeout,$state,focus,en
     }
 
     $scope.saveEntry = function(valid){
-        if(valid&&$scope.isShowMessage){
+        if(valid&&!$scope.isShowMessage){
             $scope.entryObj.created_by = localStorageService.get("currentuserid");
             $scope.entryObj.program_date = $filter('date')($scope.entryObj.program_date,'yyyy-MM-dd');
             $scope.entryObj.program_name = $scope.entryObj.program_name//   JSON.parse($scope.entryObj.program_name)
@@ -207,6 +212,7 @@ app.controller("entriesformCtrl",function(moment,$scope,$timeout,$state,focus,en
         var durationcalc = [];
         $scope.starttime = start;
         $scope.endtime = end;
+       // $scope.startTimeObj.starthour = $scope.startTimeObj.starthour.length == 1?"0"+$scope.startTimeObj.starthour:$scope.startTimeObj.starthour;
         $scope.entryObj.start_time =$scope.starttime.starthour+":"+$scope.starttime.startminutes+":"+$scope.starttime.startsecond
         $scope.entryObj.end_time = $scope.endtime.endhours+":"+$scope.endtime.endminute+":"+$scope.endtime.endsecond;
         $scope.starth = parseInt($scope.starttime.starthour);
@@ -248,15 +254,25 @@ app.controller("entriesformCtrl",function(moment,$scope,$timeout,$state,focus,en
         if($scope.endm==$scope.startm&&$scope.ends<$scope.starts){
             $scope.isShowMessage = true;
         }
+
+        if($scope.entryObj.program_date<$scope.endDates){
+
+            $scope.isShowMessage = false;
+        }
         localStorageService.set("saveEndTime",JSON.stringify(end));
-        var startTime=moment($scope.entryObj.start_time, "HH:mm:ss");
-        var endTime=moment($scope.entryObj.end_time, "HH:mm:ss");
+        var d1  = $filter('date')($scope.entryObj.program_date,'MM-dd-yyyy');
+        var d2 =  $filter('date')($scope.endDates,'MM-dd-yyyy');
+        var dddd = $filter('date')(new Date(),'MM-dd-yyyy');
+        var startTime=moment(new Date(d1+" "+$scope.entryObj.start_time), "HH:mm:ss a");
+        var endTime=moment(new Date(d2+" "+$scope.entryObj.end_time), "HH:mm:ss a");
         var duration = moment.duration(endTime.diff(startTime));
         var hours = parseInt(duration.asHours());
         var minutes = parseInt(duration.asMinutes())-hours*60;
         var second = (parseInt(duration.asSeconds())-hours*60*60)%60 ;
-
-        $scope.entryObj.duration = [hours,minutes,second].join(":")
+       // hours = hours.toString().length==1?"0"+hours.toString():hours.toString();
+        //minutes = minutes.toString().length==1?"0"+minutes.toString():minutes.toString();
+        //second = second.toString().length==1?"0"+second.toString():second.toString();
+        $scope.entryObj.duration = [Math.abs(hours),Math.abs(minutes),Math.abs(second)].join(":")
 
     }
 
@@ -268,6 +284,7 @@ app.controller("entriesformCtrl",function(moment,$scope,$timeout,$state,focus,en
             $scope.entryObj.channel = $filter('filter')($scope.channelList, {channel_name: $scope.toBeContinueEntry.channel})[0];
             $scope.entryObj.language=$scope.entryObj.channel?$scope.entryObj.channel.language:"";
             $scope.entryObj.program_date = new Date($scope.toBeContinueEntry.program_date);
+            $scope.entryObj.program_date = new Date(localStorageService.get("enddate"));
             $scope.entryObj.category=$scope.entryObj.channel.category_name
             $scope.getAllProgramList($scope.entryObj.channel)
             $scope.entryObj.activity = $scope.toBeContinueEntry.activity
@@ -351,6 +368,11 @@ app.controller("entriesformCtrl",function(moment,$scope,$timeout,$state,focus,en
                 content: '<div role="alert">Channel Done Successfully.</div>'
             });
         })
+    }
+
+    $scope.setEndDate=function(d){
+
+        localStorageService.set("enddate",d);
     }
 })
 

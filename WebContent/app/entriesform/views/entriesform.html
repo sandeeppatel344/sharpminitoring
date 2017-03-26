@@ -76,9 +76,9 @@
                     <label class="control-label" style="color: #0000ff">Start Time<span class="required"> *</span></label>
                     </div>
                     <div class="row">
-                    <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="startTimeObj.starthour"  ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="starthour"   required="true"> </div>
-                    <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="startTimeObj.startminutes"  ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="startminute"   required="true"> </div>
-                    <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="startTimeObj.startsecond"   ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="startsecond"   required="true"></div>
+                    <div class="col-md-2"><input type="text" class="form-control"  maxlength="2" minlength="2" ng-model-options="{ updateOn: 'blur' }"  ng-blur="clearStartHour(startTimeObj.starthour)" ng-pattern="regExTime" ng-model="startTimeObj.starthour"  ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="starthour"   required="true"> </div>
+                    <div class="col-md-2"><input type="text" class="form-control"  maxlength="2" minlength="2" ng-model-options="{ updateOn: 'blur' }"  ng-blur="clearStartMin(startTimeObj.startminutes)" ng-pattern="regExTime" ng-model="startTimeObj.startminutes"  ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="startminute"   required="true"> </div>
+                    <div class="col-md-2"><input type="text" class="form-control"  maxlength="2" minlength="2" ng-model-options="{ updateOn: 'blur' }"  ng-blur="clearStartSec(startTimeObj.startsecond)" ng-pattern="regExTime" ng-model="startTimeObj.startsecond"   ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="startsecond"   required="true"></div>
                     </div>
 
                    <!-- <input type="text" class="form-control" ng-model="entryObj.start_time" ng-init="entryObj.start_time='00:00:00'" ng-change="calcilateDuration(entryObj.start_time,entryObj.end_time)" name="starttime" placeholder="Start Time"  required="true">-->
@@ -172,7 +172,7 @@
 
             </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <div class="form-group">
                     <label class="control-label" >courtesy<!--<span class="required">*</span>--></label>
                     <input type="text" class="form-control" ng-model="entryObj.courtesy"   name="ecourtesy" placeholder="Courtesy">
@@ -182,7 +182,7 @@
                     Please enter valid Courtesy.
                 </p>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <div class="form-group">
                     <label class="control-label" >Channel Category <span class="required">*</span></label>
                     <input type="text" class="form-control" ng-model="entryObj.category" ng-init="entryObj.category=''" style="background-color: #d4c9c9" disabled>
@@ -192,13 +192,24 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group">
+                    <label class="control-label" >End Date<!--<span class="required">*</span>--></label>
+                        <input type="text" class=" form-control" name = "enddate" uib-datepicker-popup="dd/MM/yyyy" max-date="maxDate"
+                               ng-model="endDates" is-open = "isOpene" close-text="Close" ng-click="isOpene=true" ng-focus="isOpene=true" required ng-change="setEndDate(endDates);calcilateDuration(startTimeObj,endTimeObj)" placeholder="Date"/>
+
+                </div>
+                <p class="errorMessage" ng-show="(entryForm.enddate.$invalid &&isshowmsg)||(entryForm.enddate.$error.maxlength||entryForm.enddate.$invalid&&entryForm.enddate.$touched)">
+                    Please enter valid Courtesy.
+                </p>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
                     <div class="row form-group" >
                         <label class="control-label" style="color: #0000ff">End Time<span class="required"> *</span></label>
                     </div>
                     <div class="row">
-                        <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="endTimeObj.endhours" ng-init="endTimeObj.endhours=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endhour"  ng-focus="clearEndHour()" required="true"> </div>
-                        <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="endTimeObj.endminute" ng-init="endTimeObj.endminute=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endminute"  ng-focus="clearEndMin()" required="true"> </div>
-                        <div class="col-md-2"><input type="text" class="form-control" limit-to="2" ng-pattern="regExTime" ng-model="endTimeObj.endsecond"  ng-init="endTimeObj.endsecond=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endsecond"  ng-focus="clearEndSec()"  required="true"></div>
+                        <div class="col-md-2"><input type="text" class="form-control"  maxlength="2" minlength="2" ng-model-options="{ updateOn: 'blur' }" ng-pattern="regExTime" ng-model="endTimeObj.endhours" ng-init="endTimeObj.endhours=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endhour"  ng-focus="clearEndHour()"  ng-model-options="{ updateOn: 'blur' }" required="true"> </div>
+                        <div class="col-md-2"><input type="text" class="form-control" maxlength="2" minlength="2" ng-pattern="regExTime" ng-model="endTimeObj.endminute" ng-init="endTimeObj.endminute=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endminute"  ng-focus="clearEndMin()"  ng-model-options="{ updateOn: 'blur' }" required="true"> </div>
+                        <div class="col-md-2"><input type="text" class="form-control" maxlength="2" minlength="2" ng-pattern="regExTime" ng-model="endTimeObj.endsecond"  ng-init="endTimeObj.endsecond=''" ng-change="calcilateDuration(startTimeObj,endTimeObj)" name="endsecond"  ng-focus="clearEndSec()"   ng-model-options="{ updateOn: 'blur' }" required="true"></div>
                     </div>
 
                     <!-- <input type="text" class="form-control" ng-model="entryObj.start_time" ng-init="entryObj.start_time='00:00:00'" ng-change="calcilateDuration(entryObj.start_time,entryObj.end_time)" name="starttime" placeholder="Start Time"  required="true">-->
@@ -224,6 +235,7 @@
                 <p class="errorMessage" ng-if="isShowMessage">End Time should be greater than Start Time</p>
 
             </div>
+            <!--       <input class="form-control" name="dob"  ng-model="regObj.dob"  type="text" placeholder="Date of birth"  required> -->
 
 
 
