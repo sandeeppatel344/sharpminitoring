@@ -1,8 +1,11 @@
 
-app.controller("entriesformCtrl",function($scope,$timeout,$state,focus,entriesformModel,entriesformService,channelService,ngToast,$filter,localStorageService){
+app.controller("entriesformCtrl",function(moment,$scope,$timeout,$state,focus,entriesformModel,entriesformService,channelService,ngToast,$filter,localStorageService){
 	this.modelObj = entriesformModel;
     var _this = this;
-	$scope.entryObj = new entriesformModel.entriesformData();
+
+
+
+    $scope.entryObj = new entriesformModel.entriesformData();
     $scope.channelList = [];
     $scope.programlList = [];
     $scope.productlList = [];
@@ -127,7 +130,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,focus,entriesfo
     }
 
     $scope.saveEntry = function(valid){
-        if(valid){
+        if(valid&&$scope.isShowMessage){
             $scope.entryObj.created_by = localStorageService.get("currentuserid");
             $scope.entryObj.program_date = $filter('date')($scope.entryObj.program_date,'yyyy-MM-dd');
             $scope.entryObj.program_name = $scope.entryObj.program_name//   JSON.parse($scope.entryObj.program_name)
@@ -209,12 +212,9 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,focus,entriesfo
         $scope.starth = parseInt($scope.starttime.starthour);
         $scope.startm = parseInt($scope.starttime.startminutes);
         $scope.starts = parseInt($scope.starttime.startsecond);
-
-
         $scope.endh = parseInt($scope.endtime.endhours);
         $scope.endm = parseInt($scope.endtime.endminute);
         $scope.ends = parseInt($scope.endtime.endsecond);
-
         $scope.calh = Math.abs($scope.starth - $scope.endh).toString();
         $scope.calm = Math.abs($scope.startm - $scope.endm).toString();
         $scope.cals = Math.abs($scope.starts - $scope.ends).toString();
@@ -249,7 +249,14 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,focus,entriesfo
             $scope.isShowMessage = true;
         }
         localStorageService.set("saveEndTime",JSON.stringify(end));
-        $scope.entryObj.duration = [$scope.calh,$scope.calm,$scope.cals].join(":")
+        var startTime=moment($scope.entryObj.start_time, "HH:mm:ss");
+        var endTime=moment($scope.entryObj.end_time, "HH:mm:ss");
+        var duration = moment.duration(endTime.diff(startTime));
+        var hours = parseInt(duration.asHours());
+        var minutes = parseInt(duration.asMinutes())-hours*60;
+        var second = (parseInt(duration.asSeconds())-hours*60*60)%60 ;
+
+        $scope.entryObj.duration = [hours,minutes,second].join(":")
 
     }
 
@@ -259,7 +266,7 @@ app.controller("entriesformCtrl",function($scope,$timeout,$state,focus,entriesfo
             $scope.toBeContinueEntry = JSON.parse(localStorageService.get("tobecontinueentryobj"));
             console.log("TBEContineu======"+JSON.stringify($scope.toBeContinueEntry));
             $scope.entryObj.channel = $filter('filter')($scope.channelList, {channel_name: $scope.toBeContinueEntry.channel})[0];
-            $scope.entryObj.language=$scope.entryObj.channel.language;
+            $scope.entryObj.language=$scope.entryObj.channel?$scope.entryObj.channel.language:"";
             $scope.entryObj.program_date = new Date($scope.toBeContinueEntry.program_date);
             $scope.entryObj.category=$scope.entryObj.channel.category_name
             $scope.getAllProgramList($scope.entryObj.channel)

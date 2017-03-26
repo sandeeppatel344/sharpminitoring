@@ -148,7 +148,7 @@
                     <!--<input type="text" class="form-control" ng-model="entryObj.channel_usage"  name="channelusage" placeholder="Channel Usage"  required="true">-->
                     <select class="form-control" ng-model="entryObj.channel_usage"  name="channelusage" required="true">
                         <option value="">Please select Channel Usage</option>
-                        <option ng-selected="toBeContinueEntry.channel_usage==cu" ng-repeat="cu in channelUsagelist" value="{{cu}}">{{cu}}</option>
+                        <option ng-selected="toBeContinueEntry.channel_usage==cu" ng-repeat="cu in channelUsagelist track by $index" ng-value="{{cu}}">{{cu}}</option>
                     </select>
                 </div>
                 <p class="errorMessage" ng-show="(entryForm.channelusage.$invalid &&isshowmsg)||(entryForm.channelusage.$error.maxlength||entryForm.channelusage.$invalid&&entryForm.channelusage.$touched)">
@@ -161,7 +161,7 @@
                     <label class="control-label" >Activity<span class="required">*</span></label>
                     <select class="form-control" name="activity"  ng-model="entryObj.activity"  required>
                         <option  value="">Please Select Activity</option>
-                        <option ng-selected="toBeContinueEntry.activity==act" ng-repeat="act in activity" ng-value="act">{{act}}</option>
+                        <option ng-selected="toBeContinueEntry.activity==act" ng-repeat="act in activity track by $index" ng-value="act">{{act}}</option>
                     </select>
 
                 </div>
