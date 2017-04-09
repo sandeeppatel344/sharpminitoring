@@ -20,24 +20,24 @@ if(localStorageService.get("enddate")=="undefined"){
     $scope.regExTime = /^[0-9]{2,2}$/;
     $scope.clearStartHour=function(h){
         $scope.startTimeObj.starthour = h;
-      //  $scope.startTimeObj.starthour = $scope.startTimeObj.starthour.length == 1?"0"+$scope.startTimeObj.starthour:$scope.startTimeObj.starthour;
+       $scope.startTimeObj.starthour = $scope.startTimeObj.starthour.length == 1?"0"+$scope.startTimeObj.starthour:$scope.startTimeObj.starthour;
     }
     $scope.clearStartMin=function(m){
         $scope.startTimeObj.startminutes = m;
-        ///$scope.startTimeObj.startminutes = $scope.startTimeObj.startminutes.length==1?"0"+$scope.startTimeObj.startminutes:$scope.startTimeObj.startminutes;
+        $scope.startTimeObj.startminutes = $scope.startTimeObj.startminutes.length==1?"0"+$scope.startTimeObj.startminutes:$scope.startTimeObj.startminutes;
     }
     $scope.clearStartSec=function(s){
         $scope.startTimeObj.startsecond = s;
-        //$scope.startTimeObj.startsecond = $scope.startTimeObj.startsecond.length==1?"0"+$scope.startTimeObj.startsecond:$scope.startTimeObj.startsecond;
+        $scope.startTimeObj.startsecond = $scope.startTimeObj.startsecond.length==1?"0"+$scope.startTimeObj.startsecond:$scope.startTimeObj.startsecond;
     }
-    $scope.clearEndHour=function(){
-        //$scope.endTimeObj.endhours = $scope.endTimeObj.endhours.length==1?"0"+$scope.endTimeObj.endhours:$scope.endTimeObj.endhours;
+    $scope.clearEndHour=function(eh){
+        $scope.endTimeObj.endhours = $scope.endTimeObj.endhours.length==1?"0"+$scope.endTimeObj.endhours:$scope.endTimeObj.endhours;
     }
-    $scope.clearEndMin=function(){
-        //$scope.endTimeObj.endminute = $scope.endTimeObj.endminute.length==1?"0"+$scope.endTimeObj.endminute:$scope.endTimeObj.endminute;
+    $scope.clearEndMin=function(em){
+        $scope.endTimeObj.endminute = $scope.endTimeObj.endminute.length==1?"0"+$scope.endTimeObj.endminute:$scope.endTimeObj.endminute;
     }
-    $scope.clearEndSec=function(){
-        //$scope.endTimeObj.endsecond = $scope.endTimeObj.endsecond.length==1?"0"+$scope.endTimeObj.endsecond:$scope.endTimeObj.endsecond;
+    $scope.clearEndSec=function(es){
+        $scope.endTimeObj.endsecond = $scope.endTimeObj.endsecond.length==1?"0"+$scope.endTimeObj.endsecond:$scope.endTimeObj.endsecond;
     }
     if(localStorageService.get("saveEndTime")){
         var savedEndTime = JSON.parse(localStorageService.get("saveEndTime"));
@@ -175,7 +175,11 @@ if(localStorageService.get("enddate")=="undefined"){
        },function(error){
         console.error(error);
        }) 
-       }
+       }else{
+            ngToast.danger({
+                content: '<div role="alert">Mark * Fileds are require</div>'
+            });
+        }
     }
 
     $scope.updateEntry = function(valid){
@@ -212,6 +216,7 @@ if(localStorageService.get("enddate")=="undefined"){
         var durationcalc = [];
         $scope.starttime = start;
         $scope.endtime = end;
+
        // $scope.startTimeObj.starthour = $scope.startTimeObj.starthour.length == 1?"0"+$scope.startTimeObj.starthour:$scope.startTimeObj.starthour;
         $scope.entryObj.start_time =$scope.starttime.starthour+":"+$scope.starttime.startminutes+":"+$scope.starttime.startsecond
         $scope.entryObj.end_time = $scope.endtime.endhours+":"+$scope.endtime.endminute+":"+$scope.endtime.endsecond;
