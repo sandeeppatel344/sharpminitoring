@@ -8,6 +8,7 @@ app.controller("entryreportCtrl",function($scope,reportsService,entriesformServi
     $scope.ListOfEntry = [];
     $scope.getAllEntries = function(){
 		reportsService.getEntryReport($scope.filterObj).then(function(res){
+            $scope.exportData = res.data;
             $scope.ListOfEntry = res.data;
 			console.log(res);
 		},function(error){

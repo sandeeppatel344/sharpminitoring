@@ -30,7 +30,7 @@ app.controller("workingTimeCtrl",function($scope,reportsService,$filter){
                     $scope.list[$scope.currentData].lastname = lst.last_name;
                     $scope.list[$scope.currentData].logintime = $filter('date')(new Date(lst.login_datetime),'h:mma');
                     $scope.list[$scope.currentData].logouttime = $filter('date')(new Date(lst.logout_datetime),'h:mma');
-                    $scope.list[$scope.currentData].workhours = Math.abs(new Date(lst.login_datetime) - new Date(lst.logout_datetime))/(60*60*1000);
+                    $scope.list[$scope.currentData].workhours = Math.abs(new Date(lst.login_datetime) - new Date(lst.logout_datetime));
                     $scope.EmpData.push($scope.list[$scope.currentData]);
                 }
             })

@@ -96,9 +96,11 @@
             </table>
         </div>
     </div>
-    <div class="hidden-print">
-        <button class="btn btn-raised btn-primary" ng-click="print()">Print</button>
-    </div>
+    <!--<div class="hidden-print">
+        <button class="btn btn-raised btn-primary" ng-click="print();">Print</button>
+    </div>-->
+    <button ng-json-export-excel data="exportData" report-fields="{'program_date': 'Date', 'start_time': 'Start Time', 'end_time': 'End Time','duration':'Duration','channel':'Channel','program_name':'Program Nam','product_name':'Product Name','songs':'Songs','music_company':' Music Company','category':'Category','activity':'Activity','channel_usage':'Channel Usage','story':'Story','product_language':'Product language','courtesy':'Courtesy'}" filename =" 'EntryReport' " separator="," class="css-class btn btn-raised btn-primary"> Export to Excel</button>
+
 
 </div>
 

@@ -63,7 +63,9 @@
         </div>
     </div>
     <div class="hidden-print">
-        <button class="btn btn-raised btn-primary" ng-click="print()">Print</button>
+        <!--<button class="btn btn-raised btn-primary" ng-click="print()">Print</button>-->
+            <button ng-json-export-excel data="EmpData" report-fields="{'date': 'Date', 'firstname': 'Name','logintime':'Login','logouttime':'Logout','workhours':'Work Hours'}" filename =" 'WorkingReport' " separator="," class="css-class btn btn-raised btn-primary"> Export to Excel</button>
+
     </div>
 
 </div>
