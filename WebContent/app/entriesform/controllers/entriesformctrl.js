@@ -289,7 +289,7 @@ if(localStorageService.get("enddate")=="undefined"){
             $scope.entryObj.channel = $filter('filter')($scope.channelList, {channel_name: $scope.toBeContinueEntry.channel})[0];
             $scope.entryObj.language=$scope.entryObj.channel?$scope.entryObj.channel.language:"";
             $scope.entryObj.program_date = new Date($scope.toBeContinueEntry.program_date);
-            $scope.entryObj.program_date = new Date(localStorageService.get("enddate"));
+            //$scope.entryObj.program_date = new Date(localStorageService.get("enddate"));
             $scope.entryObj.category=$scope.entryObj.channel.category_name
             $scope.getAllProgramList($scope.entryObj.channel)
             $scope.entryObj.activity = $scope.toBeContinueEntry.activity

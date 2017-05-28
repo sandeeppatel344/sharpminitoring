@@ -39,7 +39,7 @@
                                 <label class="control-label">Date <span class="required">*</span></label>
                                 <!--       <input class="form-control" name="dob"  ng-model="regObj.dob"  type="text" placeholder="Date of birth"  required> -->
                                 <input type="text" class=" form-control" name = "entrydate" uib-datepicker-popup="dd/MM/yyyy" max-date="maxDate"
-                                       ng-model="entryObj.program_date" is-open = "isOpen" close-text="Close" ng-click="isOpen=true" ng-focus="isOpen=true" required  placeholder="Date"/>
+                                       ng-model="entryObj.program_date" is-open = "isOpen" close-text="Close" ng-click="isOpen=true" ng-focus="isOpen=true" ng-blur = "endDates=entryObj.program_date" required  placeholder="Date"/>
                             </div>
                             <p class="errorMessage" ng-show="(entryForm.entrydate.$invalid &&isshowmsg)||(entryForm.entrydate.$invalid &&entryForm.entrydate.$touched)">
                                 Please enter valid date.
@@ -195,7 +195,7 @@
                 <div class="form-group">
                     <label class="control-label" >End Date<span class="required">*</span></label>
                         <input type="text" class=" form-control" name = "enddate" uib-datepicker-popup="dd/MM/yyyy" max-date="maxDate"
-                               ng-model="endDates" is-open = "isOpene" close-text="Close" ng-click="isOpene=true" ng-focus="isOpene=true"  required ng-change="setEndDate(endDates);calcilateDuration(startTimeObj,endTimeObj)" placeholder="Date"/>
+                               ng-model="endDates" is-open = "isOpene" close-text="Close" ng-click="isOpene=true"   required ng-change="setEndDate(endDates);calcilateDuration(startTimeObj,endTimeObj)" placeholder="Date"/>
 
                 </div>
                 <p class="errorMessage" ng-show="(entryForm.enddate.$invalid &&isshowmsg)||(entryForm.enddate.$error.maxlength||entryForm.enddate.$invalid&&entryForm.enddate.$touched)">
