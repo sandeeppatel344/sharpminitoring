@@ -2,10 +2,10 @@
 app.controller("entriesformCtrl",function(moment,$scope,$timeout,$state,focus,entriesformModel,entriesformService,channelService,ngToast,$filter,localStorageService){
 	this.modelObj = entriesformModel;
     var _this = this;
-if(localStorageService.get("enddate")=="undefined"){
-    $scope.endDates = new Date();
-    localStorageService.set("enddate",$scope.endDates);
-}
+//if(localStorageService.get("enddate")=="undefined"){
+  //  $scope.endDates = new Date();
+    //localStorageService.set("enddate",$scope.endDates);
+//}
 
     $scope.entryObj = new entriesformModel.entriesformData();
     $scope.channelList = [];
@@ -18,6 +18,7 @@ if(localStorageService.get("enddate")=="undefined"){
 
     $scope.endTimeObj = {};
     $scope.regExTime = /^[0-9]{2,2}$/;
+    $scope.endDates = new Date();
     $scope.clearStartHour=function(h){
         $scope.startTimeObj.starthour = h;
        $scope.startTimeObj.starthour = $scope.startTimeObj.starthour.length == 1?"0"+$scope.startTimeObj.starthour:$scope.startTimeObj.starthour;
@@ -289,7 +290,7 @@ if(localStorageService.get("enddate")=="undefined"){
             $scope.entryObj.channel = $filter('filter')($scope.channelList, {channel_name: $scope.toBeContinueEntry.channel})[0];
             $scope.entryObj.language=$scope.entryObj.channel?$scope.entryObj.channel.language:"";
             $scope.entryObj.program_date = new Date($scope.toBeContinueEntry.program_date);
-            //$scope.entryObj.program_date = new Date(localStorageService.get("enddate"));
+            $scope.endDates = new Date($scope.toBeContinueEntry.program_date);
             $scope.entryObj.category=$scope.entryObj.channel.category_name
             $scope.getAllProgramList($scope.entryObj.channel)
             $scope.entryObj.activity = $scope.toBeContinueEntry.activity
